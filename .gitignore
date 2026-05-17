@@ -1,6 +1,9 @@
 # Logs
 *.log
 
+# Local video editing scratch files
+video_assets/
+
 # Runtime data
 *.db
 *.sqlite
