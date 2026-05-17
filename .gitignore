@@ -1,0 +1,26 @@
+# Logs
+*.log
+
+# Runtime data
+*.db
+*.sqlite
+*.sqlite3
+
+# Rust
+backend/target/
+backend/target-*/
+
+# Node / SvelteKit
+frontend/node_modules/
+frontend/.svelte-kit/
+frontend/build/
+frontend/dist/
+
+# Environment and local editor files
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
