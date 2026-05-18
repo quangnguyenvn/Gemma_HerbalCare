@@ -9,7 +9,10 @@ use db::{init_db, seed_db};
 use llm::{build_gemma_provider, DynGemmaProvider};
 use sqlx::{sqlite::SqliteConnectOptions, SqlitePool};
 use std::{env, net::SocketAddr, str::FromStr, sync::Arc};
-use tower_http::cors::{Any, CorsLayer};
+use tower_http::{
+    cors::{Any, CorsLayer},
+    services::{ServeDir, ServeFile},
+};
 
 #[derive(Clone)]
 pub struct AppState {
@@ -40,12 +43,17 @@ async fn main() -> anyhow::Result<()> {
         gemma: Arc::from(build_gemma_provider()),
     };
 
-    let app = routes::router(state).layer(
-        CorsLayer::new()
-            .allow_origin(Any)
-            .allow_methods(Any)
-            .allow_headers(Any),
-    );
+    let static_dir = env::var("STATIC_DIR").unwrap_or_else(|_| "../frontend/build".to_string());
+    let index_file = format!("{static_dir}/index.html");
+
+    let app = routes::router(state)
+        .fallback_service(ServeDir::new(&static_dir).not_found_service(ServeFile::new(index_file)))
+        .layer(
+            CorsLayer::new()
+                .allow_origin(Any)
+                .allow_methods(Any)
+                .allow_headers(Any),
+        );
 
     let port = env::var("PORT").unwrap_or_else(|_| "8080".to_string());
     let addr: SocketAddr = format!("0.0.0.0:{port}").parse()?;

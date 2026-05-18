@@ -281,6 +281,16 @@ The frontend expects the API at:
 http://localhost:8080
 ```
 
+## Deploy to Google Cloud
+
+The project includes a root `Dockerfile` for a single Cloud Run service. The Rust/Axum backend serves both the API and the built SvelteKit frontend, so the whole app can run behind one custom subdomain such as:
+
+```text
+herbalcare.voidforge.pro
+```
+
+Deployment notes are in [docs/deploy_google_cloud.md](docs/deploy_google_cloud.md).
+
 ## Use a Gemma Endpoint
 
 The app runs with a mock provider by default so judges can test the full flow without model setup.
