@@ -21,12 +21,12 @@ This project treats traditional knowledge with respect while adding the guardrai
 ## Demo Highlights
 
 - **Public web app:** https://herbalcare.voidforge.pro/
-- **Mild cough:** shows support-only local herbs with evidence levels, contraindications, interactions, and care-seeking advice.
 - **Child diarrhea:** prioritizes ORS, hydration, and danger signs before mentioning any herb.
 - **Suspected malaria:** recommends urgent testing and appropriate antimalarial care; suppresses herbal substitution.
-- **Breathing difficulty:** detects an emergency red flag and returns urgent-care guidance only.
-- **Cancer cure request:** refuses cure framing and keeps serious disease care with clinicians.
-- **Low-literacy support:** explains safety, next steps, and plant records in short, simple language.
+- **Possible worms in a child:** keeps the response caution-level and points users toward qualified diagnosis and deworming medicine.
+- **Cloudy well water:** explains settling, cloth filtering, boiling, and chemical-contamination limits.
+- **Long-term food source plan:** suggests realistic local food resilience options such as sweet potato, moringa, and chickens.
+- **Poor breathing after indoor smoke:** detects an emergency red flag and returns urgent-care guidance only.
 
 ## What This Is, and Is Not
 
