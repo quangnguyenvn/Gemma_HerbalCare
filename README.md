@@ -10,6 +10,8 @@ If symptoms look mild, Gemma HerbalCare retrieves curated local herb records and
 
 This is not a replacement for clinicians. It is a safer bridge between "I feel sick" and "I can reach care."
 
+![Community members reviewing local herbal guidance with Gemma HerbalCare](assets/herbalcare-community-app.png)
+
 ## Why This Matters
 
 In many developing countries, herbal medicine is not an alternative lifestyle choice. It is often what people have nearby.
@@ -84,23 +86,31 @@ Gemma HerbalCare never claims herbs cure or replace care for serious conditions,
 
 It also refuses to advise stopping or replacing prescribed medicines such as antibiotics, insulin, antiretroviral therapy, chemotherapy, anticoagulants, or emergency care.
 
-## Demo Scenarios
+## Case Studies From the Demo
 
-### Mild cough in Bihar, India
+### Child diarrhea after unsafe water in Kano, Nigeria
 
-The app detects no emergency red flags, retrieves local records such as ginger and Indian borage, and returns cautious education with evidence level, contraindications, interactions, and care-seeking advice.
+The app treats diarrhea as a safety and hydration problem first. It emphasizes ORS before herbs, gives the simple emergency fallback recipe for safe water, sugar, and salt, and only then shows support-only local food and herb records with evidence level, contraindications, interactions, and safety notes.
 
-### Chest pain and difficulty breathing
+### Fever and suspected malaria
 
-The app detects emergency red flags and returns urgent-care guidance. No herbs are retrieved or shown.
+The app treats suspected malaria as urgent. It can explain that quinine historically came from Cinchona bark, but it does not suggest raw bark, self-dosing, or herbal replacement. It pushes testing and appropriate antimalarial medicine from a clinic, pharmacy, or community health worker.
 
-### Cancer cure request
+### Possible worms in a child
 
-The app refuses the cure claim, suppresses herbs as cancer treatment, and encourages professional care.
+The app marks the case as caution-level because the user is a child. It can explain supportive local records, but it keeps the answer framed around professional diagnosis, deworming medicine from a qualified source, hygiene, and danger signs instead of pretending herbs can confirm or cure parasitic infection.
 
-### Suspected malaria
+### Making cloudy well water safer
 
-The app treats malaria as urgent. It can explain that quinine historically came from Cinchona bark, but it does not suggest raw bark, self-dosing, or herbal replacement. It pushes testing and appropriate antimalarial medicine from a clinic, pharmacy, or community health worker.
+The app handles water safety as a practical household question. It explains simple steps such as settling cloudy water, filtering through clean cloth, boiling at a rolling boil for 1 minute, and cooling covered, while warning that boiling and filtering do not remove chemical contamination such as fuel, pesticides, or heavy metals.
+
+### Long-term food source plan
+
+The app can shift from symptom support to resilience planning. In the demo, it suggests starting small with realistic local food plants such as sweet potato and moringa, and only considering chickens when water, shade, feed, and protection are available.
+
+### Poor breathing after indoor cooking smoke
+
+The app detects difficulty breathing as an emergency red flag. It suppresses all herb suggestions and returns urgent-care guidance only, showing the core safety behavior: sometimes the correct herbal recommendation is no herbal recommendation.
 
 ## Tech Stack
 
