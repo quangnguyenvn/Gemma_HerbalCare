@@ -458,13 +458,71 @@ textarea {
   font-weight: 700;
 }
 
-.response-text {
-  white-space: pre-wrap;
-  font-family: Georgia, 'Times New Roman', serif;
-  line-height: 1.5;
+.response-story {
+  display: grid;
+  gap: .85rem;
+}
+
+.response-step {
   background: #fff8e7;
   border: 1px dashed var(--line);
-  padding: 1rem;
+  padding: .9rem;
+}
+
+.response-step p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.visual-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .65rem;
+  margin-top: .85rem;
+}
+
+.visual-guide-card {
+  display: grid;
+  gap: .45rem;
+  background: rgba(246, 237, 213, .82);
+  border: 1px solid rgba(73, 55, 31, .22);
+  padding: .65rem;
+  min-width: 0;
+}
+
+.visual-frame {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 6 / 4;
+  background:
+    linear-gradient(rgba(255,255,255,.36), rgba(255,255,255,.1)),
+    #fffdf3;
+  border: 1px solid rgba(73, 55, 31, .18);
+}
+
+.visual-frame svg {
+  width: min(100%, 10rem);
+  height: auto;
+  fill: none;
+  stroke: var(--moss);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.visual-guide-card h3,
+.visual-guide-card p {
+  margin: 0;
+}
+
+.visual-guide-card h3 {
+  font-size: .95rem;
+  line-height: 1.15;
+}
+
+.visual-guide-card p {
+  color: #4a4b31;
+  font-size: .88rem;
 }
 
 .disclaimer {
@@ -553,5 +611,9 @@ dd {
 
   .result-panel {
     position: static;
+  }
+
+  .visual-guide-grid {
+    grid-template-columns: 1fr;
   }
 }
