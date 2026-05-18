@@ -16,19 +16,59 @@ or:
 gemma.voidforge.pro
 ```
 
-## Build and Deploy
+## Build and Deploy With the Dockerfile
 
-From the repository root:
+Do not use `gcloud run deploy --source .` for this repository. That path can use Google Cloud Buildpacks and may ignore the root `Dockerfile`.
+
+Use Cloud Build to build the Dockerfile explicitly, then deploy the built image to Cloud Run.
+
+In Cloud Shell:
 
 ```bash
-gcloud run deploy gemma-herbalcare \
-  --source . \
-  --region asia-northeast3 \
+PROJECT_ID=alpha-semi-dashboard
+REGION=asia-northeast3
+REPO=cloud-run-source-deploy
+SERVICE=gemma-herbalcare
+
+gcloud config set project "$PROJECT_ID"
+
+git clone https://github.com/quangnguyenvn/Gemma_HerbalCare.git || true
+cd Gemma_HerbalCare
+git pull
+
+gcloud artifacts repositories describe "$REPO" \
+  --location "$REGION" \
+  >/dev/null 2>&1 || \
+gcloud artifacts repositories create "$REPO" \
+  --repository-format=docker \
+  --location "$REGION" \
+  --description="Docker images for Cloud Run"
+
+IMAGE="$REGION-docker.pkg.dev/$PROJECT_ID/$REPO/$SERVICE:$(git rev-parse --short HEAD)"
+
+gcloud builds submit \
+  --tag "$IMAGE" \
+  .
+
+gcloud run deploy "$SERVICE" \
+  --image "$IMAGE" \
+  --region "$REGION" \
   --allow-unauthenticated \
   --set-env-vars GEMMA_PROVIDER=mock
 ```
 
 If your preferred Google Cloud region is different, replace `asia-northeast3`.
+
+After deploy:
+
+```bash
+SERVICE_URL="$(gcloud run services describe "$SERVICE" \
+  --region "$REGION" \
+  --format='value(status.url)')"
+
+curl -i "$SERVICE_URL/health"
+curl -I "$SERVICE_URL/"
+```
 
 The deployed service will expose:
 
