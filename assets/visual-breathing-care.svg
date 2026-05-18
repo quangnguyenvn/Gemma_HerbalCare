@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 172" role="img" aria-labelledby="title desc">
+  <title id="title">Breathing trouble needs urgent care</title>
+  <desc id="desc">A person is moved away from smoke toward fresh air and care.</desc>
+  <rect width="240" height="172" fill="#fffdf3"/>
+  <g fill="none" stroke="#315f3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="62" cy="70" r="13"/>
+    <path d="M62 83 V128 M41 99 H83 M53 151 H70"/>
+    <path d="M111 49 C141 34, 161 42, 193 27"/>
+    <path d="M111 78 C143 61, 165 72, 201 53"/>
+    <path d="M113 108 C141 99, 164 105, 194 92"/>
+    <path d="M22 141 C35 127, 49 127, 63 141"/>
+    <path d="M29 154 H92"/>
+    <path d="M157 147 H214 V84 H157 Z"/>
+    <path d="M167 84 L185 65 L204 84"/>
+    <path d="M181 102 H190 V114 H202 V123 H190 V135 H181 V123 H169 V114 H181 Z"/>
+  </g>
+</svg>

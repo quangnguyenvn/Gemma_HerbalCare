@@ -28,6 +28,29 @@ This project treats traditional knowledge with respect while adding the guardrai
 - **Long-term food source plan:** suggests realistic local food resilience options such as sweet potato, moringa, and chickens.
 - **Poor breathing after indoor smoke:** detects an emergency red flag and returns urgent-care guidance only.
 
+## Visual Guidance for Real Communities
+
+Gemma HerbalCare is designed for people, not papers. The goal is not only to answer questions correctly, but to help communities understand, remember, and act on safe guidance in daily life.
+
+Many users who could benefit from this tool may have limited literacy, limited internet access, limited trust in formal medical language, or little time to read long explanations. For them, a useful AI system must feel closer to a community field guide than an academic report.
+
+That is why the prototype adds a **visual guidance layer** to Gemma responses. When Gemma explains practical steps, the interface can show simple, friendly illustrations for ideas such as:
+
+- preparing ORS and giving small sips
+- making cloudy water safer
+- starting a small food plot with sweet potato or moringa
+- keeping chickens only when water, shade, feed, and protection are realistic
+- moving away from indoor smoke and seeking urgent help for breathing trouble
+- confirming a plant before preparing it
+
+The philosophy is simple: **solutions for humanity should be understandable at community scale, not only impressive to experts.** A responsible developer should keep asking how to make advice clearer, warmer, safer, and closer to the people who need it.
+
+| Food resilience | ORS and hydration | Safe water | Breathing danger | Plant confirmation |
+|---|---|---|---|---|
+| ![Line illustration of a farmer starting a small sweet potato plot with moringa and chickens](assets/visual-food-plan.svg) | ![Line illustration of a caregiver preparing ORS and giving small sips](assets/visual-ors.svg) | ![Line illustration of settling, filtering, and boiling water](assets/visual-safe-water.svg) | ![Line illustration of moving away from smoke toward urgent care](assets/visual-breathing-care.svg) | ![Line illustration of confirming a plant before use](assets/visual-plant-check.svg) |
+
+These illustrations are intentionally simple SVGs. They are lightweight, offline-friendly, culturally adaptable, and safer than asking a generative image model to invent visuals during a consultation.
+
 ## What This Is, and Is Not
 
 Gemma HerbalCare is **not**:
@@ -45,6 +68,7 @@ Gemma HerbalCare **is**:
 - a traditional knowledge preservation platform
 - a local-first AI accessibility project
 - a retrieval-grounded system for explaining curated regional plant records
+- a visual field guide for practical health, hygiene, food resilience, and plant-safety education
 
 ## Why This Matters
 
@@ -58,6 +82,8 @@ Gemma HerbalCare exists because two things can be true at once:
 2. Serious illness still needs professional care, escalation, and safety boundaries.
 
 The system is designed to preserve and explain local knowledge without turning that knowledge into unsupported medical certainty.
+
+It also recognizes that improving community health is not only about herbs. Safe water, sanitation, hydration, nutrition, smoke exposure, and realistic household resilience matter too. Gemma HerbalCare therefore treats herbal knowledge as one part of a broader education layer for safer daily living.
 
 ## Canonical Field User Scenarios
 
@@ -99,6 +125,7 @@ Gemma HerbalCare is therefore designed for:
 
 - multilingual explanation
 - low-literacy communication
+- visual-first learning support
 - local/offline deployment
 - culturally aware plant knowledge
 - responsible refusal behavior

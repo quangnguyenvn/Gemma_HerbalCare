@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 172" role="img" aria-labelledby="title desc">
+  <title id="title">Make water safer</title>
+  <desc id="desc">Cloudy water is settled, filtered through cloth, boiled, and kept covered.</desc>
+  <rect width="240" height="172" fill="#fffdf3"/>
+  <g fill="none" stroke="#315f3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 124 C42 111, 63 135, 88 123 C108 113, 127 117, 143 127"/>
+    <path d="M28 59 H82 L72 143 H40 Z"/>
+    <path d="M35 92 H77"/>
+    <path d="M96 52 H145 V143 H96 Z"/>
+    <path d="M103 67 H138 M103 83 H138 M103 99 H138"/>
+    <path d="M61 31 C61 31, 47 48, 61 58 C75 48, 61 31, 61 31 Z"/>
+    <path d="M158 80 H215"/>
+    <path d="M166 64 H207"/>
+    <path d="M173 48 H199"/>
+    <path d="M167 143 H213"/>
+    <path d="M174 143 C170 131, 183 122, 193 128 C202 133, 203 143, 193 149"/>
+    <path d="M187 128 V116"/>
+  </g>
+</svg>

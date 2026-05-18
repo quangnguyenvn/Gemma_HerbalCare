@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 172" role="img" aria-labelledby="title desc">
+  <title id="title">ORS and hydration first</title>
+  <desc id="desc">A caregiver prepares oral rehydration solution and gives small sips to a child.</desc>
+  <rect width="240" height="172" fill="#fffdf3"/>
+  <g fill="none" stroke="#315f3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="52" cy="70" r="13"/>
+    <path d="M52 83 V126 M32 98 H73 M44 150 H61"/>
+    <circle cx="106" cy="84" r="9"/>
+    <path d="M106 94 V131 M91 108 H121 M99 150 H113"/>
+    <path d="M131 40 H198 L188 145 H140 Z"/>
+    <path d="M139 80 H191"/>
+    <circle cx="164" cy="112" r="8"/>
+    <path d="M46 51 C59 35, 83 35, 96 51"/>
+    <path d="M98 54 C115 51, 124 54, 132 63"/>
+    <path d="M38 149 H206"/>
+    <path d="M34 35 H85"/>
+    <path d="M43 24 H76"/>
+    <path d="M211 65 H224 M211 83 H224 M211 101 H224"/>
+  </g>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 172" role="img" aria-labelledby="title desc">
+  <title id="title">Confirm plants before use</title>
+  <desc id="desc">A plant is checked with a trusted local guide before any preparation.</desc>
+  <rect width="240" height="172" fill="#fffdf3"/>
+  <g fill="none" stroke="#315f3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="118" cy="79" r="32"/>
+    <path d="M118 111 V145"/>
+    <path d="M118 79 C98 59, 75 61, 62 78 C82 89, 104 88, 118 79 Z"/>
+    <path d="M118 79 C137 58, 162 61, 178 78 C157 89, 132 88, 118 79 Z"/>
+    <path d="M73 147 H165"/>
+    <circle cx="47" cy="52" r="13"/>
+    <path d="M47 65 V104 M27 80 H67 M38 128 H56"/>
+    <circle cx="195" cy="50" r="13"/>
+    <path d="M195 63 V105 M176 80 H214 M187 129 H203"/>
+    <path d="M33 32 L43 42 M43 32 L33 42"/>
+    <path d="M186 30 L194 38 L209 24"/>
+  </g>
+</svg>

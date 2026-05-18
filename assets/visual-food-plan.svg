@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 172" role="img" aria-labelledby="title desc">
+  <title id="title">Small food resilience plan</title>
+  <desc id="desc">A farmer starts a small sweet potato plot with moringa and a protected chicken coop.</desc>
+  <rect width="240" height="172" fill="#fffdf3"/>
+  <g fill="none" stroke="#315f3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 139 C55 119, 94 119, 130 139 C166 159, 198 149, 222 136"/>
+    <path d="M22 150 H218"/>
+    <circle cx="46" cy="78" r="12"/>
+    <path d="M46 91 V128 M29 105 H63 M39 146 H53"/>
+    <path d="M76 125 C86 105, 111 101, 132 119"/>
+    <path d="M84 115 C76 96, 90 84, 108 88 C103 103, 97 113, 84 115 Z"/>
+    <path d="M116 116 C113 94, 132 83, 151 93 C139 107, 129 115, 116 116 Z"/>
+    <path d="M91 150 C83 162, 104 167, 119 155 C129 147, 110 139, 91 150 Z"/>
+    <path d="M170 148 V76"/>
+    <path d="M170 96 C151 86, 138 85, 123 92"/>
+    <path d="M170 107 C194 96, 206 98, 222 106"/>
+    <circle cx="124" cy="92" r="7"/>
+    <circle cx="143" cy="87" r="7"/>
+    <circle cx="222" cy="106" r="7"/>
+    <circle cx="203" cy="99" r="7"/>
+    <path d="M150 148 H192"/>
+    <path d="M154 68 H222 V42 L188 25 L154 42 Z"/>
+    <path d="M165 68 V49 H211 V68"/>
+    <path d="M187 57 C181 50, 190 40, 202 47 C210 51, 207 64, 197 67"/>
+    <path d="M201 47 L209 40"/>
+  </g>
+</svg>
