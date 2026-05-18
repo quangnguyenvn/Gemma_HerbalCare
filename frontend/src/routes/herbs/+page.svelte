@@ -36,7 +36,16 @@
   <section class="library-grid">
     {#each items as herb}
       <article class="herb-card botanical">
-        <img class="record-guide-image" src="/visual-guides/plant-check.svg" alt="" aria-hidden="true" loading="lazy" />
+        {#if herb.image_url}
+          <img
+            class="record-guide-image"
+            src={herb.image_url}
+            alt={`${herb.common_name} identification reference`}
+            loading="lazy"
+          />
+        {:else}
+          <div class="sprig" aria-hidden="true"></div>
+        {/if}
         <h2>{herb.common_name}</h2>
         <p class="latin">{herb.latin_name}</p>
         <p>{herb.why_relevant}</p>

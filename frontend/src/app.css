@@ -174,42 +174,68 @@ h2 {
   flex-wrap: wrap;
 }
 
-.community-plate {
+.botanical-plate {
   position: relative;
   min-height: 32rem;
   border: 1px solid var(--line);
   background: rgba(246, 237, 213, .58);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem;
-  overflow: hidden;
-}
-
-.community-plate img {
-  width: 100%;
-  border: 1px solid rgba(73, 55, 31, .2);
-  background: #fffdf3;
-}
-
-.community-plate-caption {
   display: grid;
-  gap: .25rem;
-  margin-top: 1rem;
+  place-items: end center;
+  padding: 2rem;
 }
 
-.community-plate-caption span {
+.botanical-plate span {
+  font-style: italic;
   color: var(--cedar);
-  font-size: .82rem;
-  font-weight: 800;
-  letter-spacing: .07em;
-  text-transform: uppercase;
 }
 
-.community-plate-caption strong {
-  color: var(--moss);
-  font-size: 1.45rem;
-  line-height: 1.15;
+.stem,
+.leaf,
+.flower,
+.sprig {
+  position: absolute;
+  border: 2px solid var(--moss);
+}
+
+.stem {
+  width: .22rem;
+  height: 22rem;
+  bottom: 4rem;
+  border-radius: 999px;
+  background: var(--moss);
+}
+
+.leaf {
+  width: 8rem;
+  height: 3.4rem;
+  border-radius: 100% 0 100% 0;
+  background: rgba(75, 119, 74, .16);
+}
+
+.leaf-a {
+  bottom: 17rem;
+  left: 42%;
+  transform: rotate(-28deg);
+}
+
+.leaf-b {
+  bottom: 12rem;
+  right: 36%;
+  transform: scaleX(-1) rotate(-28deg);
+}
+
+.leaf-c {
+  bottom: 7rem;
+  left: 40%;
+  transform: rotate(-36deg);
+}
+
+.flower {
+  width: 5rem;
+  height: 5rem;
+  bottom: 25rem;
+  border-radius: 50%;
+  background: rgba(138, 47, 34, .12);
 }
 
 .manuscript-grid,
@@ -614,6 +640,19 @@ textarea {
   overflow: hidden;
 }
 
+.sprig {
+  right: 1rem;
+  top: 1rem;
+  width: 3.5rem;
+  height: 7rem;
+  border-left: 2px solid var(--moss);
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  opacity: .38;
+  transform: rotate(18deg);
+}
+
 .record-guide-image {
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -674,7 +713,7 @@ dd {
     min-height: auto;
   }
 
-  .community-plate {
+  .botanical-plate {
     min-height: 24rem;
   }
 

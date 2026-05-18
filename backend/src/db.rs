@@ -468,6 +468,28 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
 
     let herb_details = vec![
         (
+            1,
+            "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger%20rhizome.jpg?width=640",
+            "https://commons.wikimedia.org/wiki/Category:Zingiber_officinale_(root)",
+            json!([
+                "Ginger is the knobbly tan rhizome sold as a food spice",
+                "Fresh pieces smell sharp, warm, and spicy when cut or scraped",
+                "Do not confuse powdered spice or unknown roots with a fresh identified rhizome"
+            ]),
+            "Confirmed in demo availability data for Bihar, India as a common market food spice; safest source is a known food market, not foraging.",
+        ),
+        (
+            4,
+            "https://commons.wikimedia.org/wiki/Special:FilePath/IndianBorage.jpeg?width=640",
+            "https://commons.wikimedia.org/wiki/File:IndianBorage.jpeg",
+            json!([
+                "Thick, soft, fuzzy leaves with rounded scalloped edges",
+                "Leaves smell strong and oregano-like when gently crushed",
+                "Confirm with a trusted local grower because mint-family plants can look similar"
+            ]),
+            "Confirmed in demo availability data for Bihar, India as an Indian household herb; safest source is a known garden, pot, or market bundle.",
+        ),
+        (
             11,
             "https://commons.wikimedia.org/wiki/Special:FilePath/Moringa%20leaf%20closeup.jpg?width=640",
             "https://commons.wikimedia.org/wiki/Category:Moringa_oleifera_(leaves)",
