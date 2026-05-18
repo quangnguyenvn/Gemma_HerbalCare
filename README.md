@@ -1,46 +1,122 @@
 # Gemma HerbalCare
 
-**A safety-first herbal knowledge navigator for low-resource communities. Built for the Gemma 4 Hackathon.**
+**Gemma HerbalCare is a safety-first, local-first herbal knowledge assistant that helps communities explore traditional remedies without delaying urgent medical care.**
 
-Gemma HerbalCare helps people explore local herbal knowledge without turning an AI model into an unsafe doctor. It is designed for places where clinics can be far away, internet health information is unreliable, and families may try home remedies before they can reach professional care.
+Gemma HerbalCare is built for the Kaggle Gemma 4 Good Hackathon as a practical AI-for-good prototype: not an AI doctor, not a diagnosis system, and not a generic symptom chatbot.
 
-The product idea is simple: when someone asks about herbs, the first answer should not be a confident guess. It should first check for danger.
+It is an educational support tool for communities that still depend on local medicinal knowledge, where internet access may be unreliable, clinics may be far away, and traditional plant knowledge is disappearing faster than it is being documented.
 
-If symptoms look mild, Gemma HerbalCare retrieves curated local herb records and asks a Gemma-compatible model to explain them in plain, cautious language. If the user mentions chest pain, difficulty breathing, pregnancy bleeding, suspected malaria, cancer cure requests, severe fever, HIV/AIDS without care, or other red flags, the app does not show herbs. It gives urgent care guidance instead.
+The product principle is simple:
 
-This is not a replacement for clinicians. It is a safer bridge between "I feel sick" and "I can reach care."
+**Before suggesting any herb, check whether suggesting herbs would be unsafe.**
+
+If a user describes danger signs such as breathing difficulty, chest pain, pregnancy bleeding, severe fever, suspected malaria, cancer cure requests, or other serious conditions, Gemma HerbalCare suppresses herbal suggestions and gives urgent-care guidance instead. If the situation is lower risk, it retrieves curated local herb records and asks Gemma to explain them in plain, cautious language.
+
+This project treats traditional knowledge with respect while adding the guardrails needed for responsible AI deployment.
 
 ![Community members reviewing local herbal guidance with Gemma HerbalCare](assets/herbalcare-community-app.png)
 
+## Demo Highlights
+
+- **Mild cough:** shows support-only local herbs with evidence levels, contraindications, interactions, and care-seeking advice.
+- **Child diarrhea:** prioritizes ORS, hydration, and danger signs before mentioning any herb.
+- **Suspected malaria:** recommends urgent testing and appropriate antimalarial care; suppresses herbal substitution.
+- **Breathing difficulty:** detects an emergency red flag and returns urgent-care guidance only.
+- **Cancer cure request:** refuses cure framing and keeps serious disease care with clinicians.
+- **Low-literacy support:** explains safety, next steps, and plant records in short, simple language.
+
+## What This Is, and Is Not
+
+Gemma HerbalCare is **not**:
+
+- a doctor replacement
+- a medical diagnosis system
+- a prescription tool
+- a generic symptom checker
+- a chatbot that freely invents herbal advice
+
+Gemma HerbalCare **is**:
+
+- a safety-first herbal knowledge assistant
+- an educational support tool
+- a traditional knowledge preservation platform
+- a local-first AI accessibility project
+- a retrieval-grounded system for explaining curated regional plant records
+
 ## Why This Matters
 
-In many developing countries, herbal medicine is not an alternative lifestyle choice. It is often what people have nearby.
+In many communities, herbal medicine is not an alternative lifestyle choice. It is often the first available response when professional care is delayed by distance, cost, conflict, floods, poor roads, or unreliable connectivity.
 
-That reality deserves respect, but it also needs guardrails. A helpful answer can support hydration, comfort, nutrition, and care-seeking. A careless answer can delay treatment for malaria, sepsis, pregnancy complications, heart attack, severe dehydration, cancer, or dangerous medicine interactions.
+At the same time, unguarded AI can be dangerous in exactly this setting. A fluent model can invent herbs, doses, cures, or false reassurance while sounding confident. That can delay treatment for malaria, sepsis, pregnancy complications, severe dehydration, heart attack, cancer, or dangerous medicine interactions.
 
-Generic AI chatbots are risky here because they can invent herbs, dosing, cures, or false reassurance while sounding fluent. Gemma HerbalCare keeps the model on a narrower job:
+Gemma HerbalCare exists because two things can be true at once:
 
-1. Check safety first.
-2. Retrieve only known records.
-3. Ask Gemma to explain, not improvise.
+1. Local medicinal knowledge is culturally important and practically useful.
+2. Serious illness still needs professional care, escalation, and safety boundaries.
 
-With clinician-reviewed datasets and local health partners, this kind of system could prevent real harm by recognizing danger signs earlier, refusing unsafe cure claims, and explaining next steps in language people can actually use.
+The system is designed to preserve and explain local knowledge without turning that knowledge into unsupported medical certainty.
 
-## What Gemma Does
+## Canonical Field User Scenarios
 
-Gemma is used as a careful community health translator, not as the source of truth.
+### Rural Health Volunteer With Unreliable Internet
 
-The backend gives the model:
+A community health volunteer in northern Vietnam has intermittent connectivity and a basic smartphone. They need to explain common local plants in simple language, but also need help recognizing when the correct response is referral, not home care.
+
+Gemma HerbalCare can run with a local dataset and a small/local Gemma-compatible model so the volunteer can access structured guidance even when the network is weak.
+
+### Flood-Isolated Village Before Outside Support Arrives
+
+A village is temporarily isolated after flooding. People ask about diarrhea, unsafe water, mild cough, and locally available plants. Gemma HerbalCare prioritizes safe water, ORS, danger signs, and escalation while explaining only support-level local knowledge.
+
+The app does not pretend to replace medical response. It helps reduce harm during the gap before care arrives.
+
+### Elderly Villager With Traditional Knowledge
+
+An elder knows local herbs by experience but cannot read medical terminology or internet health pages. Gemma HerbalCare can preserve plant records with local names, safety notes, preparation context, and plain-language explanations that are easier to share across generations.
+
+### Community Worker Explaining Safe Boundaries
+
+A community worker is asked whether herbs can treat suspected malaria or replace prescribed medicine. Gemma HerbalCare refuses unsafe substitution, explains why testing and proven medicine matter, and keeps herbal knowledge in an educational support role.
+
+## Why Gemma Matters
+
+Gemma is used as a careful explainer and contextualizer, **not as the source of medical truth**.
+
+The backend gives Gemma:
 
 - the user's location and symptom context
-- the triage result
-- the retrieved herb records, if the case is safe enough
+- the deterministic triage result
+- retrieved herb records, if the case is safe enough for herbs
 
-Gemma is instructed to write from those records only. It must not invent herbs, diagnose disease, prescribe doses, claim cures, or tell users to stop prescribed medicine.
+Curated records control the knowledge. Safety rules constrain the workflow. Gemma turns structured information into guidance a low-literacy user can understand.
 
-This makes the project more than a chatbot wrapper. The safety-critical decisions happen before generation.
+This is especially important for multilingual and local-first AI. A large model can organize and contextualize knowledge. Smaller local models can make that knowledge accessible offline to communities that need it.
 
-## How It Works
+Gemma HerbalCare is therefore designed for:
+
+- multilingual explanation
+- low-literacy communication
+- local/offline deployment
+- culturally aware plant knowledge
+- responsible refusal behavior
+
+## What Makes It Different From a Chatbot
+
+Gemma HerbalCare does not start by generating an answer. It starts by deciding whether generation would be safe.
+
+Workflow:
+
+1. Detect danger first.
+2. Refuse unsafe herbal advice.
+3. Retrieve curated local herbal records.
+4. Ask Gemma to explain, not invent.
+5. Log consultation traces for future review and evaluation.
+
+This reduces hallucination risk because the model is not asked to freely produce medicinal claims. It receives bounded records with evidence level, source URL, safety notes, contraindications, interactions, and preparation context.
+
+The goal is educational guidance, not speculative diagnosis.
+
+## Architecture
 
 ```mermaid
 flowchart TD
@@ -55,71 +131,17 @@ flowchart TD
   B --> J["Consultation log in SQLite"]
 ```
 
-The key rule: **Gemma never decides whether an emergency should receive herbal suggestions.** The app decides that first.
+The key rule: **Gemma never decides whether an emergency should receive herbal suggestions.** The application decides that first.
 
-## Core Features
+### Technical Stack
 
-- Red-flag triage before any herb recommendation
-- Herb suppression for emergency and urgent cases
-- Local SQLite herb library with evidence level, source URL, safety notes, contraindications, interactions, and preparation notes
-- Gemma-compatible provider layer with a mock mode for easy judging
-- Simple, low-literacy response style
-- Rust/Axum backend with clear separation between triage, retrieval, logging, and LLM generation
-- SvelteKit frontend with demo cases for mild symptoms, emergencies, malaria, diarrhea/ORS, water safety, and food resilience
-
-## Safety Boundaries
-
-Gemma HerbalCare never claims herbs cure or replace care for serious conditions, including:
-
-- cancer
-- HIV/AIDS
-- tuberculosis
-- malaria
-- stroke
-- heart attack
-- sepsis
-- severe infection
-- kidney failure
-- liver failure
-- pregnancy complications
-- uncontrolled diabetes
-
-It also refuses to advise stopping or replacing prescribed medicines such as antibiotics, insulin, antiretroviral therapy, chemotherapy, anticoagulants, or emergency care.
-
-## Case Studies From the Demo
-
-### Child diarrhea after unsafe water in Kano, Nigeria
-
-The app treats diarrhea as a safety and hydration problem first. It emphasizes ORS before herbs, gives the simple emergency fallback recipe for safe water, sugar, and salt, and only then shows support-only local food and herb records with evidence level, contraindications, interactions, and safety notes.
-
-### Fever and suspected malaria
-
-The app treats suspected malaria as urgent. It can explain that quinine historically came from Cinchona bark, but it does not suggest raw bark, self-dosing, or herbal replacement. It pushes testing and appropriate antimalarial medicine from a clinic, pharmacy, or community health worker.
-
-### Possible worms in a child
-
-The app marks the case as caution-level because the user is a child. It can explain supportive local records, but it keeps the answer framed around professional diagnosis, deworming medicine from a qualified source, hygiene, and danger signs instead of pretending herbs can confirm or cure parasitic infection.
-
-### Making cloudy well water safer
-
-The app handles water safety as a practical household question. It explains simple steps such as settling cloudy water, filtering through clean cloth, boiling at a rolling boil for 1 minute, and cooling covered, while warning that boiling and filtering do not remove chemical contamination such as fuel, pesticides, or heavy metals.
-
-### Long-term food source plan
-
-The app can shift from symptom support to resilience planning. In the demo, it suggests starting small with realistic local food plants such as sweet potato and moringa, and only considering chickens when water, shade, feed, and protection are available.
-
-### Poor breathing after indoor cooking smoke
-
-The app detects difficulty breathing as an emergency red flag. It suppresses all herb suggestions and returns urgent-care guidance only, showing the core safety behavior: sometimes the correct herbal recommendation is no herbal recommendation.
-
-## Tech Stack
-
-- **Backend:** Rust, Axum, Tokio, Serde, SQLx SQLite, reqwest
+- **Backend:** Rust, Axum, Tokio, Serde, SQLx, SQLite, reqwest
 - **Frontend:** SvelteKit, TypeScript, CSS
-- **LLM:** mock Gemma provider by default, HTTP provider through environment variables
-- **Database:** local SQLite, auto-migrated and seeded on backend startup
+- **Retrieval:** local SQLite herb library with regional availability records
+- **LLM integration:** mock provider by default, HTTP Gemma-compatible provider for local or hosted inference
+- **Deployment shape:** local-first architecture that can be packaged for clinics, NGOs, community health workers, and offline demos
 
-## Repository Structure
+### Core Modules
 
 ```text
 backend/
@@ -127,7 +149,7 @@ backend/
     safety.rs      # red flags, serious-condition boundaries, triage
     routes.rs      # API handlers
     db.rs          # SQLite schema, seed data, retrieval, logging
-    llm.rs         # Gemma provider trait, mock provider, HTTP provider
+    llm.rs         # Gemma provider trait, mock provider, HTTP provider, prompt
     models.rs      # request/response/database structs
 frontend/
   src/routes/      # SvelteKit UI pages
@@ -137,65 +159,71 @@ docs/
   demo_script.md
 ```
 
-## Run Locally
+### TODO Placeholders
 
-Start the backend:
+- [ ] Add high-resolution architecture diagram.
+- [ ] Add screenshots of consultation, herb library, safety page, and refusal states.
+- [ ] Add embedded demo video link.
+- [ ] Add offline deployment demo with a local Gemma-compatible endpoint.
 
-```bash
-cd backend
-cargo run
-```
+## Safety-First Design
 
-Start the frontend:
+Gemma HerbalCare is intentionally conservative. The system never claims herbs cure serious disease and never advises users to stop prescribed medicine.
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+Safety behaviors include:
 
-Open:
+- **Emergency suppression:** if red flags are detected, herbs are not retrieved or shown.
+- **Refusal behavior:** cure claims and serious disease requests receive clinical-care boundaries.
+- **Escalation logic:** the response prioritizes emergency care, clinics, pharmacies, community health workers, or trusted local help.
+- **Hallucination minimization:** Gemma receives only retrieved records and explicit safety instructions.
+- **Evidence transparency:** each herb record includes evidence level and source context.
+- **Medicine caution:** the app warns against replacing antibiotics, insulin, antiretroviral therapy, chemotherapy, anticoagulants, or emergency care.
+- **Educational-only framing:** every response is positioned as support information, not diagnosis, prescription, or medical advice.
 
-```text
-http://localhost:5173
-```
+Gemma HerbalCare suppresses herbal recommendations for emergency or serious conditions, including:
 
-The frontend expects the API at `http://localhost:8080`.
+- chest pain
+- difficulty breathing
+- severe allergic reaction
+- pregnancy bleeding or severe pain
+- fever above 39.5C
+- fever lasting more than 3 days
+- suspected malaria
+- suspected cancer or cancer cure requests
+- HIV/AIDS without clinical care
+- tuberculosis
+- stroke symptoms
+- heart attack symptoms
+- sepsis or severe infection
+- kidney failure
+- liver failure
+- uncontrolled diabetes
 
-## Use a Gemma Endpoint
+## Case Studies From the Demo
 
-The app runs with a mock provider by default so the full flow can be tested without model setup.
+### Child Diarrhea After Unsafe Water
 
-To use an HTTP Gemma-compatible endpoint:
+The app treats diarrhea as a hydration and safety problem first. It emphasizes ORS before herbs, gives the simple fallback recipe for safe water, sugar, and salt when no ORS packet is available, and then explains support-only local plant records with warnings.
 
-```bash
-cd backend
-GEMMA_PROVIDER=http GEMMA_MODEL=gemma4 cargo run
-```
+### Fever and Suspected Malaria
 
-The default HTTP URL is Ollama's local generate API:
+The app treats suspected malaria as urgent. It can mention that quinine historically came from Cinchona bark, but it does not suggest raw bark, self-dosing, or herbal replacement. It pushes testing and appropriate antimalarial medicine from a clinic, pharmacy, or community health worker.
 
-```text
-http://localhost:11434/api/generate
-```
+### Possible Worms in a Child
 
-Override it if your Gemma endpoint runs elsewhere:
+The app marks the case as caution-level because the user is a child. It keeps the answer focused on professional diagnosis, appropriate deworming medicine from a qualified source, hygiene, and danger signs instead of pretending herbs can confirm or cure parasitic infection.
 
-```bash
-GEMMA_PROVIDER=http GEMMA_API_URL=http://localhost:11434/api/generate GEMMA_MODEL=gemma4 cargo run
-```
+### Making Cloudy Well Water Safer
 
-The provider posts:
+The app handles water safety as a practical household question. It explains settling cloudy water, filtering through clean cloth, boiling at a rolling boil for 1 minute, and cooling covered, while warning that boiling and filtering do not remove chemical contamination such as fuel, pesticides, or heavy metals.
 
-```json
-{
-  "model": "gemma4",
-  "prompt": "...",
-  "stream": false
-}
-```
+### Long-Term Food Source Plan
 
-It accepts `text`, `response`, or `choices[0].text` in the JSON response.
+The app can shift from symptom support to resilience planning. In the demo, it suggests starting small with realistic local food plants such as sweet potato and moringa, and only considering chickens when water, shade, feed, and protection are available.
+
+### Poor Breathing After Indoor Cooking Smoke
+
+The app detects difficulty breathing as an emergency red flag. It suppresses all herb suggestions and returns urgent-care guidance only.
 
 ## API
 
@@ -224,15 +252,119 @@ Example consultation:
 }
 ```
 
+## Run Locally
+
+Start the backend:
+
+```bash
+cd backend
+cargo run
+```
+
+Start the frontend:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:5173
+```
+
+The frontend expects the API at:
+
+```text
+http://localhost:8080
+```
+
+## Use a Gemma Endpoint
+
+The app runs with a mock provider by default so judges can test the full flow without model setup.
+
+To use an HTTP Gemma-compatible endpoint:
+
+```bash
+cd backend
+GEMMA_PROVIDER=http GEMMA_MODEL=gemma4 cargo run
+```
+
+The default HTTP URL is compatible with Ollama's local generate API:
+
+```text
+http://localhost:11434/api/generate
+```
+
+Override it if your Gemma endpoint runs elsewhere:
+
+```bash
+GEMMA_PROVIDER=http GEMMA_API_URL=http://localhost:11434/api/generate GEMMA_MODEL=gemma4 cargo run
+```
+
+The provider posts:
+
+```json
+{
+  "model": "gemma4",
+  "prompt": "...",
+  "stream": false
+}
+```
+
+It accepts `text`, `response`, or `choices[0].text` in the JSON response.
+
 ## Why This Fits the Hackathon
 
-Gemma HerbalCare has a clear product thesis, a working safety architecture, and a realistic path beyond the demo.
+Gemma HerbalCare has a clear AI-for-good thesis and a working safety architecture:
 
-- **Responsible AI:** generation is bounded by triage, retrieval, and refusal rules.
-- **Real-world problem:** the app targets health decisions people make before they can reach care.
-- **Local-first design:** herb knowledge is regional, sourced, and structured for offline-friendly deployment.
-- **Clear model role:** Gemma turns controlled knowledge into understandable guidance.
-- **Scalable path:** the same architecture can support multilingual voice flows, clinician-reviewed datasets, and community health worker tools.
+- **Responsible AI:** generation is bounded by triage, retrieval, refusal rules, and educational-only framing.
+- **Real-world problem:** the app targets the dangerous gap between symptoms appearing and professional care becoming reachable.
+- **Local-first design:** plant knowledge is regional, source-linked, and structured for offline-friendly use.
+- **Cultural preservation:** the system can document local names, preparation context, safety notes, and regional availability before knowledge is lost.
+- **Clear model role:** Gemma translates controlled knowledge into accessible guidance instead of acting as an unconstrained medical authority.
+- **Scalable path:** the architecture can support multilingual voice flows, clinician-reviewed datasets, safety evaluations, and community health worker deployments.
+
+## Phase 2: Competitive Extensions
+
+- **Multilingual support:** English, Vietnamese, Korean, Hindi, Hausa, and other low-resource languages.
+- **Voice-first interaction:** speech input and spoken responses for low-literacy users.
+- **Plant photo intake:** image-based plant intake and identification support, with strong uncertainty warnings and expert confirmation requirements.
+- **Offline bundle:** deployable package for rural clinics, NGOs, schools, and community health workers.
+- **Safety evaluation suite:** refusal tests, grounding tests, hallucination tests, and emergency escalation tests.
+- **Regional herbal datasets:** Southeast Asia, Korea, Africa, Latin America, and other community-reviewed sources.
+- **Lightweight edge deployment:** small-model local inference for low-connectivity environments.
+- **Research review tools:** consultation trace review, source provenance, dataset quality checks, and clinical/public-health partner workflows.
+
+## Long-Term Vision
+
+Gemma HerbalCare could grow into a global, multilingual herbal knowledge map: part ethnobotanical dictionary, part cultural preservation platform, part local-first AI accessibility tool.
+
+Long term, the platform could help communities and researchers document medicinal plant knowledge across:
+
+- Southeast Asia
+- Korea
+- Traditional Chinese Medicine
+- Ayurveda
+- African traditional medicine
+- Amazon and other Indigenous traditions
+
+This future version would remain educational and research-oriented. It would not convert traditional knowledge into unsupported medical certainty.
+
+Possible research directions include:
+
+- biodiversity preservation
+- endangered knowledge preservation
+- sustainable cultivation research
+- regional plant availability mapping
+- local-language plant dictionaries
+- safer community health education
+
+With appropriate partners, the platform could help researchers and communities understand which regions commonly face certain health concerns, which medicinal plants are locally available, and which plants may be suitable for sustainable cultivation in those environments.
+
+The goal is not to replace clinicians. The goal is to preserve knowledge, improve access, reduce harm, and make responsible AI useful where connectivity and care access are limited.
 
 ## Future Work
 
@@ -241,8 +373,8 @@ Gemma HerbalCare has a clear product thesis, a working safety architecture, and 
 - Integrate taxonomic validation from sources such as GBIF, POWO, and WFO.
 - Add structured medicine interaction checks.
 - Add offline deployment bundles for rural clinics and community health workers.
-- Add evaluation tests for safety refusal, retrieval grounding, and low-literacy response quality.
+- Add evaluation tests for safety refusal, retrieval grounding, hallucination, and low-literacy response quality.
 
 ## Disclaimer
 
-Gemma HerbalCare is an educational hackathon prototype. It is not medical advice, not a diagnosis, and not a prescription. Real deployment would require clinical review, local regulatory review, language validation, and partnerships with health workers or public health organizations.
+Gemma HerbalCare is an educational hackathon prototype. It is not medical advice, not a diagnosis, not a prescription, and not a replacement for professional care. Real deployment would require clinical review, local regulatory review, public health partnerships, language validation, and community governance.
