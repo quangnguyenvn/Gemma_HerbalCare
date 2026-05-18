@@ -557,8 +557,8 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
         ),
         (
             19,
-            "https://commons.wikimedia.org/wiki/Special:FilePath/Abelmoschus%20esculentus%20fruit.jpg?width=640",
-            "https://commons.wikimedia.org/wiki/Category:Abelmoschus_esculentus",
+            "https://commons.wikimedia.org/wiki/Special:FilePath/Okra%20%28Abelmoschus%20esculentus%29%20fruit%20opened.jpg?width=640",
+            "https://commons.wikimedia.org/wiki/File:Okra_(Abelmoschus_esculentus)_fruit_opened.jpg",
             json!([
                 "Upright plant with lobed leaves and yellowish hibiscus-like flowers",
                 "Green ribbed pods are harvested young for food",
