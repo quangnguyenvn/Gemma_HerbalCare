@@ -49,13 +49,15 @@ The deployed service will expose:
 After the Cloud Run service is deployed:
 
 ```bash
-gcloud run domain-mappings create \
+gcloud beta run domain-mappings create \
   --service gemma-herbalcare \
   --domain herbalcare.voidforge.pro \
   --region asia-northeast3
 ```
 
 Google Cloud will print the DNS records required for the domain mapping. Add those records wherever `voidforge.pro` DNS is managed.
+
+Cloud Run custom domain mapping for fully managed Cloud Run currently uses the beta gcloud command and has limited availability in some regions. If the selected region does not support direct domain mapping, keep the Cloud Run service in that region and put Firebase Hosting or a Google Cloud external Application Load Balancer in front of it.
 
 For a subdomain, this is usually a `CNAME` similar to:
 
