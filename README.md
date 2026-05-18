@@ -51,6 +51,27 @@ The philosophy is simple: **solutions for humanity should be understandable at c
 
 These illustrations are intentionally simple SVGs. They are lightweight, offline-friendly, culturally adaptable, and safer than asking a generative image model to invent visuals during a consultation.
 
+## Accessibility and Multimodal Direction
+
+The hackathon theme is not just local AI. It is local AI that can help real people. In the communities this app is designed for, some users may not be able to type, read a long answer, see a small phone screen clearly, or describe a plant or medicine label in writing.
+
+The current prototype therefore adds an accessibility layer:
+
+- **Read-aloud response:** the consultation result includes a speaker control that uses browser text-to-speech so a low-literacy user, older adult, or visually impaired user can hear the guidance.
+- **Camera intake placeholder:** the consultation form accepts an image upload and preview. In this prototype, the image is not sent to the backend; it documents the intended flow for local OCR and visual triage support.
+- **Voice-input placeholder:** the form includes a microphone control explaining the phase-2 plan for local speech-to-text, so users who cannot type can speak symptoms or questions.
+
+The product boundary is important: image input is planned as **visual triage support**, not visual diagnosis. The app should help read labels, inspect water clarity, compare a plant against a curated record, or notice danger signs that need urgent care. It should not claim to diagnose malaria, pneumonia, cancer, skin disease, or any other condition from a photo.
+
+Planned local multimodal stack:
+
+- **Gemma 4 multimodal:** local image/OCR and visual-context understanding where runtime support is available.
+- **Local speech-to-text:** offline speech intake for low-literacy users and community health workers.
+- **Local text-to-speech:** spoken answers in local languages where suitable voices are available.
+- **Safety filter before vision output:** photos can add context, but triage and refusal rules still decide whether herbal advice is safe.
+
+This roadmap fits the core thesis: **AI should still help when the user cannot type, cannot read, has weak connectivity, or cannot reach care immediately.**
+
 ## What This Is, and Is Not
 
 Gemma HerbalCare is **not**:
@@ -126,6 +147,7 @@ Gemma HerbalCare is therefore designed for:
 - multilingual explanation
 - low-literacy communication
 - visual-first learning support
+- accessibility-first interaction with image preview, read-aloud responses, and planned local speech input
 - local/offline deployment
 - culturally aware plant knowledge
 - responsible refusal behavior
@@ -162,6 +184,19 @@ flowchart TD
 ```
 
 The key rule: **Gemma never decides whether an emergency should receive herbal suggestions.** The application decides that first.
+
+Planned multimodal extension:
+
+```mermaid
+flowchart TD
+  A["Camera / microphone / typed input"] --> B["Local OCR or speech-to-text"]
+  B --> C["Structured user context"]
+  C --> D["Safety triage"]
+  D -->|Emergency| E["Urgent guidance. No herbal substitution."]
+  D -->|Safe enough| F["Retrieve local plant and survival guidance records"]
+  F --> G["Gemma explains in plain language"]
+  G --> H["Text response + read-aloud voice"]
+```
 
 ### Technical Stack
 
@@ -372,8 +407,8 @@ Gemma HerbalCare has a clear AI-for-good thesis and a working safety architectur
 ## Phase 2: Competitive Extensions
 
 - **Multilingual support:** English, Vietnamese, Korean, Hindi, Hausa, and other low-resource languages.
-- **Voice-first interaction:** speech input and spoken responses for low-literacy users.
-- **Plant photo intake:** image-based plant intake and identification support, with strong uncertainty warnings and expert confirmation requirements.
+- **Voice-first interaction:** local speech input and spoken responses for low-literacy users.
+- **Plant/photo intake:** image-based OCR and visual triage support for plant records, water clarity, labels, and visible danger signs, with strong uncertainty warnings and expert confirmation requirements.
 - **Offline bundle:** deployable package for rural clinics, NGOs, schools, and community health workers.
 - **Safety evaluation suite:** refusal tests, grounding tests, hallucination tests, and emergency escalation tests.
 - **Regional herbal datasets:** Southeast Asia, Korea, Africa, Latin America, and other community-reviewed sources.

@@ -128,7 +128,8 @@ h2 {
 }
 
 .button,
-.small-button {
+.small-button,
+.icon-button {
   border: 1px solid var(--moss);
   background: transparent;
   color: var(--moss);
@@ -140,6 +141,21 @@ h2 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.icon-button {
+  width: 3.25rem;
+  min-height: 3.25rem;
+  padding: .4rem;
+  font-family: Arial, sans-serif;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .05em;
+}
+
+.icon-button:disabled {
+  cursor: not-allowed;
+  opacity: .45;
 }
 
 .primary {
@@ -290,6 +306,94 @@ textarea {
   font-weight: 700;
   line-height: 1.35;
   margin-top: .2rem;
+}
+
+.accessibility-panel,
+.response-tools {
+  display: grid;
+  gap: .65rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 248, 231, .62);
+  padding: .8rem;
+}
+
+.accessibility-panel p,
+.response-tools p {
+  margin: 0;
+  color: #4a4b31;
+  line-height: 1.35;
+}
+
+.accessibility-panel h2 {
+  margin: .15rem 0 .35rem;
+  font-size: 1.1rem;
+}
+
+.panel-kicker {
+  color: var(--cedar);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.assistive-tools {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: .65rem;
+  align-items: center;
+}
+
+.response-tools {
+  grid-template-columns: auto 1fr;
+  margin-bottom: .85rem;
+}
+
+.phase-note {
+  display: grid;
+  gap: .2rem;
+  color: #4a4b31;
+  line-height: 1.35;
+}
+
+.phase-note strong {
+  color: var(--moss);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.image-preview {
+  display: grid;
+  gap: .65rem;
+  margin: 0;
+  border: 1px solid var(--line);
+  background: rgba(255, 248, 231, .7);
+  padding: .8rem;
+}
+
+.image-preview img {
+  width: 100%;
+  max-height: 16rem;
+  object-fit: cover;
+  border: 1px solid rgba(73, 55, 31, .18);
+  background: #fffdf3;
+}
+
+.image-preview figcaption {
+  display: grid;
+  gap: .2rem;
+  color: #4a4b31;
+}
+
+.image-preview figcaption strong {
+  color: var(--moss);
 }
 
 .result-panel {
@@ -580,5 +684,21 @@ dd {
 
   .visual-guide-grid {
     grid-template-columns: 1fr;
+  }
+
+  .accessibility-panel,
+  .response-tools {
+    grid-template-columns: 1fr;
+  }
+
+  .assistive-tools {
+    grid-template-columns: auto auto;
+    justify-content: start;
+  }
+
+  .accessibility-panel > div:first-child,
+  .assistive-tools .phase-note,
+  .response-tools .phase-note {
+    grid-column: 1 / -1;
   }
 }

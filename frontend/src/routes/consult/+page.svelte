@@ -27,9 +27,20 @@
   let cases: DemoCase[] = [];
   let loading = false;
   let error = '';
+  let imageInput: HTMLInputElement;
+  let selectedImageName = '';
+  let selectedImageUrl = '';
+  let speaking = false;
+  let speechSupported = false;
 
   onMount(() => {
     demoCases().then((items) => (cases = items)).catch(() => (cases = []));
+    speechSupported = typeof window !== 'undefined' && 'speechSynthesis' in window;
+
+    return () => {
+      if (selectedImageUrl) URL.revokeObjectURL(selectedImageUrl);
+      if (speechSupported) window.speechSynthesis.cancel();
+    };
   });
 
   const splitList = (value: string) =>
@@ -77,6 +88,55 @@
     medicinesText = item.request.current_medicines.join(', ');
     allergiesText = item.request.allergies.join(', ');
     result = null;
+  }
+
+  function triggerImageUpload() {
+    imageInput?.click();
+  }
+
+  function handleImageUpload(event: Event) {
+    const target = event.currentTarget as HTMLInputElement;
+    const file = target.files?.[0];
+    if (!file) return;
+    if (selectedImageUrl) URL.revokeObjectURL(selectedImageUrl);
+    selectedImageName = file.name;
+    selectedImageUrl = URL.createObjectURL(file);
+  }
+
+  function clearImage() {
+    if (selectedImageUrl) URL.revokeObjectURL(selectedImageUrl);
+    selectedImageName = '';
+    selectedImageUrl = '';
+    if (imageInput) imageInput.value = '';
+  }
+
+  function resultSpeechText() {
+    if (!result) return '';
+    return [
+      `Safety check. ${result.triage.reason}`,
+      form.care_accessible
+        ? 'Care is reachable. Use herbs only as extra support.'
+        : 'Care is not reachable now. This guidance is only for the waiting time and has risk.',
+      result.assistant_response,
+      result.disclaimer
+    ].join('\n\n');
+  }
+
+  function toggleReadAloud() {
+    if (!speechSupported || !result) return;
+    if (speaking) {
+      window.speechSynthesis.cancel();
+      speaking = false;
+      return;
+    }
+    const utterance = new SpeechSynthesisUtterance(resultSpeechText());
+    utterance.rate = 0.86;
+    utterance.pitch = 0.95;
+    utterance.onend = () => (speaking = false);
+    utterance.onerror = () => (speaking = false);
+    speaking = true;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
   }
 
   const visualCatalog: Record<string, VisualGuide> = {
@@ -217,6 +277,55 @@
       <label>Known diseases <input bind:value={knownConditionsText} placeholder="comma separated" /></label>
       <label>Current medicines <input bind:value={medicinesText} placeholder="comma separated" /></label>
       <label>Allergies <input bind:value={allergiesText} placeholder="comma separated" /></label>
+      <section class="accessibility-panel" aria-label="Accessibility and phase 2 tools">
+        <div>
+          <p class="panel-kicker">Accessibility</p>
+          <h2>For users who cannot read or type</h2>
+          <p>
+            These tools are for low-literacy users, older adults, people with poor vision, or community workers helping someone else.
+          </p>
+        </div>
+        <div class="assistive-tools">
+          <button
+            class="icon-button"
+            type="button"
+            on:click={triggerImageUpload}
+            title="Phase 2 visual support: attach a plant, water, medicine label, rash, or wound photo for local OCR and visual triage support. This prototype previews the photo only."
+            aria-label="Upload image for future visual support"
+          >
+            CAM
+          </button>
+          <button
+            class="icon-button"
+            type="button"
+            title="Phase 2 voice input: local speech-to-text for users who cannot type. Planned for offline use with Gemma multimodal or a local speech model."
+            aria-label="Voice input planned"
+          >
+            MIC
+          </button>
+          <div class="phase-note">
+            <strong>Phase 2 roadmap</strong>
+            <span>Camera and microphone support will use local OCR, local speech-to-text, and visual triage support. It will not diagnose from photos.</span>
+          </div>
+        </div>
+        <input
+          class="visually-hidden"
+          type="file"
+          accept="image/*"
+          bind:this={imageInput}
+          on:change={handleImageUpload}
+        />
+      </section>
+      {#if selectedImageUrl}
+        <figure class="image-preview">
+          <img src={selectedImageUrl} alt="Uploaded visual support preview" />
+          <button class="small-button" type="button" on:click={clearImage}>Remove image</button>
+          <figcaption>
+            <strong>{selectedImageName}</strong>
+            <span>Preview only. Phase 2 will use local OCR and visual triage support, not diagnosis.</span>
+          </figcaption>
+        </figure>
+      {/if}
       <button class="button primary" disabled={loading}>{loading ? 'Checking...' : 'Run safety-first consult'}</button>
       {#if error}<p class="error">{error}</p>{/if}
     </form>
@@ -330,6 +439,22 @@
       {/if}
 
       <h2>Gemma response</h2>
+      <div class="response-tools" aria-label="Read-aloud response controls">
+        <button
+          class="icon-button"
+          type="button"
+          on:click={toggleReadAloud}
+          disabled={!speechSupported}
+          title="Read the response aloud for users with low literacy, poor vision, or tired eyes. Uses browser text-to-speech in this prototype."
+          aria-label={speaking ? 'Stop reading response aloud' : 'Read response aloud'}
+        >
+          {speaking ? 'STOP' : 'VOL'}
+        </button>
+        <div class="phase-note">
+          <strong>Read aloud</strong>
+          <span>{speechSupported ? 'Works now with browser text-to-speech. Local-language voices are a phase 2 target.' : 'Read aloud is not supported by this browser.'}</span>
+        </div>
+      </div>
       <div class="response-story">
         {#each responseBlocks as block}
           <section class="response-step">
