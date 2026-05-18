@@ -535,8 +535,8 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
         ),
         (
             17,
-            "https://commons.wikimedia.org/wiki/Special:FilePath/Hibiscus%20sabdariffa%20flower.jpg?width=640",
-            "https://commons.wikimedia.org/wiki/Category:Hibiscus_sabdariffa",
+            "https://commons.wikimedia.org/wiki/Special:FilePath/Hibiscus%20sabdariffa-flower-yercaud-salem-India.JPG?width=640",
+            "https://commons.wikimedia.org/wiki/File:Hibiscus_sabdariffa-flower-yercaud-salem-India.JPG",
             json!([
                 "Plant produces red fleshy calyces used for zobo drink",
                 "Leaves are lobed and flowers are pale with a darker center",
@@ -546,8 +546,8 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
         ),
         (
             18,
-            "https://commons.wikimedia.org/wiki/Special:FilePath/Adansonia%20digitata%20fruit.jpg?width=640",
-            "https://commons.wikimedia.org/wiki/Category:Adansonia_digitata",
+            "https://commons.wikimedia.org/wiki/Special:FilePath/Adansonia%20digitata%20fruit%20MHNT.jpg?width=640",
+            "https://commons.wikimedia.org/wiki/File:Adansonia_digitata_fruit_MHNT.jpg",
             json!([
                 "Large baobab tree with thick trunk",
                 "Hard hanging fruits contain dry pale pulp",
