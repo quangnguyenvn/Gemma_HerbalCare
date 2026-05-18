@@ -1,20 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 172" role="img" aria-labelledby="title desc">
-  <title id="title">ORS and hydration first</title>
-  <desc id="desc">A caregiver prepares oral rehydration solution and gives small sips to a child.</desc>
-  <rect width="240" height="172" fill="#fffdf3"/>
-  <g fill="none" stroke="#315f3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="52" cy="70" r="13"/>
-    <path d="M52 83 V126 M32 98 H73 M44 150 H61"/>
-    <circle cx="106" cy="84" r="9"/>
-    <path d="M106 94 V131 M91 108 H121 M99 150 H113"/>
-    <path d="M131 40 H198 L188 145 H140 Z"/>
-    <path d="M139 80 H191"/>
-    <circle cx="164" cy="112" r="8"/>
-    <path d="M46 51 C59 35, 83 35, 96 51"/>
-    <path d="M98 54 C115 51, 124 54, 132 63"/>
-    <path d="M38 149 H206"/>
-    <path d="M34 35 H85"/>
-    <path d="M43 24 H76"/>
-    <path d="M211 65 H224 M211 83 H224 M211 101 H224"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" role="img" aria-labelledby="title desc">
+  <title id="title">Caregiver giving ORS to a child</title>
+  <desc id="desc">A caregiver offers a cup of oral rehydration solution to a seated child beside a large water jug.</desc>
+  <rect width="320" height="220" rx="10" fill="#fff8df"/>
+  <path d="M0 168 C62 150 126 164 186 151 C242 139 283 151 320 140 V220 H0 Z" fill="#dcecc7"/>
+  <circle cx="89" cy="83" r="20" fill="#7b5638"/>
+  <path d="M72 78 C83 55 108 58 119 79 C104 72 90 72 72 78 Z" fill="#2f5c38"/>
+  <path d="M89 104 V151" stroke="#7b5638" stroke-width="18" stroke-linecap="round"/>
+  <path d="M70 126 C48 135 42 148 38 163" fill="none" stroke="#7b5638" stroke-width="12" stroke-linecap="round"/>
+  <path d="M108 124 C128 125 143 135 152 150" fill="none" stroke="#7b5638" stroke-width="12" stroke-linecap="round"/>
+  <path d="M74 151 L55 188" stroke="#355b35" stroke-width="13" stroke-linecap="round"/>
+  <path d="M104 151 L127 188" stroke="#355b35" stroke-width="13" stroke-linecap="round"/>
+  <circle cx="169" cy="115" r="15" fill="#8b6240"/>
+  <path d="M169 131 V165" stroke="#8b6240" stroke-width="15" stroke-linecap="round"/>
+  <path d="M153 146 C136 151 130 162 128 174" fill="none" stroke="#8b6240" stroke-width="10" stroke-linecap="round"/>
+  <path d="M185 144 C199 143 209 150 214 160" fill="none" stroke="#8b6240" stroke-width="10" stroke-linecap="round"/>
+  <path d="M156 165 L143 190" stroke="#315f3c" stroke-width="10" stroke-linecap="round"/>
+  <path d="M181 165 L198 190" stroke="#315f3c" stroke-width="10" stroke-linecap="round"/>
+  <rect x="139" y="112" width="28" height="28" rx="5" fill="#f7df8a" stroke="#7d5a32" stroke-width="5"/>
+  <path d="M228 43 H284 L275 181 H238 Z" fill="#d9efff" stroke="#315f3c" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M235 104 H279" stroke="#315f3c" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="256" cy="142" r="12" fill="#fff8df" stroke="#315f3c" stroke-width="6"/>
+  <path d="M43 51 H117" stroke="#315f3c" stroke-width="7" stroke-linecap="round"/>
+  <path d="M53 34 H105" stroke="#315f3c" stroke-width="7" stroke-linecap="round"/>
 </svg>

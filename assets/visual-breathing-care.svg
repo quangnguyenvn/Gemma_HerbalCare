@@ -1,17 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 172" role="img" aria-labelledby="title desc">
-  <title id="title">Breathing trouble needs urgent care</title>
-  <desc id="desc">A person is moved away from smoke toward fresh air and care.</desc>
-  <rect width="240" height="172" fill="#fffdf3"/>
-  <g fill="none" stroke="#315f3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="62" cy="70" r="13"/>
-    <path d="M62 83 V128 M41 99 H83 M53 151 H70"/>
-    <path d="M111 49 C141 34, 161 42, 193 27"/>
-    <path d="M111 78 C143 61, 165 72, 201 53"/>
-    <path d="M113 108 C141 99, 164 105, 194 92"/>
-    <path d="M22 141 C35 127, 49 127, 63 141"/>
-    <path d="M29 154 H92"/>
-    <path d="M157 147 H214 V84 H157 Z"/>
-    <path d="M167 84 L185 65 L204 84"/>
-    <path d="M181 102 H190 V114 H202 V123 H190 V135 H181 V123 H169 V114 H181 Z"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" role="img" aria-labelledby="title desc">
+  <title id="title">Move away from smoke and seek care</title>
+  <desc id="desc">A caregiver moves a child away from cooking smoke toward a clinic building.</desc>
+  <rect width="320" height="220" rx="10" fill="#fff8df"/>
+  <path d="M0 170 C60 151 123 164 181 151 C237 139 278 153 320 139 V220 H0 Z" fill="#dcecc7"/>
+  <path d="M21 151 C42 132 64 132 84 151" fill="none" stroke="#8a6f3f" stroke-width="8" stroke-linecap="round"/>
+  <path d="M30 165 H97" stroke="#8a6f3f" stroke-width="8" stroke-linecap="round"/>
+  <path d="M40 112 C63 94 80 102 96 84" fill="none" stroke="#6c6c58" stroke-width="8" stroke-linecap="round"/>
+  <path d="M43 82 C68 62 90 72 111 50" fill="none" stroke="#6c6c58" stroke-width="8" stroke-linecap="round"/>
+  <path d="M69 124 C91 106 112 113 130 96" fill="none" stroke="#6c6c58" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="139" cy="100" r="17" fill="#8b6240"/>
+  <path d="M139 118 V157" stroke="#8b6240" stroke-width="16" stroke-linecap="round"/>
+  <path d="M124 134 C105 138 96 149 91 163" fill="none" stroke="#8b6240" stroke-width="11" stroke-linecap="round"/>
+  <path d="M155 133 C177 132 188 144 194 160" fill="none" stroke="#8b6240" stroke-width="11" stroke-linecap="round"/>
+  <path d="M126 157 L111 190" stroke="#315f3c" stroke-width="12" stroke-linecap="round"/>
+  <path d="M152 157 L174 190" stroke="#315f3c" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="103" cy="124" r="12" fill="#7b5638"/>
+  <path d="M103 137 V166" stroke="#7b5638" stroke-width="12" stroke-linecap="round"/>
+  <path d="M92 149 C81 153 76 162 73 172" fill="none" stroke="#7b5638" stroke-width="8" stroke-linecap="round"/>
+  <path d="M114 148 C126 147 133 154 137 164" fill="none" stroke="#7b5638" stroke-width="8" stroke-linecap="round"/>
+  <path d="M222 170 H292 V91 H222 Z" fill="#f5d995" stroke="#315f3c" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M213 91 L257 54 L301 91" fill="#f2c35f" stroke="#315f3c" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M249 111 H266 V128 H283 V145 H266 V162 H249 V145 H232 V128 H249 Z" fill="#fff8df" stroke="#315f3c" stroke-width="6" stroke-linejoin="round"/>
 </svg>

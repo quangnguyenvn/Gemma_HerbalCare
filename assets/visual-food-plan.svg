@@ -1,27 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 172" role="img" aria-labelledby="title desc">
-  <title id="title">Small food resilience plan</title>
-  <desc id="desc">A farmer starts a small sweet potato plot with moringa and a protected chicken coop.</desc>
-  <rect width="240" height="172" fill="#fffdf3"/>
-  <g fill="none" stroke="#315f3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M18 139 C55 119, 94 119, 130 139 C166 159, 198 149, 222 136"/>
-    <path d="M22 150 H218"/>
-    <circle cx="46" cy="78" r="12"/>
-    <path d="M46 91 V128 M29 105 H63 M39 146 H53"/>
-    <path d="M76 125 C86 105, 111 101, 132 119"/>
-    <path d="M84 115 C76 96, 90 84, 108 88 C103 103, 97 113, 84 115 Z"/>
-    <path d="M116 116 C113 94, 132 83, 151 93 C139 107, 129 115, 116 116 Z"/>
-    <path d="M91 150 C83 162, 104 167, 119 155 C129 147, 110 139, 91 150 Z"/>
-    <path d="M170 148 V76"/>
-    <path d="M170 96 C151 86, 138 85, 123 92"/>
-    <path d="M170 107 C194 96, 206 98, 222 106"/>
-    <circle cx="124" cy="92" r="7"/>
-    <circle cx="143" cy="87" r="7"/>
-    <circle cx="222" cy="106" r="7"/>
-    <circle cx="203" cy="99" r="7"/>
-    <path d="M150 148 H192"/>
-    <path d="M154 68 H222 V42 L188 25 L154 42 Z"/>
-    <path d="M165 68 V49 H211 V68"/>
-    <path d="M187 57 C181 50, 190 40, 202 47 C210 51, 207 64, 197 67"/>
-    <path d="M201 47 L209 40"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" role="img" aria-labelledby="title desc">
+  <title id="title">Farmer planting a small food plot</title>
+  <desc id="desc">A farmer waters a small sweet potato plot near a moringa tree and a simple chicken coop.</desc>
+  <rect width="320" height="220" rx="10" fill="#fff8df"/>
+  <path d="M0 158 C55 142 97 154 148 145 C215 132 265 143 320 126 V220 H0 Z" fill="#dcedc2"/>
+  <path d="M25 188 C76 171 133 171 188 188" fill="none" stroke="#8a6f3f" stroke-width="8" stroke-linecap="round"/>
+  <path d="M34 169 C82 156 132 156 178 170" fill="none" stroke="#8a6f3f" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="92" cy="101" r="16" fill="#7b5638"/>
+  <path d="M78 96 C87 78 105 79 116 95 C104 91 93 91 78 96 Z" fill="#2f5c38"/>
+  <path d="M92 118 V154" stroke="#7b5638" stroke-width="14" stroke-linecap="round"/>
+  <path d="M70 132 C49 139 43 152 41 166" fill="none" stroke="#7b5638" stroke-width="10" stroke-linecap="round"/>
+  <path d="M112 130 C139 133 148 146 155 160" fill="none" stroke="#7b5638" stroke-width="10" stroke-linecap="round"/>
+  <path d="M77 154 L61 185" stroke="#355b35" stroke-width="11" stroke-linecap="round"/>
+  <path d="M107 154 L128 184" stroke="#355b35" stroke-width="11" stroke-linecap="round"/>
+  <path d="M150 135 C170 126 193 130 206 146" fill="none" stroke="#2f7b46" stroke-width="8" stroke-linecap="round"/>
+  <ellipse cx="168" cy="132" rx="22" ry="10" fill="#4f9a57" transform="rotate(-24 168 132)"/>
+  <ellipse cx="194" cy="140" rx="22" ry="10" fill="#4f9a57" transform="rotate(20 194 140)"/>
+  <ellipse cx="173" cy="183" rx="28" ry="15" fill="#c9823b"/>
+  <path d="M239 157 V71" stroke="#6f4a2e" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="224" cy="75" r="20" fill="#68a85d"/>
+  <circle cx="251" cy="68" r="22" fill="#5c9d55"/>
+  <circle cx="262" cy="93" r="19" fill="#74b567"/>
+  <path d="M237 154 H274" stroke="#6f4a2e" stroke-width="8" stroke-linecap="round"/>
+  <path d="M220 176 H297 V126 L259 104 L220 126 Z" fill="#f1d393" stroke="#7d5a32" stroke-width="6" stroke-linejoin="round"/>
+  <rect x="239" y="142" width="28" height="34" fill="#fff8df" stroke="#7d5a32" stroke-width="5"/>
+  <circle cx="284" cy="174" r="13" fill="#f5f0d4" stroke="#7d5a32" stroke-width="5"/>
+  <path d="M295 170 L304 164" stroke="#7d5a32" stroke-width="5" stroke-linecap="round"/>
 </svg>
