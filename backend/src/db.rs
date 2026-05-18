@@ -502,8 +502,8 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
         ),
         (
             14,
-            "https://commons.wikimedia.org/wiki/Special:FilePath/Sweet%20potato%20Ipomoea%20batatas.jpg?width=640",
-            "https://commons.wikimedia.org/wiki/Category:Ipomoea_batatas",
+            "https://commons.wikimedia.org/wiki/Special:FilePath/20230227%20161110%20Ipomoea%20batatas%20%27Beauregard%27.jpg?width=640",
+            "https://commons.wikimedia.org/wiki/File:20230227_161110_Ipomoea_batatas_%27Beauregard%27.jpg",
             json!([
                 "Creeping vine with heart-shaped or lobed leaves",
                 "Edible tubers grow underground and may be white, yellow, orange, or purple",
