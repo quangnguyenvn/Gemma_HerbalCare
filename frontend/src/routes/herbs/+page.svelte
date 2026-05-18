@@ -36,7 +36,7 @@
   <section class="library-grid">
     {#each items as herb}
       <article class="herb-card botanical">
-        <div class="sprig" aria-hidden="true"></div>
+        <img class="record-guide-image" src="/visual-guides/plant-check.svg" alt="" aria-hidden="true" loading="lazy" />
         <h2>{herb.common_name}</h2>
         <p class="latin">{herb.latin_name}</p>
         <p>{herb.why_relevant}</p>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" role="img" aria-labelledby="title desc">
+  <title id="title">Boiling and storing safer water</title>
+  <desc id="desc">Water is poured through cloth, boiled in a pot, and kept covered in a clean container.</desc>
+  <rect width="320" height="220" rx="10" fill="#fff8df"/>
+  <path d="M0 168 C65 152 111 165 174 151 C229 140 273 154 320 139 V220 H0 Z" fill="#dcecc7"/>
+  <path d="M35 75 H101 L91 165 H47 Z" fill="#d9efff" stroke="#315f3c" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M43 112 H95" stroke="#315f3c" stroke-width="6" stroke-linecap="round"/>
+  <path d="M54 54 H89" stroke="#315f3c" stroke-width="7" stroke-linecap="round"/>
+  <path d="M77 43 C77 43 62 63 77 75 C93 62 77 43 77 43 Z" fill="#8fd0f2" stroke="#315f3c" stroke-width="5"/>
+  <path d="M130 72 H194 L184 166 H139 Z" fill="#fff8df" stroke="#315f3c" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M136 94 H188 M139 114 H185 M142 134 H181" stroke="#8a6f3f" stroke-width="5" stroke-linecap="round"/>
+  <path d="M115 64 C138 53 166 53 205 66" fill="none" stroke="#7d5a32" stroke-width="7" stroke-linecap="round"/>
+  <rect x="221" y="120" width="58" height="42" rx="10" fill="#94c973" stroke="#315f3c" stroke-width="7"/>
+  <path d="M214 116 H286" stroke="#315f3c" stroke-width="8" stroke-linecap="round"/>
+  <path d="M238 120 C237 109 247 103 250 93 C253 104 264 109 262 120" fill="#f4b859" stroke="#315f3c" stroke-width="5"/>
+  <path d="M226 177 H276" stroke="#7d5a32" stroke-width="7" stroke-linecap="round"/>
+  <path d="M236 85 H273 V157 H236 Z" fill="#d9efff" stroke="#315f3c" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M236 85 H273" stroke="#315f3c" stroke-width="10" stroke-linecap="round"/>
+  <path d="M231 71 H278" stroke="#315f3c" stroke-width="7" stroke-linecap="round"/>
+  <path d="M244 60 H266" stroke="#315f3c" stroke-width="7" stroke-linecap="round"/>
+</svg>

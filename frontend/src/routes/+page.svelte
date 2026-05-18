@@ -12,13 +12,12 @@
         <a class="button secondary" href="/about">Read safety policy</a>
       </div>
     </div>
-    <div class="botanical-plate" aria-hidden="true">
-      <div class="stem"></div>
-      <div class="leaf leaf-a"></div>
-      <div class="leaf leaf-b"></div>
-      <div class="leaf leaf-c"></div>
-      <div class="flower"></div>
-      <span>Zingiber officinale</span>
+    <div class="community-plate" aria-hidden="true">
+      <img src="/visual-guides/food-plan.svg" alt="" />
+      <div class="community-plate-caption">
+        <span>visual-first field guidance</span>
+        <strong>Small steps, safer choices</strong>
+      </div>
     </div>
   </section>
 
@@ -47,4 +46,3 @@
     </article>
   </section>
 </main>
-

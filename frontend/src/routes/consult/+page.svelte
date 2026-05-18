@@ -6,6 +6,8 @@
     key: string;
     title: string;
     caption: string;
+    imageSrc: string;
+    imageAlt: string;
   };
 
   let form: ConsultationRequest = {
@@ -81,47 +83,65 @@
     sweet_potato: {
       key: 'sweet_potato',
       title: 'Start with a small plot',
-      caption: 'Try sweet potato vines in one small bed before expanding.'
+      caption: 'Try sweet potato vines in one small bed before expanding.',
+      imageSrc: '/visual-guides/food-plan.svg',
+      imageAlt: 'Farmer watering a small sweet potato plot near moringa and chickens'
     },
     moringa: {
       key: 'moringa',
       title: 'Add familiar leafy food',
-      caption: 'Moringa can support meals where people already know the plant.'
+      caption: 'Moringa can support meals where people already know the plant.',
+      imageSrc: '/visual-guides/food-plan.svg',
+      imageAlt: 'Moringa tree beside a small food plot and chicken coop'
     },
     chicken_coop: {
       key: 'chicken_coop',
       title: 'Keep chickens only if ready',
-      caption: 'Water, shade, feed scraps, and protection must come first.'
+      caption: 'Water, shade, feed scraps, and protection must come first.',
+      imageSrc: '/visual-guides/food-plan.svg',
+      imageAlt: 'Simple protected chicken coop beside a food plot'
     },
     ors: {
       key: 'ors',
       title: 'Small sips again and again',
-      caption: 'ORS and safe fluids come before herbs for diarrhea.'
+      caption: 'ORS and safe fluids come before herbs for diarrhea.',
+      imageSrc: '/visual-guides/ors.svg',
+      imageAlt: 'Caregiver giving ORS to a child'
     },
     safe_water: {
       key: 'safe_water',
       title: 'Settle, filter, then boil',
-      caption: 'Use clean cloth and a covered container after boiling.'
+      caption: 'Use clean cloth and a covered container after boiling.',
+      imageSrc: '/visual-guides/safe-water.svg',
+      imageAlt: 'Water being filtered, boiled, and stored in a clean container'
     },
     fresh_air: {
       key: 'fresh_air',
       title: 'Move away from smoke',
-      caption: 'Breathing trouble needs fresh air and urgent help.'
+      caption: 'Breathing trouble needs fresh air and urgent help.',
+      imageSrc: '/visual-guides/breathing-care.svg',
+      imageAlt: 'Caregiver moving a child away from smoke toward a clinic'
     },
     clinic: {
       key: 'clinic',
       title: 'Go to proven care',
-      caption: 'Testing, medicine, and emergency care should not wait for herbs.'
+      caption: 'Testing, medicine, and emergency care should not wait for herbs.',
+      imageSrc: '/visual-guides/breathing-care.svg',
+      imageAlt: 'Caregiver and child going toward a clinic building'
     },
     wash_hands: {
       key: 'wash_hands',
       title: 'Clean hands protect children',
-      caption: 'Handwashing and sanitation help prevent repeated illness.'
+      caption: 'Handwashing and sanitation help prevent repeated illness.',
+      imageSrc: '/visual-guides/safe-water.svg',
+      imageAlt: 'Clean water steps for safer household hygiene'
     },
     plant_check: {
       key: 'plant_check',
       title: 'Confirm the plant first',
-      caption: 'Use trusted local confirmation before preparing any herb.'
+      caption: 'Use trusted local confirmation before preparing any herb.',
+      imageSrc: '/visual-guides/plant-check.svg',
+      imageAlt: 'Community elder helping confirm a plant before use'
     }
   };
 
@@ -318,87 +338,8 @@
               <div class="visual-guide-grid">
                 {#each block.visuals as visual}
                   <article class="visual-guide-card">
-                    <div class="visual-frame" aria-hidden="true">
-                      <svg viewBox="0 0 120 86" role="img">
-                        {#if visual.key === 'sweet_potato'}
-                          <path d="M12 69 C34 58, 62 58, 108 69" />
-                          <path d="M20 72 H104" />
-                          <path d="M35 64 C42 55, 55 53, 66 61" />
-                          <path d="M39 60 C35 50, 41 43, 51 44 C49 53, 47 58, 39 60 Z" />
-                          <path d="M58 59 C57 47, 67 41, 78 46 C72 55, 67 59, 58 59 Z" />
-                          <path d="M45 72 C42 78, 51 81, 58 76 C62 72, 54 68, 45 72 Z" />
-                          <circle cx="23" cy="41" r="7" />
-                          <path d="M23 48 V63 M15 55 H31 M19 68 H27" />
-                        {:else if visual.key === 'moringa'}
-                          <path d="M62 74 V24" />
-                          <path d="M62 38 C46 30, 38 28, 27 31" />
-                          <path d="M62 48 C80 39, 89 39, 100 43" />
-                          <path d="M62 57 C47 52, 38 54, 28 61" />
-                          <circle cx="28" cy="31" r="4" />
-                          <circle cx="39" cy="29" r="4" />
-                          <circle cx="49" cy="32" r="4" />
-                          <circle cx="99" cy="43" r="4" />
-                          <circle cx="88" cy="40" r="4" />
-                          <circle cx="78" cy="42" r="4" />
-                          <circle cx="28" cy="61" r="4" />
-                          <circle cx="39" cy="55" r="4" />
-                          <circle cx="50" cy="55" r="4" />
-                          <path d="M45 74 H79" />
-                        {:else if visual.key === 'chicken_coop'}
-                          <path d="M18 70 H104 V37 L61 18 18 37 Z" />
-                          <path d="M29 70 V43 H92 V70" />
-                          <path d="M42 54 H78" />
-                          <circle cx="45" cy="62" r="5" />
-                          <circle cx="61" cy="62" r="5" />
-                          <path d="M87 63 C82 57, 89 49, 97 53 C102 55, 101 64, 94 66" />
-                          <path d="M96 53 L101 49" />
-                          <circle cx="93" cy="55" r="1.5" />
-                        {:else if visual.key === 'ors'}
-                          <path d="M34 22 H75 L69 72 H40 Z" />
-                          <path d="M39 42 H70" />
-                          <path d="M80 31 H101 V70 H80 Z" />
-                          <path d="M86 41 H95 M86 50 H95" />
-                          <path d="M21 62 C28 51, 35 51, 42 62" />
-                          <path d="M24 68 H39" />
-                          <circle cx="55" cy="55" r="4" />
-                        {:else if visual.key === 'safe_water'}
-                          <path d="M19 59 C36 50, 53 68, 70 59 C83 52, 94 55, 105 61" />
-                          <path d="M28 31 H58 L53 67 H33 Z" />
-                          <path d="M31 46 H55" />
-                          <path d="M68 23 H99 V67 H68 Z" />
-                          <path d="M73 31 H94 M73 39 H94 M73 47 H94" />
-                          <path d="M47 18 C47 18, 40 26, 47 31 C54 26, 47 18, 47 18 Z" />
-                        {:else if visual.key === 'fresh_air'}
-                          <circle cx="35" cy="36" r="8" />
-                          <path d="M35 44 V67 M25 53 H45 M30 76 H40" />
-                          <path d="M55 30 C72 22, 84 25, 100 18" />
-                          <path d="M55 45 C72 37, 83 42, 101 34" />
-                          <path d="M58 60 C72 55, 83 58, 99 52" />
-                          <path d="M17 70 C22 64, 27 64, 32 70" />
-                        {:else if visual.key === 'clinic'}
-                          <path d="M24 70 H96 V34 H24 Z" />
-                          <path d="M32 34 L60 16 L88 34" />
-                          <path d="M56 44 H64 V53 H73 V61 H64 V70 H56 V61 H47 V53 H56 Z" />
-                          <path d="M17 75 C32 66, 44 66, 56 75" />
-                          <path d="M71 75 C81 68, 91 68, 103 75" />
-                        {:else if visual.key === 'wash_hands'}
-                          <path d="M30 48 C42 37, 50 37, 61 48" />
-                          <path d="M34 51 L53 70" />
-                          <path d="M55 51 L36 70" />
-                          <path d="M68 44 H98" />
-                          <path d="M73 36 H93" />
-                          <circle cx="41" cy="28" r="4" />
-                          <circle cx="57" cy="24" r="3" />
-                          <circle cx="75" cy="25" r="4" />
-                        {:else}
-                          <circle cx="60" cy="45" r="18" />
-                          <path d="M60 63 V74" />
-                          <path d="M60 45 C50 35, 40 36, 34 44 C44 48, 54 48, 60 45 Z" />
-                          <path d="M60 45 C70 35, 82 36, 88 44 C78 48, 68 48, 60 45 Z" />
-                          <path d="M38 73 H82" />
-                          <path d="M31 19 L38 26 M38 19 L31 26" />
-                        {/if}
-                      </svg>
+                    <div class="visual-frame">
+                      <img src={visual.imageSrc} alt={visual.imageAlt} loading="lazy" />
                     </div>
                     <h3>{visual.title}</h3>
                     <p>{visual.caption}</p>
