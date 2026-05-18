@@ -4,6 +4,8 @@
 
 Gemma HerbalCare is built for the Kaggle Gemma 4 Good Hackathon as a practical AI-for-good prototype: not an AI doctor, not a diagnosis system, and not a generic symptom chatbot.
 
+**Live public demo:** https://herbalcare.voidforge.pro/
+
 It is an educational support tool for communities that still depend on local medicinal knowledge, where internet access may be unreliable, clinics may be far away, and traditional plant knowledge is disappearing faster than it is being documented.
 
 The product principle is simple:
@@ -18,6 +20,7 @@ This project treats traditional knowledge with respect while adding the guardrai
 
 ## Demo Highlights
 
+- **Public web app:** https://herbalcare.voidforge.pro/
 - **Mild cough:** shows support-only local herbs with evidence levels, contraindications, interactions, and care-seeking advice.
 - **Child diarrhea:** prioritizes ORS, hydration, and danger signs before mentioning any herb.
 - **Suspected malaria:** recommends urgent testing and appropriate antimalarial care; suppresses herbal substitution.
@@ -283,11 +286,13 @@ http://localhost:8080
 
 ## Deploy to Google Cloud
 
-The project includes a root `Dockerfile` for a single Cloud Run service. The Rust/Axum backend serves both the API and the built SvelteKit frontend, so the whole app can run behind one custom subdomain such as:
+The public deployment is live at:
 
 ```text
-herbalcare.voidforge.pro
+https://herbalcare.voidforge.pro/
 ```
+
+The project includes a root `Dockerfile` for a single Cloud Run service. The Rust/Axum backend serves both the API and the built SvelteKit frontend, so the whole app can run behind one custom subdomain.
 
 Deployment notes are in [docs/deploy_google_cloud.md](docs/deploy_google_cloud.md).
 

@@ -35,7 +35,11 @@ Public code repo:
 
 https://github.com/quangnguyenvn/Gemma_HerbalCare
 
-Functional prototype / demo instructions:
+Live public web app:
+
+https://herbalcare.voidforge.pro/
+
+Functional prototype / local demo instructions:
 
 https://github.com/quangnguyenvn/Gemma_HerbalCare#run-locally
 
@@ -45,7 +49,7 @@ Gemma HerbalCare is a safety-first herbal knowledge navigator for low-resource c
 
 The app detects red flags such as chest pain, difficulty breathing, pregnancy bleeding, severe fever, suspected malaria, cancer cure requests, HIV/AIDS without care, and other serious conditions. In those cases it suppresses herbs and gives urgent care guidance. For lower-risk situations, it retrieves local herb and food-plant records with evidence levels, contraindications, interaction warnings, source URLs, and preparation notes. Gemma 4 acts as a community health translator, not as the source of truth.
 
-The prototype includes a Rust/Axum backend, SQLite retrieval, safety triage, consultation logging, a SvelteKit frontend, demo cases, and a Gemma-compatible HTTP provider with Ollama-style local inference support. It is educational only, not medical advice, but it demonstrates a practical path toward safer local health navigation with clinician-reviewed data and community health partners.
+The prototype is live at https://herbalcare.voidforge.pro/ and includes a Rust/Axum backend, SQLite retrieval, safety triage, consultation logging, a SvelteKit frontend, demo cases, and a Gemma-compatible HTTP provider with Ollama-style local inference support. It is educational only, not medical advice, but it demonstrates a practical path toward safer local health navigation with clinician-reviewed data and community health partners.
 
 ## Writeup Body
 
@@ -61,7 +65,7 @@ The safest herbal recommendation is sometimes no herbal recommendation.
 
 ### What We Built
 
-Gemma HerbalCare is a working web prototype that helps users ask about symptoms, location, care access, medicines, pregnancy, allergies, and local herbal options. It returns either:
+Gemma HerbalCare is a working public web prototype at https://herbalcare.voidforge.pro/ that helps users ask about symptoms, location, care access, medicines, pregnancy, allergies, and local herbal options. It returns either:
 
 - urgent care guidance with no herbs, when safety red flags are detected
 - a serious-condition boundary response, when the user asks for cures or describes high-risk disease
@@ -208,6 +212,10 @@ This is an educational hackathon prototype. Real deployment would require:
 Code:
 
 https://github.com/quangnguyenvn/Gemma_HerbalCare
+
+Live web app:
+
+https://herbalcare.voidforge.pro/
 
 Demo video:
 
