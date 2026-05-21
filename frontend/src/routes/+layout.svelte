@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { connectionState, startConnectionMonitor } from '$lib/connection';
   import { isLocale, languageOptions, locale, navCopy, type Locale } from '$lib/i18n';
   import '../app.css';
 
@@ -20,6 +21,8 @@
     } else {
       setDocumentLanguage($locale);
     }
+
+    return startConnectionMonitor();
   });
 </script>
 
@@ -61,6 +64,15 @@
           {/each}
         </select>
       </label>
+      <div class:low-connection={$connectionState.mode === 'low'} class="connection-pill">
+        <strong>{$connectionState.label}</strong>
+        <small>
+          {$connectionState.detail}
+          {#if $connectionState.latencyMs}
+            ({$connectionState.latencyMs} ms)
+          {/if}
+        </small>
+      </div>
     </div>
   </header>
   <slot />

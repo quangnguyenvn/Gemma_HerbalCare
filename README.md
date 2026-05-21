@@ -29,6 +29,8 @@ This project treats traditional knowledge with respect while adding the guardrai
 - **Poor breathing after indoor smoke:** detects an emergency red flag and returns urgent-care guidance only.
 - **Real plant photos:** the herb library now uses public real-world plant images with source links so users can recognize plants more safely than from generic illustrations.
 - **Mobile and offline direction:** the home page introduces an iOS/Android app concept for carrying regional herb records, food plants, water-safety steps, and red-flag guidance into areas with weak or no internet.
+- **Low connection mode:** the header detects weak or offline connectivity and explains when cached pages or local records may be used.
+- **PWA/offline cache:** the frontend includes a service worker that caches the app shell, static assets, demo cases, and herb-library GET responses for better behavior on poor connections.
 - **Multilingual header:** the app header includes a lightweight language switcher for English, Swahili, Hindi, Chinese, and Korean as a first step toward broader community access.
 - **Location-aware referral guidance:** Phase 1 urgent and emergency responses suggest the nearest clinic, hospital, pharmacy, community health worker, NGO field worker, or trusted transport helper near the user's city/region/country, without inventing unverified facility names.
 
@@ -257,6 +259,36 @@ In Phase 2, this could include optional integration with local clinics, pharmaci
 
 For example, if the app detects suspected malaria, severe dehydration, pregnancy bleeding, breathing difficulty, or stroke-like symptoms, it could generate a short referral summary that a caregiver can show to a health worker: location, age group, duration, symptoms, medicines, allergies, pregnancy status, care access, and red flags. This would make the app a practical bridge between household-level knowledge and local health systems.
 
+Low-connection engineering approach:
+
+```mermaid
+flowchart TD
+  A["Browser opens Gemma HerbalCare"] --> B["SvelteKit app shell"]
+  B --> C["Frontend connection monitor"]
+  C --> D{"Network mode"}
+  D -->|Normal| E["Use live API requests"]
+  D -->|Low or offline| F["Prefer cached app shell and cached herb records"]
+  E --> G["Rust / Axum API"]
+  G --> H["SQLite regional herb library"]
+  G --> I["Rule-based safety triage"]
+  H --> J["Fresh Herb Library response"]
+  I --> K["Safety-first consultation response"]
+  J --> L["Cache successful herb responses in localStorage and service worker"]
+  K --> L
+  F --> M["SvelteKit service worker cache"]
+  F --> N["Herb Library localStorage fallback"]
+  M --> O["Cached pages: Home, Consult, Herb Library, Safety"]
+  M --> P["Cached GET data: demo cases and herb records"]
+  N --> Q["Last known regional herb records by country / region / symptom"]
+  O --> R["User can continue reading key safety content"]
+  P --> R
+  Q --> R
+```
+
+The engineering goal is graceful degradation. When the connection looks normal, the app behaves like a regular live web app. When the browser reports weak connectivity, data saver, offline status, high latency, or a failed `/health` ping, the UI switches to Low Connection mode and explains that cached pages or local records may be used. The Herb Library caches successful regional searches on the device and falls back to those records if a future request fails. The SvelteKit service worker caches the app shell, static assets, demo cases, and herb-library GET responses so the most important educational surfaces remain available after the first successful load.
+
+Rust and SvelteKit split the problem cleanly. SvelteKit handles browser-side resilience: connection detection, localStorage fallback, and service-worker caching. Rust handles server-side resilience: one compact Axum service, deterministic safety triage, and a local SQLite knowledge base that can run close to the user without a cloud database dependency. Together, this supports the core design goal: the app should still provide safety education and previously cached regional knowledge when internet access is weak.
+
 ### Technical Stack
 
 - **Backend:** Rust, Axum, Tokio, Serde, SQLx, SQLite, reqwest
@@ -264,6 +296,7 @@ For example, if the app detects suspected malaria, severe dehydration, pregnancy
 - **Retrieval:** local SQLite herb library with regional availability records
 - **LLM integration:** mock provider by default, HTTP Gemma-compatible provider for local or hosted inference
 - **Deployment shape:** local-first architecture that can be packaged for clinics, NGOs, community health workers, and offline demos
+- **Connectivity support:** frontend connection monitor, Herb Library cache fallback, and SvelteKit service worker for app-shell/API GET caching
 - **Language UI:** lightweight header-level language switcher for English, Swahili, Hindi, Chinese, and Korean
 - **Visual records:** real public plant photos for herb identification, plus lightweight local illustrations for practical safety guidance
 

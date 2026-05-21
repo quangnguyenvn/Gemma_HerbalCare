@@ -1,4 +1,5 @@
-const API_BASE = import.meta.env.VITE_API_BASE ?? (import.meta.env.DEV ? 'http://localhost:8080' : '');
+export const API_BASE =
+  import.meta.env.VITE_API_BASE ?? (import.meta.env.DEV ? 'http://localhost:8080' : '');
 
 export type ConsultationRequest = {
   country: string;
@@ -79,4 +80,12 @@ export async function demoCases(): Promise<DemoCase[]> {
   const res = await fetch(`${API_BASE}/api/demo-cases`);
   if (!res.ok) throw new Error(await res.text());
   return res.json();
+}
+
+export async function health(signal?: AbortSignal): Promise<void> {
+  const res = await fetch(`${API_BASE}/health`, {
+    cache: 'no-store',
+    signal
+  });
+  if (!res.ok) throw new Error(await res.text());
 }

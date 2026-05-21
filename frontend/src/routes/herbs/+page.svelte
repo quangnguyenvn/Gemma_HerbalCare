@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { herbs, type HerbSummary } from '$lib/api';
+  import { isLowConnection } from '$lib/connection';
 
   let country = 'India';
   let region = 'Bihar';
@@ -7,20 +9,65 @@
   let items: HerbSummary[] = [];
   let loading = false;
   let error = '';
+  let cacheNote = '';
+
+  function cacheKey() {
+    return `herb-cache:${country.trim().toLowerCase()}:${region
+      .trim()
+      .toLowerCase()}:${symptom.trim().toLowerCase()}`;
+  }
+
+  function readCache(): HerbSummary[] | null {
+    try {
+      const raw = localStorage.getItem(cacheKey());
+      if (!raw) return null;
+      return JSON.parse(raw) as HerbSummary[];
+    } catch {
+      return null;
+    }
+  }
+
+  function writeCache(nextItems: HerbSummary[]) {
+    try {
+      localStorage.setItem(cacheKey(), JSON.stringify(nextItems));
+    } catch {
+      // Storage can fail in private mode or when quota is full; live results still work.
+    }
+  }
 
   async function search() {
     loading = true;
     error = '';
+    cacheNote = '';
     try {
-      items = await herbs({ country, region, symptom });
+      if (isLowConnection()) {
+        const cached = readCache();
+        if (cached?.length) {
+          items = cached;
+          cacheNote = 'Low connection mode: showing cached regional records.';
+        }
+      }
+
+      const freshItems = await herbs({ country, region, symptom });
+      items = freshItems;
+      writeCache(freshItems);
+      cacheNote = '';
     } catch (err) {
-      error = err instanceof Error ? err.message : 'Search failed';
+      const cached = readCache();
+      if (cached?.length) {
+        items = cached;
+        cacheNote = 'Network request failed. Showing cached regional records from this device.';
+      } else {
+        error = err instanceof Error ? err.message : 'Search failed';
+      }
     } finally {
       loading = false;
     }
   }
 
-  search();
+  onMount(() => {
+    void search();
+  });
 </script>
 
 <main class="page">
@@ -33,6 +80,7 @@
     <button class="button primary" disabled={loading}>{loading ? 'Searching...' : 'Search'}</button>
   </form>
   {#if error}<p class="error">{error}</p>{/if}
+  {#if cacheNote}<p class="cache-note">{cacheNote}</p>{/if}
   <section class="library-grid">
     {#each items as herb}
       <article class="herb-card botanical">

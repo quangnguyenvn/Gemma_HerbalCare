@@ -84,8 +84,22 @@ nav {
 }
 
 nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.35rem;
+  padding: .35rem .65rem;
+  border: 1px solid rgba(49, 95, 60, .34);
+  border-radius: 4px;
+  background: rgba(255, 249, 232, .34);
   text-decoration: none;
   color: #3e4a2d;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  background: rgba(49, 95, 60, .1);
+  border-color: rgba(49, 95, 60, .58);
+  outline: none;
 }
 
 .language-switcher {
@@ -106,6 +120,39 @@ nav a {
   background: #fff9e8;
   color: var(--ink);
   padding: .35rem .55rem;
+}
+
+.connection-pill {
+  display: grid;
+  gap: .08rem;
+  max-width: 18rem;
+  padding: .42rem .65rem;
+  border: 1px solid rgba(49, 95, 60, .34);
+  border-radius: 4px;
+  background: rgba(255, 249, 232, .42);
+  color: var(--ink);
+}
+
+.connection-pill strong {
+  color: var(--moss);
+  font-size: .88rem;
+  line-height: 1.05;
+}
+
+.connection-pill small {
+  color: var(--cedar);
+  font-family: Arial, sans-serif;
+  font-size: .68rem;
+  line-height: 1.2;
+}
+
+.connection-pill.low-connection {
+  border-color: rgba(138, 47, 34, .42);
+  background: rgba(138, 47, 34, .08);
+}
+
+.connection-pill.low-connection strong {
+  color: var(--warning);
 }
 
 .home,
@@ -618,6 +665,17 @@ textarea {
   color: var(--warning);
 }
 
+.cache-note {
+  margin: .75rem 0 0;
+  padding: .65rem .8rem;
+  border: 1px solid rgba(49, 95, 60, .34);
+  background: rgba(49, 95, 60, .08);
+  color: var(--moss);
+  font-family: Arial, sans-serif;
+  font-size: .9rem;
+  font-weight: 700;
+}
+
 .herb-stack {
   display: grid;
   gap: .75rem;
@@ -909,6 +967,10 @@ dd {
   .topbar-actions {
     display: grid;
     gap: .75rem;
+  }
+
+  .connection-pill {
+    max-width: min(100%, 26rem);
   }
 
   nav {
