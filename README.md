@@ -249,7 +249,11 @@ flowchart TD
   H --> A
 ```
 
-This is the long-term bridge: Gemma HerbalCare should not frame traditional medicine and modern medicine as competitors. The app can preserve and explain traditional plant knowledge for low-risk support, while actively routing serious cases toward modern medical care. In Phase 2, this could include optional integration with local clinics, pharmacies, community health workers, NGO field teams, emergency contacts, or referral directories so urgent cases receive a concrete next step rather than a generic warning.
+**The app can preserve and explain traditional plant knowledge for low-risk support, while actively routing serious cases toward modern medical care.**
+
+This is the long-term bridge. Gemma HerbalCare is not intended to replace Google Search, public health channels, clinic hotlines, emergency services, or existing medical apps. It is a safety-first layer that helps people understand local traditional knowledge when appropriate, while making the path to modern medical care clearer when symptoms are serious. The project should not frame traditional medicine and modern medicine as competitors.
+
+In Phase 2, this could include optional integration with local clinics, pharmacies, community health workers, NGO field teams, emergency contacts, or referral directories so urgent cases receive a concrete next step rather than a generic warning.
 
 For example, if the app detects suspected malaria, severe dehydration, pregnancy bleeding, breathing difficulty, or stroke-like symptoms, it could generate a short referral summary that a caregiver can show to a health worker: location, age group, duration, symptoms, medicines, allergies, pregnancy status, care access, and red flags. This would make the app a practical bridge between household-level knowledge and local health systems.
 
