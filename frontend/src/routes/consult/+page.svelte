@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { consult, demoCases, type ConsultResponse, type ConsultationRequest, type DemoCase } from '$lib/api';
+  import { isOfflineConnection } from '$lib/connection';
 
   type VisualGuide = {
     key: string;
@@ -32,6 +33,7 @@
   let selectedImageUrl = '';
   let speaking = false;
   let speechSupported = false;
+  let offlineDraftNote = '';
 
   onMount(() => {
     demoCases().then((items) => (cases = items)).catch(() => (cases = []));
@@ -66,19 +68,46 @@
   async function submit() {
     loading = true;
     error = '';
+    offlineDraftNote = '';
     result = null;
+    const request = {
+      ...form,
+      known_conditions: splitList(knownConditionsText),
+      current_medicines: splitList(medicinesText),
+      allergies: splitList(allergiesText),
+      duration_days: Number(form.duration_days ?? 0)
+    };
+
+    if (isOfflineConnection()) {
+      saveOfflineDraft(request);
+      offlineDraftNote =
+        'Offline mode: consultation is saved on this device. Review danger signs below, keep trying to reach care, and run the consult again when the local backend or internet is reachable.';
+      loading = false;
+      return;
+    }
+
     try {
-      result = await consult({
-        ...form,
-        known_conditions: splitList(knownConditionsText),
-        current_medicines: splitList(medicinesText),
-        allergies: splitList(allergiesText),
-        duration_days: Number(form.duration_days ?? 0)
-      });
+      result = await consult(request);
     } catch (err) {
-      error = err instanceof Error ? err.message : 'Consultation failed';
+      saveOfflineDraft(request);
+      error =
+        'Consultation service is not reachable. I saved this consultation draft on this device; try again when the local backend or internet is reachable.';
     } finally {
       loading = false;
+    }
+  }
+
+  function saveOfflineDraft(request: ConsultationRequest) {
+    try {
+      localStorage.setItem(
+        'consult-offline-draft',
+        JSON.stringify({
+          saved_at: new Date().toISOString(),
+          request
+        })
+      );
+    } catch {
+      // Ignore storage failures; the visible form still remains on screen.
     }
   }
 
@@ -328,11 +357,31 @@
       {/if}
       <button class="button primary" disabled={loading}>{loading ? 'Checking...' : 'Run safety-first consult'}</button>
       {#if error}<p class="error">{error}</p>{/if}
+      {#if offlineDraftNote}<p class="offline-note">{offlineDraftNote}</p>{/if}
     </form>
   </section>
 
   <aside class="result-panel">
-    {#if result}
+    {#if offlineDraftNote}
+      <div class="seal urgent">offline</div>
+      <h2>Offline safety fallback</h2>
+      <p>
+        This page can still help you prepare. It cannot complete a Gemma consult until the local backend or internet is reachable.
+      </p>
+      <section class="care-plan">
+        <div class="badge-row"><span class="evidence-badge clinical">saved draft</span></div>
+        <h2>What to do now</h2>
+        <p>
+          If there is chest pain, trouble breathing, severe dehydration, blood in stool or vomit, seizure, confusion,
+          pregnancy bleeding, very high fever, or suspected malaria, seek the nearest clinic, pharmacy, community health
+          worker, emergency transport, or trusted local helper now.
+        </p>
+        <p>
+          Bring this summary: {form.city}, {form.region}, {form.country}; symptoms: {form.symptoms}; age group:
+          {form.age_group}; duration: {form.duration_days ?? 'unknown'} day(s).
+        </p>
+      </section>
+    {:else if result}
       <div class="seal {result.triage.risk_level}">{result.triage.risk_level}</div>
       <h2>Safety check</h2>
       <p>{result.triage.reason}</p>

@@ -64,7 +64,11 @@
           {/each}
         </select>
       </label>
-      <div class:low-connection={$connectionState.mode === 'low'} class="connection-pill">
+      <div
+        class:low-connection={$connectionState.mode === 'low'}
+        class:offline-connection={$connectionState.mode === 'offline'}
+        class="connection-pill"
+      >
         <strong>{$connectionState.label}</strong>
         <small>
           {$connectionState.detail}

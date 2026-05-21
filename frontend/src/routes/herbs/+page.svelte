@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { herbs, type HerbSummary } from '$lib/api';
-  import { isLowConnection } from '$lib/connection';
+  import { isLowConnection, isOfflineConnection } from '$lib/connection';
 
   let country = 'India';
   let region = 'Bihar';
@@ -40,6 +40,19 @@
     error = '';
     cacheNote = '';
     try {
+      if (isOfflineConnection()) {
+        const cached = readCache();
+        if (cached?.length) {
+          items = cached;
+          cacheNote = 'Offline mode: showing cached regional records from this device.';
+        } else {
+          items = [];
+          cacheNote =
+            'Offline mode: no cached records for this search yet. Connect once to save this regional pack.';
+        }
+        return;
+      }
+
       if (isLowConnection()) {
         const cached = readCache();
         if (cached?.length) {

@@ -2,7 +2,7 @@ import { browser } from '$app/environment';
 import { get, writable } from 'svelte/store';
 import { health } from '$lib/api';
 
-export type ConnectionMode = 'normal' | 'low';
+export type ConnectionMode = 'normal' | 'low' | 'offline';
 
 type ConnectionState = {
   mode: ConnectionMode;
@@ -15,6 +15,8 @@ type ConnectionState = {
 const normalDetail = 'Internet connection looks normal.';
 const lowDetail =
   'Low connection mode. Cached pages and local records may be used when possible.';
+const offlineDetail =
+  'Offline mode. You can still use cached pages, saved drafts, and previously saved regional records.';
 
 export const connectionState = writable<ConnectionState>({
   mode: 'normal',
@@ -26,7 +28,7 @@ let monitorStarted = false;
 
 function readBrowserSignal(): ConnectionMode {
   if (!browser) return 'normal';
-  if (!navigator.onLine) return 'low';
+  if (!navigator.onLine) return 'offline';
 
   const connection = (
     navigator as Navigator & {
@@ -42,10 +44,25 @@ function readBrowserSignal(): ConnectionMode {
 }
 
 function updateState(mode: ConnectionMode, latencyMs?: number) {
+  const copy = {
+    normal: {
+      label: 'Connection: Normal',
+      detail: normalDetail
+    },
+    low: {
+      label: 'Connection: Low',
+      detail: lowDetail
+    },
+    offline: {
+      label: 'Connection: Offline',
+      detail: offlineDetail
+    }
+  } satisfies Record<ConnectionMode, { label: string; detail: string }>;
+
   connectionState.set({
     mode,
-    label: mode === 'normal' ? 'Connection: Normal' : 'Connection: Low',
-    detail: mode === 'normal' ? normalDetail : lowDetail,
+    label: copy[mode].label,
+    detail: copy[mode].detail,
     latencyMs,
     checkedAt: Date.now()
   });
@@ -55,8 +72,8 @@ export async function checkConnection() {
   if (!browser) return;
 
   const browserSignal = readBrowserSignal();
-  if (browserSignal === 'low' && !navigator.onLine) {
-    updateState('low');
+  if (browserSignal === 'offline') {
+    updateState('offline');
     return;
   }
 
@@ -69,7 +86,7 @@ export async function checkConnection() {
     const latencyMs = Math.round(performance.now() - started);
     updateState(browserSignal === 'low' || latencyMs > 1200 ? 'low' : 'normal', latencyMs);
   } catch {
-    updateState('low');
+    updateState(navigator.onLine ? 'low' : 'offline');
   } finally {
     window.clearTimeout(timeout);
   }
@@ -99,5 +116,10 @@ export function startConnectionMonitor() {
 }
 
 export function isLowConnection() {
-  return get(connectionState).mode === 'low';
+  const mode = get(connectionState).mode;
+  return mode === 'low' || mode === 'offline';
+}
+
+export function isOfflineConnection() {
+  return get(connectionState).mode === 'offline';
 }

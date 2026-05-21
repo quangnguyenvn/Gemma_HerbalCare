@@ -29,7 +29,7 @@ This project treats traditional knowledge with respect while adding the guardrai
 - **Poor breathing after indoor smoke:** detects an emergency red flag and returns urgent-care guidance only.
 - **Real plant photos:** the herb library now uses public real-world plant images with source links so users can recognize plants more safely than from generic illustrations.
 - **Mobile and offline direction:** the home page introduces an iOS/Android app concept for carrying regional herb records, food plants, water-safety steps, and red-flag guidance into areas with weak or no internet.
-- **Low connection mode:** the header detects weak or offline connectivity and explains when cached pages or local records may be used.
+- **Connection modes:** the header detects Normal, Low Connection, and Offline modes, then explains when cached pages, saved drafts, or local records may be used.
 - **PWA/offline cache:** the frontend includes a service worker that caches the app shell, static assets, demo cases, and herb-library GET responses for better behavior on poor connections.
 - **Multilingual header:** the app header includes a lightweight language switcher for English, Swahili, Hindi, Chinese, and Korean as a first step toward broader community access.
 - **Location-aware referral guidance:** Phase 1 urgent and emergency responses suggest the nearest clinic, hospital, pharmacy, community health worker, NGO field worker, or trusted transport helper near the user's city/region/country, without inventing unverified facility names.
@@ -267,7 +267,8 @@ flowchart TD
   B --> C["Frontend connection monitor"]
   C --> D{"Network mode"}
   D -->|Normal| E["Use live API requests"]
-  D -->|Low or offline| F["Prefer cached app shell and cached herb records"]
+  D -->|Low connection| F["Try live API, then fall back to cache"]
+  D -->|Offline| S["Skip fragile network calls and use local fallback"]
   E --> G["Rust / Axum API"]
   G --> H["SQLite regional herb library"]
   G --> I["Rule-based safety triage"]
@@ -277,15 +278,26 @@ flowchart TD
   K --> L
   F --> M["SvelteKit service worker cache"]
   F --> N["Herb Library localStorage fallback"]
+  S --> M
+  S --> N
+  S --> T["Consult form saves an offline draft"]
   M --> O["Cached pages: Home, Consult, Herb Library, Safety"]
   M --> P["Cached GET data: demo cases and herb records"]
   N --> Q["Last known regional herb records by country / region / symptom"]
   O --> R["User can continue reading key safety content"]
   P --> R
   Q --> R
+  T --> U["User keeps a referral summary until backend or internet returns"]
+  U --> R
 ```
 
-The engineering goal is graceful degradation. When the connection looks normal, the app behaves like a regular live web app. When the browser reports weak connectivity, data saver, offline status, high latency, or a failed `/health` ping, the UI switches to Low Connection mode and explains that cached pages or local records may be used. The Herb Library caches successful regional searches on the device and falls back to those records if a future request fails. The SvelteKit service worker caches the app shell, static assets, demo cases, and herb-library GET responses so the most important educational surfaces remain available after the first successful load.
+The engineering goal is graceful degradation across three modes:
+
+- **Normal:** the app behaves like a regular live web app and refreshes API data normally.
+- **Low Connection:** the app still tries live requests, but explains that cached pages and local records may be used if the network is slow or unreliable.
+- **Offline:** the app avoids fragile network calls where possible. The Herb Library reads cached regional records from the device. The Consult page remains interactive, saves the current consultation draft locally, and gives a danger-sign/referral summary that the user can show to a health worker until the local backend or internet returns.
+
+The browser-side signal uses `navigator.onLine`, supported Network Information API hints such as data saver or slow connection type, and a lightweight `/health` ping with a timeout. The Herb Library caches successful regional searches on the device and falls back to those records when future requests fail or when the browser is offline. The SvelteKit service worker caches the app shell, static assets, demo cases, and herb-library GET responses so the most important educational surfaces remain available after the first successful load.
 
 Rust and SvelteKit split the problem cleanly. SvelteKit handles browser-side resilience: connection detection, localStorage fallback, and service-worker caching. Rust handles server-side resilience: one compact Axum service, deterministic safety triage, and a local SQLite knowledge base that can run close to the user without a cloud database dependency. Together, this supports the core design goal: the app should still provide safety education and previously cached regional knowledge when internet access is weak.
 
