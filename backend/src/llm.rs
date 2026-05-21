@@ -44,7 +44,19 @@ impl GemmaProvider for MockGemmaProvider {
         herbs: &[HerbSummary],
     ) -> Result<String> {
         if triage.risk_level == "emergency" {
-            return Ok("Safety check: your symptoms include red flags. Please seek emergency care now. I will not suggest herbs for this situation because home remedies could delay life-saving care.\n\nThis is not medical advice or a diagnosis.".to_string());
+            return Ok(format!(
+                "Safety check: your symptoms include red flags. Please seek emergency care now. I will not suggest herbs for this situation because home remedies could delay life-saving care.\n\nCare access near you: look for the nearest clinic, hospital, pharmacy, community health worker, NGO field worker, or trusted transport helper in or near {}. If you can call first, ask where emergency care is available now.\n\nBring or show this short referral summary: symptoms: {}; duration: {} day(s) if known; age group: {}; medicines: {}; allergies: {}; pregnancy: {}.\n\nThis is not medical advice or a diagnosis.",
+                location_phrase(input),
+                input.symptoms,
+                input
+                    .duration_days
+                    .map(|days| days.to_string())
+                    .unwrap_or_else(|| "unknown".to_string()),
+                input.age_group,
+                list_or_none(&input.current_medicines),
+                list_or_none(&input.allergies),
+                if input.pregnant { "yes" } else { "no" }
+            ));
         }
 
         if triage.risk_level == "urgent" {
@@ -55,13 +67,35 @@ impl GemmaProvider for MockGemmaProvider {
                     .any(|condition| condition.to_lowercase().contains("malaria"))
             {
                 let access_note = if input.care_accessible {
-                    "Because you said care is reachable, use any herbal information only as background. Please prioritize a malaria rapid test or blood test and age/weight-appropriate antimalarial medicine from a clinic, pharmacy, or community health worker."
+                    "Because you said care is reachable, use any herbal information only as background. Please prioritize a malaria rapid test or blood test and age/weight-appropriate antimalarial medicine from the nearest clinic, pharmacy, or community health worker."
                 } else {
                     "Because you said care is not reachable right now, this is harm-reduction guidance for the gap before care. It carries risk. Keep trying to reach a clinic, pharmacy, community health worker, emergency transport, or someone who can obtain a malaria rapid test and proper antimalarial medicine."
                 };
-                return Ok(format!("Safety check: suspected malaria can become dangerous quickly, especially in children. {access_note}\n\nEducational note: quinine was originally derived from Cinchona bark, but raw bark or self-sourced quinine is not safe for treating malaria. The dose can be wrong, side effects can be serious, and malaria treatment depends on the parasite type, resistance patterns, age, weight, and pregnancy status.\n\nWhile getting help, keep the child drinking safe fluids if they can drink, use fever comfort measures, avoid more mosquito bites, and watch for danger signs: confusion, seizures, difficulty breathing, extreme weakness, repeated vomiting, inability to drink, or very dark urine. Those signs need emergency care now.\n\nThis is not medical advice or a diagnosis."));
+                return Ok(format!("Safety check: suspected malaria can become dangerous quickly, especially in children. {access_note}\n\nCare access near you: search or ask for the nearest clinic, pharmacy, community health worker, malaria testing point, NGO field worker, or trusted transport helper in or near {}. Bring or show this summary: fever/chills after mosquito bites or suspected malaria; duration: {} day(s) if known; age group: {}; medicines: {}; allergies: {}; pregnancy: {}.\n\nEducational note: quinine was originally derived from Cinchona bark, but raw bark or self-sourced quinine is not safe for treating malaria. The dose can be wrong, side effects can be serious, and malaria treatment depends on the parasite type, resistance patterns, age, weight, and pregnancy status.\n\nWhile getting help, keep the child drinking safe fluids if they can drink, use fever comfort measures, avoid more mosquito bites, and watch for danger signs: confusion, seizures, difficulty breathing, extreme weakness, repeated vomiting, inability to drink, or very dark urine. Those signs need emergency care now.\n\nThis is not medical advice or a diagnosis.",
+                    location_phrase(input),
+                    input
+                        .duration_days
+                        .map(|days| days.to_string())
+                        .unwrap_or_else(|| "unknown".to_string()),
+                    input.age_group,
+                    list_or_none(&input.current_medicines),
+                    list_or_none(&input.allergies),
+                    if input.pregnant { "yes" } else { "no" }
+                ));
             }
-            return Ok("Safety check: this sounds like a serious health concern or a request for a cure. Herbs should not be used to replace clinical care, cancer treatment, antibiotics, insulin, antiretroviral therapy, anticoagulants, chemotherapy, or emergency care.\n\nI can only discuss general comfort support and safety questions to bring to a clinician. Please contact a qualified health worker as soon as possible.\n\nThis is not medical advice or a diagnosis.".to_string());
+            return Ok(format!(
+                "Safety check: this sounds like a serious health concern or a request for a cure. Herbs should not be used to replace clinical care, cancer treatment, antibiotics, insulin, antiretroviral therapy, anticoagulants, chemotherapy, or emergency care.\n\nCare access near you: contact the nearest clinic, hospital, pharmacy, community health worker, NGO field worker, or referral contact in or near {}. Bring or show this summary: symptoms: {}; duration: {} day(s) if known; age group: {}; medicines: {}; allergies: {}; pregnancy: {}.\n\nI can only discuss general comfort support and safety questions to bring to a clinician. Please contact a qualified health worker as soon as possible.\n\nThis is not medical advice or a diagnosis.",
+                location_phrase(input),
+                input.symptoms,
+                input
+                    .duration_days
+                    .map(|days| days.to_string())
+                    .unwrap_or_else(|| "unknown".to_string()),
+                input.age_group,
+                list_or_none(&input.current_medicines),
+                list_or_none(&input.allergies),
+                if input.pregnant { "yes" } else { "no" }
+            ));
         }
 
         let care_access_note = if input.care_accessible {
@@ -174,6 +208,8 @@ SAFETY POLICY:
 - If identification features or location availability are provided, explain that they are only aids and that unknown wild plants should be confirmed by a trusted local health worker, experienced grower, or safe market source before use.
 - For suspected malaria, you may mention that quinine originally came from Cinchona bark as historical medicine-origin context, but never advise the user to find, boil, chew, dose, buy OTC, or use Cinchona bark or self-sourced quinine. Say malaria needs prompt testing and appropriate antimalarial medicine from a clinic, pharmacy, or community health worker.
 - The user context includes care_accessible. If true, frame herbs as reference/supportive background only. If false, provide a short "if care is not reachable right now" harm-reduction section, state that this carries risk, and keep urging any route to clinic, pharmacy, community health worker, or proven medicine.
+- For urgent or emergency cases, include a "care access near you" suggestion using the user's city, region, and country. Do not invent a hospital name or exact address unless retrieved facility data is provided. Suggest nearest clinic, hospital, pharmacy, community health worker, NGO field worker, emergency contact, referral directory, or trusted transport helper.
+- For urgent or emergency cases, include a short referral summary the user can show to a health worker: symptoms, duration, age group, medicines, allergies, pregnancy status, and red flags.
 - For diarrhea, emphasize ORS above herbs. If no ORS packet is available, say: 1 liter safe water + 6 level teaspoons sugar + 1/2 level teaspoon salt. Warn that too much salt can be dangerous.
 - For water safety questions, explain basic steps: settle cloudy water, filter through clean cloth, boil at a rolling boil for 1 minute, cool covered. Warn that boiling/filtering does not remove chemical contamination such as fuel, pesticides, or heavy metals.
 - For long-term food questions, give simple local resilience guidance such as starting small with sweet potato, moringa, and chickens only where water, shade, protection, and feed are realistic.
@@ -211,5 +247,23 @@ fn list_or_none(items: &[String]) -> String {
         "none listed".to_string()
     } else {
         items.join("; ")
+    }
+}
+
+fn location_phrase(input: &ConsultationRequest) -> String {
+    let location_parts = [
+        input.city.as_deref(),
+        input.region.as_deref(),
+        Some(input.country.as_str()),
+    ]
+    .into_iter()
+    .flatten()
+    .filter(|part| !part.trim().is_empty())
+    .collect::<Vec<_>>();
+
+    if location_parts.is_empty() {
+        "your current area".to_string()
+    } else {
+        location_parts.join(", ")
     }
 }

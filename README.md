@@ -30,6 +30,7 @@ This project treats traditional knowledge with respect while adding the guardrai
 - **Real plant photos:** the herb library now uses public real-world plant images with source links so users can recognize plants more safely than from generic illustrations.
 - **Mobile and offline direction:** the home page introduces an iOS/Android app concept for carrying regional herb records, food plants, water-safety steps, and red-flag guidance into areas with weak or no internet.
 - **Multilingual header:** the app header includes a lightweight language switcher for English, Swahili, Hindi, Chinese, and Korean as a first step toward broader community access.
+- **Location-aware referral guidance:** Phase 1 urgent and emergency responses suggest the nearest clinic, hospital, pharmacy, community health worker, NGO field worker, or trusted transport helper near the user's city/region/country, without inventing unverified facility names.
 
 ## Visual Guidance for Real Communities
 
@@ -234,6 +235,24 @@ flowchart TD
   G --> H["Text response + read-aloud voice"]
 ```
 
+Planned clinical referral extension:
+
+```mermaid
+flowchart TD
+  A["Rule-based safety triage"] --> B{"Risk level"}
+  B -->|Low or caution| C["Traditional knowledge support with curated records"]
+  B -->|Urgent or emergency| D["Suppress herbs and prepare referral guidance"]
+  D --> E["Nearest clinic, pharmacy, or community health worker"]
+  E --> F["Share symptoms, duration, age, medicines, allergies, pregnancy, and red flags"]
+  F --> G["Modern medical evaluation and treatment"]
+  C --> H["Education, prevention, nutrition, hygiene, and plant-safety support"]
+  H --> A
+```
+
+This is the long-term bridge: Gemma HerbalCare should not frame traditional medicine and modern medicine as competitors. The app can preserve and explain traditional plant knowledge for low-risk support, while actively routing serious cases toward modern medical care. In Phase 2, this could include optional integration with local clinics, pharmacies, community health workers, NGO field teams, emergency contacts, or referral directories so urgent cases receive a concrete next step rather than a generic warning.
+
+For example, if the app detects suspected malaria, severe dehydration, pregnancy bleeding, breathing difficulty, or stroke-like symptoms, it could generate a short referral summary that a caregiver can show to a health worker: location, age group, duration, symptoms, medicines, allergies, pregnancy status, care access, and red flags. This would make the app a practical bridge between household-level knowledge and local health systems.
+
 ### Technical Stack
 
 - **Backend:** Rust, Axum, Tokio, Serde, SQLx, SQLite, reqwest
@@ -285,11 +304,48 @@ docs/
 
 Gemma HerbalCare is intentionally conservative. The system never claims herbs cure serious disease and never advises users to stop prescribed medicine.
 
+### Core Difference: Rule-Based Safety Triage Before Gemma
+
+The most important design decision in Gemma HerbalCare is that **the safety gate is rule-based, not model-based**.
+
+Gemma is powerful at explaining structured knowledge, but it should not be the only component deciding whether a sick person should receive herbal suggestions. In a low-resource setting, a fluent model response can sound confident even when it misses a danger sign. For this reason, Gemma HerbalCare uses deterministic application rules before retrieval and before generation:
+
+1. The backend checks the user's symptoms, age group, pregnancy status, duration, known conditions, medicines, allergies, and care access.
+2. If emergency or urgent conditions are detected, herb retrieval is suppressed.
+3. If herbs are suppressed, Gemma receives no local herb records to turn into advice.
+4. For urgent and emergency cases, the response includes a location-aware care access suggestion and a short referral summary the user can show to a health worker.
+5. If the case is lower risk, Gemma can only explain curated records with safety notes, evidence levels, contraindications, interactions, and source links.
+
+This makes the app different from a generic chatbot. **Gemma explains; the application decides when it is safe to explain herbs.**
+
+The Phase 1 rule set has been updated to cover the main safety categories needed for the demo and hackathon scope:
+
+- emergency breathing and chest symptoms
+- severe allergic reaction
+- confusion, unconsciousness, seizure, stroke-like symptoms
+- severe dehydration and inability to drink
+- blood in stool or vomit
+- prolonged fever or very high fever
+- pregnancy bleeding or severe pain
+- infant fever and child severe-illness signs
+- suspected malaria and severe malaria boundaries
+- serious disease or cure claims, including cancer, HIV/AIDS, tuberculosis, sepsis, organ failure, uncontrolled diabetes, and heart attack
+- medicine-replacement boundaries for antibiotics, insulin, antiretroviral therapy, chemotherapy, anticoagulants, and emergency care
+
+The rules are intentionally conservative. For this prototype, a false positive is safer than a false negative: it is better to hide herbs and tell the user to seek care than to accidentally encourage home treatment for a dangerous condition.
+
+Phase 1 does not claim to know the exact nearest hospital or clinic. It has no verified facility directory yet. Instead, it uses the user's location fields to recommend the nearest available clinic, hospital, pharmacy, community health worker, NGO field worker, emergency contact, referral directory, or trusted transport helper in or near that area. This keeps the guidance useful without fabricating facility names. Phase 2 can replace this with verified local facility integrations where partnerships exist.
+
+The red-flag categories were informed by public-health and clinical safety references, including WHO childhood danger-sign guidance, CDC severe food poisoning/dehydration warning signs, CDC malaria and severe malaria guidance, and CDC urgent maternal warning signs. These references are not copied as a clinical protocol; they are used to shape a transparent Phase 1 safety filter appropriate for an educational AI prototype.
+
+Known limitation: keyword rules can miss local phrases, spelling mistakes, negation, slang, and languages not yet covered. The next safety step is not to replace the rules with Gemma, but to expand the rules with multilingual synonyms, clinician-reviewed test cases, and a safety evaluation suite that measures emergency recall and herb-suppression accuracy.
+
 Safety behaviors include:
 
 - **Emergency suppression:** if red flags are detected, herbs are not retrieved or shown.
 - **Refusal behavior:** cure claims and serious disease requests receive clinical-care boundaries.
 - **Escalation logic:** the response prioritizes emergency care, clinics, pharmacies, community health workers, or trusted local help.
+- **Location-aware referral:** urgent and emergency answers use the user's city, region, and country to suggest nearby care options without inventing exact facility names.
 - **Hallucination minimization:** Gemma receives only retrieved records and explicit safety instructions.
 - **Evidence transparency:** each herb record includes evidence level and source context.
 - **Medicine caution:** the app warns against replacing antibiotics, insulin, antiretroviral therapy, chemotherapy, anticoagulants, or emergency care.
@@ -313,6 +369,19 @@ Gemma HerbalCare suppresses herbal recommendations for emergency or serious cond
 - kidney failure
 - liver failure
 - uncontrolled diabetes
+
+Safety references used to shape the Phase 1 rule set:
+
+- WHO IMCI Handbook: general danger signs for sick children, including inability to drink or breastfeed, lethargy/unconsciousness, convulsions, and severe illness patterns.  
+  https://iris.who.int/bitstream/handle/10665/42939/9241546441.pdf
+- CDC Food Safety: severe food poisoning warning signs, including bloody diarrhea, diarrhea lasting more than 3 days, high fever, frequent vomiting, and dehydration.  
+  https://www.cdc.gov/food-safety/signs-symptoms/
+- CDC Malaria: severe malaria can involve seizures, mental confusion, coma, kidney failure, respiratory distress, and organ dysfunction, and should be treated urgently.  
+  https://www.cdc.gov/malaria/symptoms/
+- CDC Severe Malaria clinical guidance: severe malaria manifestations require prompt aggressive treatment.  
+  https://www.cdc.gov/malaria/hcp/clinical-guidance/treatment-of-severe-malaria.html
+- CDC Hear Her: urgent maternal warning signs including severe headache with vision changes, severe belly pain, chest pain, and vaginal bleeding or fluid leaking during pregnancy.  
+  https://www.cdc.gov/hearher/maternal-warning-signs/
 
 ## Case Studies From the Demo
 
@@ -464,6 +533,7 @@ Gemma HerbalCare has a clear AI-for-good thesis and a working safety architectur
 - **Voice-first interaction:** local speech input and spoken responses for low-literacy users.
 - **Plant/photo intake:** image-based OCR and visual triage support for plant records, water clarity, labels, and visible danger signs, with strong uncertainty warnings and expert confirmation requirements.
 - **Offline bundle:** deployable package for rural clinics, NGOs, schools, community health workers, and mobile users without reliable internet.
+- **Local healthcare integration:** connect urgent or emergency cases to nearby clinics, pharmacies, community health workers, NGO field teams, emergency contacts, or referral directories where partnerships exist.
 - **Safety evaluation suite:** refusal tests, grounding tests, hallucination tests, and emergency escalation tests.
 - **Regional herbal datasets:** Southeast Asia, Korea, Africa, Latin America, and other community-reviewed sources.
 - **Lightweight edge deployment:** small-model local inference for low-connectivity environments.

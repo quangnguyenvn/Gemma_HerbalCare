@@ -123,8 +123,25 @@ pub fn triage(input: &ConsultationRequest) -> TriageResult {
     }
 }
 
-pub fn urgent_guidance() -> String {
-    "This may need urgent medical care. Please seek emergency help now, call your local emergency number if available, or go to the nearest clinic or hospital. Do not use herbs or home remedies to delay care for these symptoms.".to_string()
+pub fn urgent_guidance(input: &ConsultationRequest) -> String {
+    let location_parts = [
+        input.city.as_deref(),
+        input.region.as_deref(),
+        Some(input.country.as_str()),
+    ]
+    .into_iter()
+    .flatten()
+    .filter(|part| !part.trim().is_empty())
+    .collect::<Vec<_>>();
+    let location = if location_parts.is_empty() {
+        "your current area".to_string()
+    } else {
+        location_parts.join(", ")
+    };
+
+    format!(
+        "This may need urgent medical care. Please seek emergency help now, call your local emergency number if available, or go to the nearest clinic or hospital in or near {location}. If a hospital is too far, look for the closest pharmacy, community health worker, NGO field worker, or trusted local transport helper who can connect you to care. Bring or show this information: symptoms, duration, age, medicines, allergies, pregnancy status, and red flags. Do not use herbs or home remedies to delay care for these symptoms."
+    )
 }
 
 pub fn standard_disclaimer() -> String {

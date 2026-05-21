@@ -66,7 +66,7 @@ async fn post_consult(
     };
 
     let assistant_response = if triage_result.risk_level == "emergency" {
-        urgent_guidance()
+        urgent_guidance(&input)
     } else {
         state.gemma.complete(&input, &triage_result, &herbs).await?
     };
