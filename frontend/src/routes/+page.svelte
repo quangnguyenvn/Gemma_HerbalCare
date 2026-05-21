@@ -1,15 +1,18 @@
+<script lang="ts">
+  import { homeCopy, locale } from '$lib/i18n';
+
+  $: t = homeCopy[$locale];
+</script>
+
 <main class="home">
   <section class="hero">
     <div class="hero-copy">
-      <p class="eyebrow">Safety-first herbal knowledge navigator</p>
+      <p class="eyebrow">{t.eyebrow}</p>
       <h1>Gemma HerbalCare</h1>
-      <p class="subtitle">
-        Safety-first local herbal guidance for low-resource communities, with red-flag
-        triage before any herb is shown.
-      </p>
+      <p class="subtitle">{t.subtitle}</p>
       <div class="hero-actions">
-        <a class="button primary" href="/consult">Start consultation</a>
-        <a class="button secondary" href="/about">Read safety policy</a>
+        <a class="button primary" href="/consult">{t.start}</a>
+        <a class="button secondary" href="/about">{t.safetyPolicy}</a>
       </div>
     </div>
     <div class="botanical-plate" aria-hidden="true">
@@ -24,68 +27,53 @@
 
   <section class="manuscript-grid">
     <article>
-      <h2>Triage before tradition</h2>
-      <p>
-        Emergency symptoms return urgent-care guidance only. Herbs are hidden when chest
-        pain, difficulty breathing, severe dehydration, cancer cure claims, and other
-        red flags appear.
-      </p>
+      <h2>{t.triageTitle}</h2>
+      <p>{t.triageBody}</p>
     </article>
     <article>
-      <h2>Local, curated records</h2>
-      <p>
-        The demo uses a small SQLite dataset with source URLs, evidence levels, safety
-        summaries, contraindications, interactions, and regional availability.
-      </p>
+      <h2>{t.recordsTitle}</h2>
+      <p>{t.recordsBody}</p>
     </article>
     <article>
-      <h2>Gemma-ready core</h2>
-      <p>
-        A mock provider ships first. Switch to an HTTP Gemma endpoint with
-        environment variables when the inference target is ready.
-      </p>
+      <h2>{t.gemmaTitle}</h2>
+      <p>{t.gemmaBody}</p>
     </article>
   </section>
 
   <section class="mobile-app-panel">
     <div>
-      <p class="eyebrow">Mobile and offline direction</p>
-      <h2>Herb knowledge on iOS and Android</h2>
-      <p>
-        Phase 2 can package the Herb Library as a phone app for iOS and Android,
-        helping families and community workers browse local plants, likely uses,
-        identification notes, safety warnings, and regional availability even when
-        connectivity is weak.
-      </p>
+      <p class="eyebrow">{t.mobileEyebrow}</p>
+      <h2>{t.mobileTitle}</h2>
+      <p>{t.mobileBody}</p>
     </div>
     <div class="mobile-app-visual" aria-hidden="true">
       <div class="phone-illustration">
         <div class="phone-speaker"></div>
         <div class="phone-screen">
           <div class="phone-status"></div>
-          <div class="phone-title">Regional Herb Library</div>
+          <div class="phone-title">{t.phoneTitle}</div>
           <div class="phone-card">
             <span class="phone-leaf"></span>
             <div>
               <strong>Moringa</strong>
-              <small>Kano pack</small>
+              <small>{t.phoneMoringaPack}</small>
             </div>
           </div>
           <div class="phone-card">
             <span class="phone-leaf alt"></span>
             <div>
               <strong>Ginger</strong>
-              <small>Bihar pack</small>
+              <small>{t.phoneGingerPack}</small>
             </div>
           </div>
-          <div class="phone-chip">Offline ready</div>
+          <div class="phone-chip">{t.phoneOffline}</div>
         </div>
         <div class="phone-button"></div>
       </div>
       <div class="mobile-feature-list">
-        <p><strong>Offline-first library:</strong> cache trusted regional herb and food-plant records on the device.</p>
-        <p><strong>Local updates:</strong> sync new reviewed records when the phone reconnects.</p>
-        <p><strong>Field use:</strong> keep safety triage, source links, and visual guides close to the people who need them.</p>
+        <p><strong>{t.offlineTitle}</strong> {t.offlineBody}</p>
+        <p><strong>{t.updatesTitle}</strong> {t.updatesBody}</p>
+        <p><strong>{t.fieldTitle}</strong> {t.fieldBody}</p>
       </div>
     </div>
   </section>

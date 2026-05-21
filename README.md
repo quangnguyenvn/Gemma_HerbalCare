@@ -75,7 +75,7 @@ The mobile direction is also designed to support downloadable regional packs. A 
 
 ## Multilingual Direction
 
-The current prototype adds a lightweight language switcher in the header for:
+The current prototype adds a lightweight language switcher for the header and full home page copy in:
 
 - English
 - Swahili
@@ -243,6 +243,16 @@ flowchart TD
 - **Deployment shape:** local-first architecture that can be packaged for clinics, NGOs, community health workers, and offline demos
 - **Language UI:** lightweight header-level language switcher for English, Swahili, Hindi, Chinese, and Korean
 - **Visual records:** real public plant photos for herb identification, plus lightweight local illustrations for practical safety guidance
+
+### Why Rust and SvelteKit for Poor Connectivity
+
+The stack is intentionally chosen for weak-network and edge-AI conditions. In remote areas, the app should not depend on a heavy cloud backend, a large JavaScript bundle, or always-on internet just to show safety guidance.
+
+Rust gives the backend a small, fast, reliable service layer that can run as a single binary or compact container. With Axum and SQLite, one local machine can serve the API, store regional herb data, run deterministic safety triage, log consultations, and connect to a local Gemma/Ollama endpoint when available. This is useful for rural clinics, NGO laptops, school computers, community-worker devices, or low-cost edge servers.
+
+SvelteKit keeps the frontend lightweight and cache-friendly. The built UI can be served by the same Rust backend, reducing deployment complexity to one service. It also creates a practical path toward PWA-style caching and mobile/offline regional packs, so the interface can remain usable when internet access is slow, intermittent, or unavailable.
+
+This is also a modern AI-supportive stack. Rust is increasingly strong for edge services, local inference orchestration, WebAssembly-adjacent tooling, and safe high-performance systems. SvelteKit gives a fast frontend surface for AI workflows such as streaming responses, camera/voice UX, read-aloud controls, and multilingual interfaces without making the app heavy. Together, they support the core thesis: **local AI should still be useful when the cloud is far away.**
 
 ### Core Modules
 
@@ -441,6 +451,8 @@ Gemma HerbalCare has a clear AI-for-good thesis and a working safety architectur
 - **Real-world problem:** the app targets the dangerous gap between symptoms appearing and professional care becoming reachable.
 - **Local-first design:** plant knowledge is regional, source-linked, and structured for offline-friendly use.
 - **Offline access path:** the mobile direction treats herb records, safety rules, ORS, water, and food-resilience guidance as knowledge that should remain available even without internet.
+- **Poor-connectivity tech stack:** Rust, SQLite, and SvelteKit keep the system lightweight enough for edge devices, local servers, one-service deployment, and future PWA/mobile offline caching.
+- **AI-ready edge architecture:** the backend can use mock, local Gemma/Ollama, or hosted Gemma-compatible endpoints while keeping safety triage and retrieval local and deterministic.
 - **Inclusive language path:** the current header language switcher demonstrates the product direction toward Swahili, Hindi, Chinese, Korean, and other local-language packs.
 - **Cultural preservation:** the system can document local names, preparation context, safety notes, and regional availability before knowledge is lost.
 - **Clear model role:** Gemma translates controlled knowledge into accessible guidance instead of acting as an unconstrained medical authority.

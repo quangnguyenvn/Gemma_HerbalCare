@@ -1,72 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { isLocale, languageOptions, locale, navCopy, type Locale } from '$lib/i18n';
   import '../app.css';
 
-  type Locale = 'en' | 'sw' | 'hi' | 'zh' | 'ko';
-
-  const languageOptions: Array<{ code: Locale; label: string }> = [
-    { code: 'en', label: 'English' },
-    { code: 'sw', label: 'Swahili' },
-    { code: 'hi', label: 'हिन्दी' },
-    { code: 'zh', label: '中文' },
-    { code: 'ko', label: '한국어' }
-  ];
-
-  const copy: Record<
-    Locale,
-    {
-      navLabel: string;
-      home: string;
-      consult: string;
-      herbs: string;
-      safety: string;
-      language: string;
-    }
-  > = {
-    en: {
-      navLabel: 'Primary navigation',
-      home: 'Home',
-      consult: 'Consult',
-      herbs: 'Herb library',
-      safety: 'Safety',
-      language: 'Language'
-    },
-    sw: {
-      navLabel: 'Urambazaji mkuu',
-      home: 'Nyumbani',
-      consult: 'Ushauri',
-      herbs: 'Mimea tiba',
-      safety: 'Usalama',
-      language: 'Lugha'
-    },
-    hi: {
-      navLabel: 'मुख्य नेविगेशन',
-      home: 'होम',
-      consult: 'सलाह',
-      herbs: 'जड़ी-बूटी सूची',
-      safety: 'सुरक्षा',
-      language: 'भाषा'
-    },
-    zh: {
-      navLabel: '主导航',
-      home: '首页',
-      consult: '咨询',
-      herbs: '草药库',
-      safety: '安全',
-      language: '语言'
-    },
-    ko: {
-      navLabel: '기본 탐색',
-      home: '홈',
-      consult: '상담',
-      herbs: '허브 라이브러리',
-      safety: '안전',
-      language: '언어'
-    }
-  };
-
-  let locale: Locale = 'en';
-  $: t = copy[locale];
+  $: t = navCopy[$locale];
 
   function setDocumentLanguage(nextLocale: Locale) {
     if (typeof document !== 'undefined') {
@@ -77,10 +14,12 @@
 
   onMount(() => {
     const saved = localStorage.getItem('gemma-herbalcare-locale');
-    if (saved && saved in copy) {
-      locale = saved as Locale;
+    if (isLocale(saved)) {
+      locale.set(saved);
+      setDocumentLanguage(saved);
+    } else {
+      setDocumentLanguage($locale);
     }
-    setDocumentLanguage(locale);
   });
 </script>
 
@@ -107,7 +46,16 @@
       </nav>
       <label class="language-switcher">
         <span>{t.language}</span>
-        <select bind:value={locale} on:change={() => setDocumentLanguage(locale)}>
+        <select
+          value={$locale}
+          on:change={(event) => {
+            const nextLocale = event.currentTarget.value;
+            if (isLocale(nextLocale)) {
+              locale.set(nextLocale);
+              setDocumentLanguage(nextLocale);
+            }
+          }}
+        >
           {#each languageOptions as option}
             <option value={option.code}>{option.label}</option>
           {/each}
