@@ -46,4 +46,47 @@
       </p>
     </article>
   </section>
+
+  <section class="mobile-app-panel">
+    <div>
+      <p class="eyebrow">Mobile and offline direction</p>
+      <h2>Herb knowledge on iOS and Android</h2>
+      <p>
+        Phase 2 can package the Herb Library as a phone app for iOS and Android,
+        helping families and community workers browse local plants, likely uses,
+        identification notes, safety warnings, and regional availability even when
+        connectivity is weak.
+      </p>
+    </div>
+    <div class="mobile-app-visual" aria-hidden="true">
+      <div class="phone-illustration">
+        <div class="phone-speaker"></div>
+        <div class="phone-screen">
+          <div class="phone-status"></div>
+          <div class="phone-title">Regional Herb Library</div>
+          <div class="phone-card">
+            <span class="phone-leaf"></span>
+            <div>
+              <strong>Moringa</strong>
+              <small>Kano pack</small>
+            </div>
+          </div>
+          <div class="phone-card">
+            <span class="phone-leaf alt"></span>
+            <div>
+              <strong>Ginger</strong>
+              <small>Bihar pack</small>
+            </div>
+          </div>
+          <div class="phone-chip">Offline ready</div>
+        </div>
+        <div class="phone-button"></div>
+      </div>
+      <div class="mobile-feature-list">
+        <p><strong>Offline-first library:</strong> cache trusted regional herb and food-plant records on the device.</p>
+        <p><strong>Local updates:</strong> sync new reviewed records when the phone reconnects.</p>
+        <p><strong>Field use:</strong> keep safety triage, source links, and visual guides close to the people who need them.</p>
+      </div>
+    </div>
+  </section>
 </main>

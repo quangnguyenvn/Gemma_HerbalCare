@@ -60,6 +60,13 @@ nav {
   gap: .75rem;
 }
 
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
 .brand {
   text-decoration: none;
   font-weight: 700;
@@ -79,6 +86,26 @@ nav {
 nav a {
   text-decoration: none;
   color: #3e4a2d;
+}
+
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  color: var(--cedar);
+  font-size: .9rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.language-switcher select {
+  min-height: 2.35rem;
+  max-width: 8.25rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fff9e8;
+  color: var(--ink);
+  padding: .35rem .55rem;
 }
 
 .home,
@@ -244,6 +271,150 @@ h2 {
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   padding-bottom: 3rem;
+}
+
+.mobile-app-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(18rem, .95fr);
+  gap: 1.5rem;
+  align-items: start;
+  margin-bottom: 3rem;
+  padding: 1.2rem;
+  border: 1px solid var(--line);
+  background: rgba(246, 237, 213, .62);
+}
+
+.mobile-app-panel h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  margin: .25rem 0 .75rem;
+}
+
+.mobile-app-panel p {
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.mobile-feature-list {
+  display: grid;
+  gap: .75rem;
+}
+
+.mobile-app-visual {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+}
+
+.phone-illustration {
+  width: 10.5rem;
+  min-height: 18.5rem;
+  padding: .8rem .7rem 1rem;
+  border: 3px solid var(--cedar);
+  border-radius: 1.2rem;
+  background: #2f2a24;
+  box-shadow: 0 16px 24px rgba(50, 39, 20, .14);
+}
+
+.phone-speaker,
+.phone-button {
+  margin: 0 auto .55rem;
+  background: #15130f;
+}
+
+.phone-speaker {
+  width: 3rem;
+  height: .35rem;
+  border-radius: 999px;
+}
+
+.phone-button {
+  width: 1.55rem;
+  height: 1.55rem;
+  margin-top: .6rem;
+  border: 1px solid rgba(255, 248, 223, .35);
+  border-radius: 50%;
+}
+
+.phone-screen {
+  display: grid;
+  gap: .55rem;
+  min-height: 14.2rem;
+  padding: .65rem;
+  border: 2px solid rgba(255, 248, 223, .24);
+  background: #fff8df;
+}
+
+.phone-status {
+  justify-self: end;
+  width: 2.4rem;
+  height: .45rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--moss) 65%, rgba(49, 95, 60, .22) 65%);
+}
+
+.phone-title {
+  color: var(--moss);
+  font-family: Arial, sans-serif;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+
+.phone-card {
+  display: grid;
+  grid-template-columns: 1.4rem minmax(0, 1fr);
+  gap: .45rem;
+  align-items: center;
+  padding: .45rem;
+  border: 1px solid rgba(73, 55, 31, .18);
+  background: rgba(234, 216, 173, .38);
+}
+
+.phone-card strong,
+.phone-card small,
+.phone-chip {
+  display: block;
+  font-family: Arial, sans-serif;
+}
+
+.phone-card strong {
+  color: var(--ink);
+  font-size: .72rem;
+}
+
+.phone-card small {
+  color: var(--cedar);
+  font-size: .62rem;
+}
+
+.phone-leaf {
+  width: 1.15rem;
+  height: 1.65rem;
+  border: 2px solid var(--moss);
+  border-radius: 100% 0 100% 0;
+  background: rgba(49, 95, 60, .22);
+  transform: rotate(-18deg);
+}
+
+.phone-leaf.alt {
+  background: rgba(138, 47, 34, .18);
+  border-color: var(--warning);
+}
+
+.phone-chip {
+  justify-self: start;
+  padding: .35rem .45rem;
+  border: 1px solid var(--moss);
+  color: var(--moss);
+  font-size: .64rem;
+  font-weight: 800;
+}
+
+.mobile-feature-list p {
+  margin: 0;
+  padding-bottom: .75rem;
+  border-bottom: 1px solid rgba(73, 55, 31, .18);
 }
 
 .manuscript-grid article,
@@ -638,6 +809,24 @@ textarea {
   position: relative;
   min-height: 24rem;
   overflow: hidden;
+  font-size: .92rem;
+  line-height: 1.35;
+}
+
+.library-grid .herb-card {
+  align-content: start;
+}
+
+.library-grid .herb-card h2 {
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  margin: .15rem 0 0;
+}
+
+.library-grid .herb-card p,
+.library-grid .herb-card a,
+.library-grid .herb-card dt,
+.library-grid .herb-card dd {
+  font-size: .92rem;
 }
 
 .sprig {
@@ -664,17 +853,23 @@ textarea {
 
 dl {
   display: grid;
-  grid-template-columns: 7rem 1fr;
-  gap: .5rem;
+  grid-template-columns: minmax(8rem, max-content) minmax(0, 1fr);
+  column-gap: 1rem;
+  row-gap: .45rem;
+  align-items: start;
 }
 
 dt {
   color: var(--cedar);
   font-weight: 700;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 dd {
   margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .article-page {
@@ -691,7 +886,8 @@ dd {
 
 @media (max-width: 820px) {
   .topbar,
-  nav {
+  nav,
+  .topbar-actions {
     align-items: flex-start;
   }
 
@@ -701,12 +897,22 @@ dd {
   .form-row,
   .library-filter,
   .manuscript-grid,
-  .library-grid {
+  .library-grid,
+  .mobile-app-panel {
     grid-template-columns: 1fr;
   }
 
   .topbar {
     display: grid;
+  }
+
+  .topbar-actions {
+    display: grid;
+    gap: .75rem;
+  }
+
+  nav {
+    flex-wrap: wrap;
   }
 
   .hero {
@@ -722,6 +928,10 @@ dd {
   }
 
   .visual-guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-app-visual {
     grid-template-columns: 1fr;
   }
 

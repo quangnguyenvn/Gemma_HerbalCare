@@ -400,7 +400,7 @@
           {#each result.local_herbs as herb}
             <article class="herb-card">
               {#if herb.image_url}
-                <img class="herb-photo" src={herb.image_url} alt={`${herb.common_name} identification reference`} loading="lazy" />
+                <img class="herb-photo" src={herb.image_url} alt={`${herb.common_name} identification reference`} loading="eager" />
               {/if}
               <div class="herb-card-header">
                 <div>

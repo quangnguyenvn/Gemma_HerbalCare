@@ -436,6 +436,166 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
             "Discuss as a cooked vegetable and garden crop, not as a disease treatment.",
             "https://powo.science.kew.org/",
         ),
+        (
+            20,
+            "Holy basil",
+            "Ocimum tenuiflorum",
+            json!(["tulsi", "holy basil"]),
+            json!(["India", "South Asia", "Global tropics"]),
+            "leaf",
+            json!(["traditionally used for mild cough, throat comfort, and household wellness"]),
+            json!(["mild cough", "mild sore throat", "runny nose", "stress/sleep support"]),
+            "traditional",
+            "A familiar household herb in India; avoid concentrated products for pregnancy or children unless guided by a clinician.",
+            json!(["Use caution in pregnancy", "Avoid if allergic to mint-family plants"]),
+            json!(["May affect blood sugar medicines or anticoagulants"]),
+            "Discuss only familiar leaf tea or food-level tradition, not as treatment for severe fever or malaria.",
+            "https://powo.science.kew.org/",
+        ),
+        (
+            21,
+            "Amla",
+            "Phyllanthus emblica",
+            json!(["amla", "Indian gooseberry"]),
+            json!(["India", "South Asia"]),
+            "fruit",
+            json!(["used as a sour food fruit and traditional nutrition support"]),
+            json!(["recovery nutrition", "food source", "mild sore throat"]),
+            "limited",
+            "Usually food-like as fruit; sour preparations can irritate sensitive stomachs.",
+            json!(["Use caution with severe acidity or stomach ulcer symptoms"]),
+            json!(["May affect blood sugar medicines in sensitive people"]),
+            "Discuss as clean food-level fruit or familiar preparation only.",
+            "https://powo.science.kew.org/",
+        ),
+        (
+            22,
+            "Coriander",
+            "Coriandrum sativum",
+            json!(["dhania", "coriander"]),
+            json!(["India", "Global markets"]),
+            "leaf and seed",
+            json!(["used as a food herb for flavor and mild digestive comfort"]),
+            json!(["mild indigestion", "nausea", "food source"]),
+            "limited",
+            "Common food herb; allergy is possible.",
+            json!(["Avoid if allergic to coriander or related plants"]),
+            json!(["May affect blood sugar in large amounts"]),
+            "Use as normal food seasoning; do not use concentrated dosing.",
+            "https://powo.science.kew.org/",
+        ),
+        (
+            23,
+            "Fennel",
+            "Foeniculum vulgare",
+            json!(["saunf", "fennel"]),
+            json!(["India", "Global markets"]),
+            "seed",
+            json!(["traditionally used after meals for mild digestive comfort"]),
+            json!(["mild indigestion", "nausea", "abdominal discomfort"]),
+            "limited",
+            "Food-level use is common; concentrated oils are different and can be risky.",
+            json!(["Avoid essential oil dosing", "Use caution in pregnancy"]),
+            json!(["May interact with hormone-sensitive conditions or medicines"]),
+            "Discuss as familiar food-level seed use only.",
+            "https://powo.science.kew.org/",
+        ),
+        (
+            24,
+            "Cumin",
+            "Cuminum cyminum",
+            json!(["jeera", "cumin"]),
+            json!(["India", "Global markets"]),
+            "seed",
+            json!(["used as a kitchen spice and mild digestive tradition"]),
+            json!(["mild indigestion", "abdominal discomfort", "food source"]),
+            "traditional",
+            "Common kitchen spice; high-dose products are different from food use.",
+            json!(["Use caution with pregnancy if using concentrated products"]),
+            json!(["May affect blood sugar medicines in large amounts"]),
+            "Use food-level language only; avoid medicinal dosing.",
+            "https://powo.science.kew.org/",
+        ),
+        (
+            25,
+            "Fenugreek",
+            "Trigonella foenum-graecum",
+            json!(["methi", "fenugreek"]),
+            json!(["India", "South Asia", "Global markets"]),
+            "leaf and seed",
+            json!(["used as food leaves and seeds in traditional cooking"]),
+            json!(["food source", "recovery nutrition", "mild indigestion"]),
+            "limited",
+            "Food use is common; seed supplements can affect blood sugar and pregnancy safety.",
+            json!(["Avoid concentrated seed use in pregnancy", "Use caution with diabetes"]),
+            json!(["May lower blood sugar or interact with anticoagulants"]),
+            "Discuss cooked leaves or food-level seed use, not supplement dosing.",
+            "https://powo.science.kew.org/",
+        ),
+        (
+            26,
+            "Garlic",
+            "Allium sativum",
+            json!(["lahsun", "garlic"]),
+            json!(["India", "Global markets"]),
+            "bulb",
+            json!(["used as food and traditional support for mild cold-season comfort"]),
+            json!(["mild cough", "food source", "recovery nutrition"]),
+            "limited",
+            "Food use is common; raw garlic can irritate the stomach and skin.",
+            json!(["Use caution with stomach irritation", "Avoid applying raw garlic to skin"]),
+            json!(["May increase bleeding risk with anticoagulants or antiplatelet medicines"]),
+            "Discuss as cooked food seasoning only; avoid concentrated dosing.",
+            "https://powo.science.kew.org/",
+        ),
+        (
+            27,
+            "Onion",
+            "Allium cepa",
+            json!(["pyaz", "onion"]),
+            json!(["India", "Global markets"]),
+            "bulb",
+            json!(["used as a food vegetable and household cooking staple"]),
+            json!(["food source", "recovery nutrition", "mild cough"]),
+            "traditional",
+            "A common food; can irritate reflux or sensitive stomachs.",
+            json!(["Use caution with reflux or severe stomach irritation"]),
+            json!([]),
+            "Discuss as normal cooked food, not medicine.",
+            "https://powo.science.kew.org/",
+        ),
+        (
+            28,
+            "Mint",
+            "Mentha spicata",
+            json!(["pudina", "mint"]),
+            json!(["India", "Global markets"]),
+            "leaf",
+            json!(["used as food herb for cooling flavor and mild digestive comfort"]),
+            json!(["mild indigestion", "nausea", "mild sore throat"]),
+            "limited",
+            "Leaf use is usually food-like; mint can worsen reflux in some people.",
+            json!(["Use caution with GERD or reflux"]),
+            json!(["May affect timing of some medicines if taken as concentrated products"]),
+            "Use leaf chutney or mild tea tradition only; avoid essential oil dosing.",
+            "https://powo.science.kew.org/",
+        ),
+        (
+            29,
+            "Curry leaf",
+            "Murraya koenigii",
+            json!(["kadi patta", "curry leaf"]),
+            json!(["India", "South Asia"]),
+            "leaf",
+            json!(["used as a food leaf in cooking and household nutrition tradition"]),
+            json!(["food source", "recovery nutrition", "mild indigestion"]),
+            "traditional",
+            "Commonly used in cooking; allergy is possible but uncommon.",
+            json!(["Avoid if allergy occurs"]),
+            json!([]),
+            "Discuss as normal cooked food leaf, not as a disease treatment.",
+            "https://powo.science.kew.org/",
+        ),
     ];
 
     for h in herbs {
@@ -468,8 +628,19 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
 
     let herb_details = vec![
         (
+            2,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Perilla_leaves_2.jpg/960px-Perilla_leaves_2.jpg",
+            "https://commons.wikimedia.org/wiki/File:Perilla_leaves_2.jpg",
+            json!([
+                "Broad green perilla leaves with toothed edges and a strong herbal smell",
+                "Often sold as fresh leaves; confirm with a trusted local source before use",
+                "Do not use unknown wild leaves for a sick child"
+            ]),
+            "Public plant photo shown for field recognition; confirm real plants with a trusted local identifier.",
+        ),
+        (
             1,
-            "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger%20rhizome.jpg?width=640",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Ginger_rhizome.jpg/960px-Ginger_rhizome.jpg",
             "https://commons.wikimedia.org/wiki/Category:Zingiber_officinale_(root)",
             json!([
                 "Ginger is the knobbly tan rhizome sold as a food spice",
@@ -480,7 +651,7 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
         ),
         (
             4,
-            "https://commons.wikimedia.org/wiki/Special:FilePath/IndianBorage.jpeg?width=640",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/IndianBorage.jpeg/960px-IndianBorage.jpeg",
             "https://commons.wikimedia.org/wiki/File:IndianBorage.jpeg",
             json!([
                 "Thick, soft, fuzzy leaves with rounded scalloped edges",
@@ -490,8 +661,63 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
             "Confirmed in demo availability data for Bihar, India as an Indian household herb; safest source is a known garden, pot, or market bundle.",
         ),
         (
+            5,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Curcuma_longa_roots.jpg/960px-Curcuma_longa_roots.jpg",
+            "https://commons.wikimedia.org/wiki/File:Curcuma_longa_roots.jpg",
+            json!([
+                "Orange-yellow rhizome used as a kitchen spice",
+                "Powder and fresh rhizome can look different",
+                "Use known food-market turmeric, not unknown roots"
+            ]),
+            "Public plant photo shown for field recognition; safest source is a known market spice.",
+        ),
+        (
+            6,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Peppermint_Plant.jpg/960px-Peppermint_Plant.jpg",
+            "https://commons.wikimedia.org/wiki/File:Peppermint_Plant.jpg",
+            json!([
+                "Aromatic mint-family leaf",
+                "Leaves smell minty when gently crushed",
+                "Avoid essential oil dosing"
+            ]),
+            "Public plant photo shown for field recognition; use trusted market mint leaves.",
+        ),
+        (
+            7,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Chamomile_flowers.jpg/960px-Chamomile_flowers.jpg",
+            "https://commons.wikimedia.org/wiki/File:Chamomile_flowers.jpg",
+            json!([
+                "Small daisy-like flower heads in dried market form",
+                "Do not confuse with unknown wild flowers",
+                "Avoid if allergic to ragweed-family plants"
+            ]),
+            "Public plant photo shown for field recognition; use only trusted dried market material.",
+        ),
+        (
+            8,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Aloe_vera_leaf_showing_the_gel_(2).JPG/960px-Aloe_vera_leaf_showing_the_gel_(2).JPG",
+            "https://commons.wikimedia.org/wiki/File:Aloe_vera_leaf_showing_the_gel_(2).JPG",
+            json!([
+                "Thick succulent leaves with clear inner gel",
+                "Use external gel traditions only for minor irritation",
+                "Do not swallow aloe latex"
+            ]),
+            "Public plant photo shown for field recognition; use known cultivated aloe only.",
+        ),
+        (
+            9,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Psidium_guajava_leaves_LR.jpg/960px-Psidium_guajava_leaves_LR.jpg",
+            "https://commons.wikimedia.org/wiki/File:Psidium_guajava_leaves_LR.jpg",
+            json!([
+                "Cultivated guava tree leaves with many visible side veins",
+                "Use only leaves from a known guava tree",
+                "Avoid sprayed or roadside leaves"
+            ]),
+            "Public plant photo shown for field recognition; confirm with a known fruit tree or trusted market source.",
+        ),
+        (
             11,
-            "https://commons.wikimedia.org/wiki/Special:FilePath/Moringa%20leaf%20closeup.jpg?width=640",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Moringa_leaf_closeup.jpg/960px-Moringa_leaf_closeup.jpg",
             "https://commons.wikimedia.org/wiki/Category:Moringa_oleifera_(leaves)",
             json!([
                 "Small oval leaflets arranged in feathery compound leaves",
@@ -502,7 +728,7 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
         ),
         (
             12,
-            "https://commons.wikimedia.org/wiki/Special:FilePath/Vernonia%20amygdalina%20aka%20Bitter%20leaf.jpg?width=640",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Vernonia_amygdalina_aka_Bitter_leaf.jpg/960px-Vernonia_amygdalina_aka_Bitter_leaf.jpg",
             "https://commons.wikimedia.org/wiki/File:Vernonia_amygdalina_aka_Bitter_leaf.jpg",
             json!([
                 "Shrubby plant commonly known locally as bitter leaf",
@@ -513,7 +739,7 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
         ),
         (
             13,
-            "https://commons.wikimedia.org/wiki/Special:FilePath/Psidium%20guajava%20leaves%20LR.jpg?width=640",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Psidium_guajava_leaves_LR.jpg/960px-Psidium_guajava_leaves_LR.jpg",
             "https://commons.wikimedia.org/wiki/File:Psidium_guajava_leaves_LR.jpg",
             json!([
                 "Guava tree leaves are opposite, oval, and have many visible side veins",
@@ -524,7 +750,7 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
         ),
         (
             14,
-            "https://commons.wikimedia.org/wiki/Special:FilePath/20230227%20161110%20Ipomoea%20batatas%20%27Beauregard%27.jpg?width=640",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/20230227_161110_Ipomoea_batatas_%27Beauregard%27.jpg/960px-20230227_161110_Ipomoea_batatas_%27Beauregard%27.jpg",
             "https://commons.wikimedia.org/wiki/File:20230227_161110_Ipomoea_batatas_%27Beauregard%27.jpg",
             json!([
                 "Creeping vine with heart-shaped or lobed leaves",
@@ -535,8 +761,8 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
         ),
         (
             15,
-            "https://commons.wikimedia.org/wiki/Special:FilePath/Azadirachta%20indica%20leaves.jpg?width=640",
-            "https://commons.wikimedia.org/wiki/Category:Azadirachta_indica",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Leaf_of_neem.jpg/960px-Leaf_of_neem.jpg",
+            "https://commons.wikimedia.org/wiki/File:Leaf_of_neem.jpg",
             json!([
                 "Tree with many small pointed leaflets on each leaf stem",
                 "Leaves are bitter and the tree is often used for shade in dry areas",
@@ -546,7 +772,7 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
         ),
         (
             16,
-            "https://commons.wikimedia.org/wiki/Special:FilePath/Cymbopogon%20citratus.jpg?width=640",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Cymbopogon_citratus.jpg/960px-Cymbopogon_citratus.jpg",
             "https://commons.wikimedia.org/wiki/Category:Cymbopogon_citratus",
             json!([
                 "Tall clumping grass with long narrow leaves",
@@ -557,7 +783,7 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
         ),
         (
             17,
-            "https://commons.wikimedia.org/wiki/Special:FilePath/Hibiscus%20sabdariffa-flower-yercaud-salem-India.JPG?width=640",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Hibiscus_sabdariffa-flower-yercaud-salem-India.JPG/960px-Hibiscus_sabdariffa-flower-yercaud-salem-India.JPG",
             "https://commons.wikimedia.org/wiki/File:Hibiscus_sabdariffa-flower-yercaud-salem-India.JPG",
             json!([
                 "Plant produces red fleshy calyces used for zobo drink",
@@ -568,7 +794,7 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
         ),
         (
             18,
-            "https://commons.wikimedia.org/wiki/Special:FilePath/Adansonia%20digitata%20fruit%20MHNT.jpg?width=640",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Adansonia_digitata_fruit_MHNT.jpg/960px-Adansonia_digitata_fruit_MHNT.jpg",
             "https://commons.wikimedia.org/wiki/File:Adansonia_digitata_fruit_MHNT.jpg",
             json!([
                 "Large baobab tree with thick trunk",
@@ -579,7 +805,7 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
         ),
         (
             19,
-            "https://commons.wikimedia.org/wiki/Special:FilePath/Okra%20%28Abelmoschus%20esculentus%29%20fruit%20opened.jpg?width=640",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Okra_%28Abelmoschus_esculentus%29_fruit_opened.jpg/960px-Okra_%28Abelmoschus_esculentus%29_fruit_opened.jpg",
             "https://commons.wikimedia.org/wiki/File:Okra_(Abelmoschus_esculentus)_fruit_opened.jpg",
             json!([
                 "Upright plant with lobed leaves and yellowish hibiscus-like flowers",
@@ -587,6 +813,116 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
                 "Cook pods well and avoid spoiled or sprayed produce"
             ]),
             "Confirmed in demo availability data for Kano, Nigeria as a common vegetable crop; start from known seeds or market pods.",
+        ),
+        (
+            20,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/(Ocimum_tenuiflorum)_Holy_Tulasi_plant_at_Kakinada_01.jpg/960px-(Ocimum_tenuiflorum)_Holy_Tulasi_plant_at_Kakinada_01.jpg",
+            "https://commons.wikimedia.org/wiki/File:(Ocimum_tenuiflorum)_Holy_Tulasi_plant_at_Kakinada_01.jpg",
+            json!([
+                "Aromatic household basil plant",
+                "Leaves grow opposite on square mint-family stems",
+                "Confirm with a known household tulsi plant"
+            ]),
+            "Public plant photo shown for field recognition; safest source is a known home or market plant.",
+        ),
+        (
+            21,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Phyllanthus_emblica_BNC.jpg/960px-Phyllanthus_emblica_BNC.jpg",
+            "https://commons.wikimedia.org/wiki/File:Phyllanthus_emblica_BNC.jpg",
+            json!([
+                "Small round sour green fruit",
+                "Known locally as amla or Indian gooseberry",
+                "Use clean food fruit from a trusted source"
+            ]),
+            "Public plant photo shown for field recognition; use clean market fruit.",
+        ),
+        (
+            22,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Coriander_Seeds.jpg/960px-Coriander_Seeds.jpg",
+            "https://commons.wikimedia.org/wiki/File:Coriander_Seeds.jpg",
+            json!([
+                "Food herb with fresh leaves and small round seeds",
+                "Known as dhania in many Indian markets",
+                "Use normal food seasoning only"
+            ]),
+            "Public plant photo shown for field recognition; use trusted kitchen coriander.",
+        ),
+        (
+            23,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Foeniculum_vulgare_seeds.jpg/960px-Foeniculum_vulgare_seeds.jpg",
+            "https://commons.wikimedia.org/wiki/File:Foeniculum_vulgare_seeds.jpg",
+            json!([
+                "Small aromatic seeds used after meals",
+                "Known as saunf in many Indian markets",
+                "Avoid essential oil dosing"
+            ]),
+            "Public plant photo shown for field recognition; use trusted market seed.",
+        ),
+        (
+            24,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Whole_Cumin_Seeds.jpg/960px-Whole_Cumin_Seeds.jpg",
+            "https://commons.wikimedia.org/wiki/File:Whole_Cumin_Seeds.jpg",
+            json!([
+                "Small brownish kitchen seeds",
+                "Known as jeera in many Indian markets",
+                "Use food-level spice only"
+            ]),
+            "Public plant photo shown for field recognition; use trusted kitchen cumin.",
+        ),
+        (
+            25,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Fenugreek_seeds.jpg/960px-Fenugreek_seeds.jpg",
+            "https://commons.wikimedia.org/wiki/File:Fenugreek_seeds.jpg",
+            json!([
+                "Leaves and yellow-brown seeds used in food",
+                "Known as methi in many Indian markets",
+                "Avoid concentrated seed use in pregnancy"
+            ]),
+            "Public plant photo shown for field recognition; use trusted food-level fenugreek.",
+        ),
+        (
+            26,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Allium_sativum%E5%A4%A7%E8%92%9C_%E8%92%9C%E5%A4%B4_Garlic.jpg/960px-Allium_sativum%E5%A4%A7%E8%92%9C_%E8%92%9C%E5%A4%B4_Garlic.jpg",
+            "https://commons.wikimedia.org/wiki/File:Allium_sativum%E5%A4%A7%E8%92%9C_%E8%92%9C%E5%A4%B4_Garlic.jpg",
+            json!([
+                "White segmented bulb used in cooking",
+                "Strong smell when crushed",
+                "Do not apply raw garlic to skin"
+            ]),
+            "Public plant photo shown for field recognition; use normal cooked food garlic.",
+        ),
+        (
+            27,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Alliumcepa.JPG/960px-Alliumcepa.JPG",
+            "https://commons.wikimedia.org/wiki/File:Alliumcepa.JPG",
+            json!([
+                "Layered bulb vegetable used in cooking",
+                "Known as pyaz in many Indian markets",
+                "Can irritate reflux in some people"
+            ]),
+            "Public plant photo shown for field recognition; use normal cooked food onion.",
+        ),
+        (
+            28,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Mint_leaves_%28Mentha_spicata%29.jpg/960px-Mint_leaves_%28Mentha_spicata%29.jpg",
+            "https://commons.wikimedia.org/wiki/File:Mint_leaves_(Mentha_spicata).jpg",
+            json!([
+                "Aromatic mint leaf used in chutney or tea traditions",
+                "Leaves smell minty when crushed",
+                "Use leaf only, not essential oil dosing"
+            ]),
+            "Public plant photo shown for field recognition; use trusted market mint.",
+        ),
+        (
+            29,
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Murraya_koenigii_leaves.jpg/960px-Murraya_koenigii_leaves.jpg",
+            "https://commons.wikimedia.org/wiki/File:Murraya_koenigii_leaves.jpg",
+            json!([
+                "Small glossy cooking leaves from a known curry leaf tree",
+                "Usually used fresh in food",
+                "Do not use unknown lookalike leaves"
+            ]),
+            "Public plant photo shown for field recognition; use known cooking leaves.",
         ),
     ];
 
@@ -788,6 +1124,26 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
         (24, 4, "India", "Bihar", 0.82, "demo Indian household herb"),
         (25, 5, "India", "Bihar", 0.88, "demo common kitchen spice"),
         (26, 15, "India", "Bihar", 0.8, "demo common shade tree"),
+        (27, 2, "India", "Bihar", 0.62, "demo market herb where available"),
+        (28, 6, "India", "Bihar", 0.72, "demo common market mint"),
+        (29, 7, "India", "Bihar", 0.58, "demo dried market herb where available"),
+        (30, 8, "India", "Bihar", 0.78, "demo household garden plant"),
+        (31, 9, "India", "Bihar", 0.8, "demo tropical fruit tree"),
+        (32, 11, "India", "Bihar", 0.76, "demo cultivated leafy food"),
+        (33, 14, "India", "Bihar", 0.75, "demo food crop option"),
+        (34, 16, "India", "Bihar", 0.7, "demo cultivated household herb"),
+        (35, 17, "India", "Bihar", 0.68, "demo familiar drink plant"),
+        (36, 19, "India", "Bihar", 0.84, "demo common vegetable crop"),
+        (37, 20, "India", "Bihar", 0.9, "demo common household tulsi plant"),
+        (38, 21, "India", "Bihar", 0.82, "demo common food fruit"),
+        (39, 22, "India", "Bihar", 0.9, "demo common kitchen herb"),
+        (40, 23, "India", "Bihar", 0.88, "demo common market seed"),
+        (41, 24, "India", "Bihar", 0.9, "demo common kitchen spice"),
+        (42, 25, "India", "Bihar", 0.88, "demo common food herb"),
+        (43, 26, "India", "Bihar", 0.92, "demo common kitchen bulb"),
+        (44, 27, "India", "Bihar", 0.94, "demo common kitchen vegetable"),
+        (45, 28, "India", "Bihar", 0.9, "demo common market herb"),
+        (46, 29, "India", "Bihar", 0.86, "demo common cooking leaf"),
     ];
 
     for a in availability {
@@ -878,6 +1234,16 @@ pub async fn retrieve_herbs(
     region: Option<&str>,
     symptom: Option<&str>,
 ) -> Result<Vec<HerbSummary>> {
+    retrieve_herbs_with_limit(pool, country, region, symptom, 5).await
+}
+
+pub async fn retrieve_herbs_with_limit(
+    pool: &SqlitePool,
+    country: Option<&str>,
+    region: Option<&str>,
+    symptom: Option<&str>,
+    limit: usize,
+) -> Result<Vec<HerbSummary>> {
     let herbs = sqlx::query_as::<_, Herb>("SELECT * FROM herbs")
         .fetch_all(pool)
         .await?;
@@ -947,7 +1313,7 @@ pub async fn retrieve_herbs(
     }
 
     scored.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap_or(std::cmp::Ordering::Equal));
-    Ok(scored.into_iter().map(|(_, h)| h).take(5).collect())
+    Ok(scored.into_iter().map(|(_, h)| h).take(limit).collect())
 }
 
 pub async fn save_consultation(

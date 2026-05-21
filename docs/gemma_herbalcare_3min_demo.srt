@@ -1,0 +1,59 @@
+1
+00:00:00,000 --> 00:00:05,000
+Gemma HerbalCare is built for places where professional care may be far away, expensive, or delayed.
+
+2
+00:00:05,000 --> 00:00:18,000
+This is not a free-form herbal chatbot. It is a safety-first navigator: red flags are checked before any local plant is shown.
+
+3
+00:00:18,000 --> 00:00:30,000
+The app is local-first and Gemma-ready, so the same workflow can run with a local model such as Gemma through Ollama for private, low-connectivity settings.
+
+4
+00:00:30,000 --> 00:00:45,000
+The herb library keeps curated records: plant names, reference images, safety warnings, evidence level, interactions, and local availability.
+
+5
+00:00:45,000 --> 00:00:55,000
+This matters because the safest plant advice starts with correct identification and clear limits, not guessing.
+
+6
+00:00:55,000 --> 00:01:08,000
+The safety page draws the product boundary. The assistant is educational only, not a doctor, not a diagnosis, and not a prescription.
+
+7
+00:01:08,000 --> 00:01:20,000
+For severe symptoms, suspected malaria, breathing trouble, pregnancy bleeding, cancer cure claims, or chest pain, the system suppresses herbal substitution.
+
+8
+00:01:20,000 --> 00:01:35,000
+The consultation form collects context first: location, symptoms, age, duration, pregnancy status, care access, medicines, conditions, and allergies.
+
+9
+00:01:35,000 --> 00:01:48,000
+Care access changes the answer. If a clinic or community health worker is reachable, herbs are framed as reference only.
+
+10
+00:01:48,000 --> 00:02:00,000
+If care is not reachable right now, the app gives temporary harm-reduction guidance, but keeps warning that proven care is still the safest path.
+
+11
+00:02:00,000 --> 00:02:14,000
+Accessibility is part of the design. Camera and microphone support are marked as phase 2, for local OCR, voice input, and visual triage support.
+
+12
+00:02:14,000 --> 00:02:24,000
+The read-aloud button works now with browser text-to-speech, helping users who cannot read, cannot type, have poor vision, or are older adults.
+
+13
+00:02:24,000 --> 00:02:39,000
+Case one: child diarrhea after unsafe water. The lifesaving step is ORS and safe water. Herbs are supportive only, never the main treatment.
+
+14
+00:02:39,000 --> 00:02:52,000
+Case two: long-term food source planning. The app can suggest simple resilience steps such as sweet potato vines, familiar leafy foods, and chickens only when water, shade, and protection are realistic.
+
+15
+00:02:52,000 --> 00:03:00,000
+Case three: fever and suspected malaria. The app pushes rapid testing and proven antimalarial care. It does not recommend raw bark or herbs as a substitute.

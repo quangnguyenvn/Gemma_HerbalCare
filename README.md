@@ -27,6 +27,9 @@ This project treats traditional knowledge with respect while adding the guardrai
 - **Cloudy well water:** explains settling, cloth filtering, boiling, and chemical-contamination limits.
 - **Long-term food source plan:** suggests realistic local food resilience options such as sweet potato, moringa, and chickens.
 - **Poor breathing after indoor smoke:** detects an emergency red flag and returns urgent-care guidance only.
+- **Real plant photos:** the herb library now uses public real-world plant images with source links so users can recognize plants more safely than from generic illustrations.
+- **Mobile and offline direction:** the home page introduces an iOS/Android app concept for carrying regional herb records, food plants, water-safety steps, and red-flag guidance into areas with weak or no internet.
+- **Multilingual header:** the app header includes a lightweight language switcher for English, Swahili, Hindi, Chinese, and Korean as a first step toward broader community access.
 
 ## Visual Guidance for Real Communities
 
@@ -49,7 +52,40 @@ The philosophy is simple: **solutions for humanity should be understandable at c
 |---|---|---|---|---|
 | ![Line illustration of a farmer starting a small sweet potato plot with moringa and chickens](assets/visual-food-plan.svg) | ![Line illustration of a caregiver preparing ORS and giving small sips](assets/visual-ors.svg) | ![Line illustration of settling, filtering, and boiling water](assets/visual-safe-water.svg) | ![Line illustration of moving away from smoke toward urgent care](assets/visual-breathing-care.svg) | ![Line illustration of confirming a plant before use](assets/visual-plant-check.svg) |
 
-These illustrations are intentionally simple SVGs. They are lightweight, offline-friendly, culturally adaptable, and safer than asking a generative image model to invent visuals during a consultation.
+These illustrations are intentionally simple SVGs for general actions and safety concepts. They are lightweight, offline-friendly, culturally adaptable, and safer than asking a generative image model to invent visuals during a consultation.
+
+For plant identification, the app now takes a stricter approach: **the Herb Library uses real public plant photos with source links**, not generic local SVG icons. A person trying to find ginger, guava leaf, neem, tulsi, mint, curry leaf, aloe, or other plants in the real world needs visual references that resemble actual leaves, roots, seeds, and bulbs. Generic art is useful for explaining actions; real photos are more useful for field recognition.
+
+## Offline Herb Library and Mobile Direction
+
+The latest UI adds a mobile/offline direction because many of the people this project is meant to help may live far from clinics, mobile data may be expensive, and internet access may disappear during floods, conflict, power cuts, or travel between villages.
+
+The proposed iOS/Android companion app would act as a local **regional knowledge cache**, not just a website shortcut. It could store:
+
+- curated herb records by country, region, and local name
+- real plant photos and identification notes
+- safety notes, contraindications, and interaction warnings
+- ORS and clean-water guidance
+- long-term food resilience ideas such as sweet potato, moringa, okra, and chickens
+- red-flag guidance for cases where herbs should be hidden and urgent care should be sought
+
+This matters because an offline app can still help a community worker, elder, parent, or traveler when the network is unavailable. The safest knowledge should be available before the model, the cloud, or the internet becomes reachable.
+
+The mobile direction is also designed to support downloadable regional packs. A Bihar pack, a Kano pack, or a Southeast Asia pack could include only locally relevant plants and warnings, making the app smaller, faster, and easier to maintain with local partners.
+
+## Multilingual Direction
+
+The current prototype adds a lightweight language switcher in the header for:
+
+- English
+- Swahili
+- Hindi
+- Chinese
+- Korean
+
+This is intentionally a first step, not a claim that the whole medical flow has been professionally translated. The goal is to show that the product is designed for many communities, not only English-speaking users. Future work should expand this into full-screen translation for forms, triage messages, herb records, read-aloud responses, and offline mobile packs.
+
+Multilingual support is especially important for remote communities because low-literacy and low-connectivity users often also need local-language explanations. A safety-first app is more useful when it can say “go to a clinic now,” “mix ORS this way,” or “this herb is supportive only” in words the user actually understands.
 
 ## Accessibility and Multimodal Direction
 
@@ -205,6 +241,8 @@ flowchart TD
 - **Retrieval:** local SQLite herb library with regional availability records
 - **LLM integration:** mock provider by default, HTTP Gemma-compatible provider for local or hosted inference
 - **Deployment shape:** local-first architecture that can be packaged for clinics, NGOs, community health workers, and offline demos
+- **Language UI:** lightweight header-level language switcher for English, Swahili, Hindi, Chinese, and Korean
+- **Visual records:** real public plant photos for herb identification, plus lightweight local illustrations for practical safety guidance
 
 ### Core Modules
 
@@ -230,6 +268,8 @@ docs/
 - [ ] Add screenshots of consultation, herb library, safety page, and refusal states.
 - [ ] Add embedded demo video link.
 - [ ] Add offline deployment demo with a local Gemma-compatible endpoint.
+- [ ] Expand the language switcher from header/navigation into full app translations and local-language read-aloud flows.
+- [ ] Package offline regional herb libraries for mobile devices and low-connectivity field use.
 
 ## Safety-First Design
 
@@ -400,16 +440,18 @@ Gemma HerbalCare has a clear AI-for-good thesis and a working safety architectur
 - **Responsible AI:** generation is bounded by triage, retrieval, refusal rules, and educational-only framing.
 - **Real-world problem:** the app targets the dangerous gap between symptoms appearing and professional care becoming reachable.
 - **Local-first design:** plant knowledge is regional, source-linked, and structured for offline-friendly use.
+- **Offline access path:** the mobile direction treats herb records, safety rules, ORS, water, and food-resilience guidance as knowledge that should remain available even without internet.
+- **Inclusive language path:** the current header language switcher demonstrates the product direction toward Swahili, Hindi, Chinese, Korean, and other local-language packs.
 - **Cultural preservation:** the system can document local names, preparation context, safety notes, and regional availability before knowledge is lost.
 - **Clear model role:** Gemma translates controlled knowledge into accessible guidance instead of acting as an unconstrained medical authority.
 - **Scalable path:** the architecture can support multilingual voice flows, clinician-reviewed datasets, safety evaluations, and community health worker deployments.
 
 ## Phase 2: Competitive Extensions
 
-- **Multilingual support:** English, Vietnamese, Korean, Hindi, Hausa, and other low-resource languages.
+- **Multilingual support:** expand the current English, Swahili, Hindi, Chinese, and Korean header switcher into full app translation and read-aloud flows, then add other local and low-resource languages.
 - **Voice-first interaction:** local speech input and spoken responses for low-literacy users.
 - **Plant/photo intake:** image-based OCR and visual triage support for plant records, water clarity, labels, and visible danger signs, with strong uncertainty warnings and expert confirmation requirements.
-- **Offline bundle:** deployable package for rural clinics, NGOs, schools, and community health workers.
+- **Offline bundle:** deployable package for rural clinics, NGOs, schools, community health workers, and mobile users without reliable internet.
 - **Safety evaluation suite:** refusal tests, grounding tests, hallucination tests, and emergency escalation tests.
 - **Regional herbal datasets:** Southeast Asia, Korea, Africa, Latin America, and other community-reviewed sources.
 - **Lightweight edge deployment:** small-model local inference for low-connectivity environments.

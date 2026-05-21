@@ -1,5 +1,5 @@
 use crate::{
-    db::{retrieve_herbs, save_consultation},
+    db::{retrieve_herbs, retrieve_herbs_with_limit, save_consultation},
     models::{ConsultResponse, Consultation, ConsultationRequest, DemoCase, HerbQuery},
     safety::{standard_disclaimer, triage, urgent_guidance},
     AppState,
@@ -33,11 +33,12 @@ async fn get_herbs(
     State(state): State<AppState>,
     Query(query): Query<HerbQuery>,
 ) -> Result<Json<Vec<crate::models::HerbSummary>>, ApiError> {
-    let herbs = retrieve_herbs(
+    let herbs = retrieve_herbs_with_limit(
         &state.pool,
         query.country.as_deref(),
         query.region.as_deref(),
         query.symptom.as_deref(),
+        24,
     )
     .await?;
     Ok(Json(herbs))

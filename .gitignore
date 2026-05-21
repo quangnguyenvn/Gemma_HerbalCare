@@ -19,6 +19,10 @@ frontend/.svelte-kit/
 frontend/build/
 frontend/dist/
 
+# Python
+__pycache__/
+*.pyc
+
 # Environment and local editor files
 .env
 .env.*

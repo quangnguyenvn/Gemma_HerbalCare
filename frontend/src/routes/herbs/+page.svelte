@@ -3,7 +3,7 @@
 
   let country = 'India';
   let region = 'Bihar';
-  let symptom = 'mild cough';
+  let symptom = '';
   let items: HerbSummary[] = [];
   let loading = false;
   let error = '';
@@ -29,7 +29,7 @@
   <form class="library-filter" on:submit|preventDefault={search}>
     <label>Country <input bind:value={country} /></label>
     <label>Region <input bind:value={region} /></label>
-    <label>Symptom <input bind:value={symptom} /></label>
+    <label>Symptom <input bind:value={symptom} placeholder="optional filter" /></label>
     <button class="button primary" disabled={loading}>{loading ? 'Searching...' : 'Search'}</button>
   </form>
   {#if error}<p class="error">{error}</p>{/if}
@@ -41,7 +41,7 @@
             class="record-guide-image"
             src={herb.image_url}
             alt={`${herb.common_name} identification reference`}
-            loading="lazy"
+            loading="eager"
           />
         {:else}
           <div class="sprig" aria-hidden="true"></div>
