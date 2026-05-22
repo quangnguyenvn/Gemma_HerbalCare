@@ -1,6 +1,13 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { consult, demoCases, type ConsultResponse, type ConsultationRequest, type DemoCase } from '$lib/api';
+  import {
+    consult,
+    demoCases,
+    fallbackDemoCases,
+    type ConsultResponse,
+    type ConsultationRequest,
+    type DemoCase
+  } from '$lib/api';
   import { isOfflineConnection } from '$lib/connection';
 
   type VisualGuide = {
@@ -25,7 +32,7 @@
     duration_days: 1
   };
   let result: ConsultResponse | null = null;
-  let cases: DemoCase[] = [];
+  let cases: DemoCase[] = fallbackDemoCases;
   let loading = false;
   let error = '';
   let imageInput: HTMLInputElement;

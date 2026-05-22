@@ -51,6 +51,7 @@ textarea {
   top: 0;
   z-index: 10;
   backdrop-filter: blur(8px);
+  box-shadow: 0 1px 0 rgba(255, 249, 232, .42);
 }
 
 .brand,
@@ -86,6 +87,7 @@ nav {
 nav a {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   min-height: 2.35rem;
   padding: .35rem .65rem;
   border: 1px solid rgba(49, 95, 60, .34);
@@ -265,6 +267,8 @@ h2 {
   display: grid;
   place-items: end center;
   padding: 2rem;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .botanical-plate span {
@@ -983,27 +987,109 @@ dd {
 
   .topbar {
     display: grid;
+    gap: .85rem;
+    padding: .85rem clamp(.75rem, 4vw, 1.1rem);
   }
 
   .topbar-actions {
     display: grid;
-    gap: .75rem;
+    gap: .7rem;
+    width: 100%;
   }
 
   .connection-pill {
-    max-width: min(100%, 26rem);
+    width: 100%;
+    max-width: none;
+    padding: .55rem .7rem;
   }
 
   nav {
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .55rem;
+    width: 100%;
+  }
+
+  nav a {
+    min-height: 2.55rem;
+    padding: .45rem .55rem;
+    text-align: center;
+    background: rgba(255, 249, 232, .62);
+  }
+
+  .brand {
+    width: 100%;
+    gap: .65rem;
+  }
+
+  .brand-mark {
+    flex: 0 0 auto;
+  }
+
+  .language-switcher {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: .65rem;
+    width: 100%;
+  }
+
+  .language-switcher select {
+    width: 100%;
+    max-width: none;
   }
 
   .hero {
     min-height: auto;
+    gap: 1.35rem;
+    padding: 2rem 0;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .65rem;
+    margin-top: 1rem;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+    min-height: 3rem;
   }
 
   .botanical-plate {
-    min-height: 24rem;
+    min-height: 20rem;
+    padding: 1.8rem 1.25rem 1.25rem;
+  }
+
+  .stem {
+    height: 15rem;
+    bottom: 1.45rem;
+  }
+
+  .leaf {
+    width: 6.6rem;
+    height: 2.85rem;
+  }
+
+  .leaf-a {
+    bottom: 11.55rem;
+    left: 45%;
+  }
+
+  .leaf-b {
+    bottom: 7.75rem;
+    right: 38%;
+  }
+
+  .leaf-c {
+    bottom: 4.35rem;
+    left: 42%;
+  }
+
+  .flower {
+    width: 4.15rem;
+    height: 4.15rem;
+    bottom: 15.25rem;
   }
 
   .result-panel {
