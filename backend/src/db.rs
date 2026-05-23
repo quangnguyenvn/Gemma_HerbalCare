@@ -794,8 +794,8 @@ pub async fn seed_db(pool: &SqlitePool) -> Result<()> {
         ),
         (
             18,
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Adansonia_digitata_fruit_MHNT.jpg/960px-Adansonia_digitata_fruit_MHNT.jpg",
-            "https://commons.wikimedia.org/wiki/File:Adansonia_digitata_fruit_MHNT.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Adansonia_digitata.jpg/960px-Adansonia_digitata.jpg",
+            "https://commons.wikimedia.org/wiki/File:Adansonia_digitata.jpg",
             json!([
                 "Large baobab tree with thick trunk",
                 "Hard hanging fruits contain dry pale pulp",

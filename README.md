@@ -618,6 +618,46 @@ The goal is not to replace clinicians. The goal is to preserve knowledge, improv
 
 ## Future Work
 
+### Future Platform Flow
+
+The long-term idea is for Gemma HerbalCare to become a safety-first platform for people anywhere in the world to understand local herbs, survival guidance, and care access without treating traditional knowledge as a replacement for modern medicine.
+
+Gemma would sit at the center as an **orchestrator**: it translates user needs, routes requests to the right knowledge source, explains retrieved information in simple local language, and escalates serious cases toward verified care pathways.
+
+```mermaid
+flowchart TD
+  U["👤 Global user, caregiver, elder, or community worker"] --> I["📱 Mobile / web app<br/>text, voice, camera, read-aloud"]
+  I --> G["🧠 Gemma safety-first orchestrator"]
+
+  G --> T["🛡️ Rule-based safety triage<br/>red flags, pregnancy, child risk, severe symptoms"]
+  T -->|Low-risk support| H["🌿 Local herb knowledge libraries<br/>photos, local names, safety notes, evidence, contraindications"]
+  T -->|Practical living need| S["💧 Rural survival guidance<br/>safe water, ORS, sanitation, food resilience, smoke reduction"]
+  T -->|Urgent or emergency| C["🏥 Local care network<br/>clinics, pharmacies, community health workers, referral directories"]
+
+  H --> G
+  S --> G
+  C --> G
+
+  G --> N["🤝 NGO and public-health partners<br/>regional packs, trusted updates, field education"]
+  N --> H
+  N --> S
+  N --> C
+
+  G --> R["🔊 Simple local-language guidance<br/>visual steps, spoken answer, offline-ready summary"]
+  R --> U
+
+  C --> E["📄 Referral summary<br/>location, symptoms, duration, age, medicines, allergies, red flags"]
+  E --> U
+```
+
+In this future version, the app would not be just a herb lookup tool. It would be a local-first coordination layer that can:
+
+- route low-risk questions to curated regional herb records
+- route water, food, sanitation, and smoke-exposure questions to practical rural guidance
+- route urgent cases toward nearby clinics, pharmacies, community health workers, NGO field teams, or emergency contacts
+- let trusted partners publish regional knowledge packs that can work offline
+- keep Gemma in the role of translator, explainer, and navigator rather than unconstrained medical authority
+
 - Add clinician-reviewed regional datasets for Vietnam, Southeast Asia, Africa, and Latin America.
 - Add multilingual and voice-first flows for low-literacy users.
 - Integrate taxonomic validation from sources such as GBIF, POWO, and WFO.
