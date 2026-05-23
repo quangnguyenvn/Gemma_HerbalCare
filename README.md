@@ -626,29 +626,42 @@ Gemma would sit at the center as an **orchestrator**: it translates user needs, 
 
 ```mermaid
 flowchart TD
-  U["👤 Global user, caregiver, elder, or community worker"] --> I["📱 Mobile / web app<br/>text, voice, camera, read-aloud"]
-  I --> G["🧠 Gemma safety-first orchestrator"]
+  U["👤👵👧<br/><b>People</b>"] --> I["📱📷🎙️<br/><b>App</b>"]
+  I --> G["🧠✨<br/><b>Gemma</b>"]
 
-  G --> T["🛡️ Rule-based safety triage<br/>red flags, pregnancy, child risk, severe symptoms"]
-  T -->|Low-risk support| H["🌿 Local herb knowledge libraries<br/>photos, local names, safety notes, evidence, contraindications"]
-  T -->|Practical living need| S["💧 Rural survival guidance<br/>safe water, ORS, sanitation, food resilience, smoke reduction"]
-  T -->|Urgent or emergency| C["🏥 Local care network<br/>clinics, pharmacies, community health workers, referral directories"]
+  G --> T["🛡️🚨<br/><b>Safety gate</b>"]
+  T -->|Low risk| H["🌿📚<br/><b>Herb libraries</b>"]
+  T -->|Daily survival| S["💧🌾🔥<br/><b>Life skills</b>"]
+  T -->|Urgent| C["🏥🧑‍⚕️🚑<br/><b>Care network</b>"]
 
   H --> G
   S --> G
   C --> G
 
-  G --> N["🤝 NGO and public-health partners<br/>regional packs, trusted updates, field education"]
+  G --> N["🤝🌍<br/><b>Partners</b>"]
   N --> H
   N --> S
   N --> C
 
-  G --> R["🔊 Simple local-language guidance<br/>visual steps, spoken answer, offline-ready summary"]
+  G --> R["🔊🖼️📦<br/><b>Guidance</b>"]
   R --> U
 
-  C --> E["📄 Referral summary<br/>location, symptoms, duration, age, medicines, allergies, red flags"]
+  C --> E["📄➡️<br/><b>Referral</b>"]
   E --> U
 ```
+
+Icon guide:
+
+- 👤👵👧 **People:** global users, caregivers, elders, children, and community workers.
+- 📱📷🎙️ **App:** mobile/web interface with text, camera, voice input, and read-aloud output.
+- 🧠✨ **Gemma:** the central navigator that translates, explains, routes, and escalates.
+- 🛡️🚨 **Safety gate:** deterministic triage for red flags, pregnancy risk, child risk, severe symptoms, and unsafe cure claims.
+- 🌿📚 **Herb libraries:** digital local herb records with photos, local names, evidence, contraindications, interactions, and source links.
+- 💧🌾🔥 **Life skills:** safe water, ORS, sanitation, food resilience, smoke reduction, and practical rural survival guidance.
+- 🏥🧑‍⚕️🚑 **Care network:** clinics, pharmacies, community health workers, referral directories, emergency contacts, and trusted transport helpers.
+- 🤝🌍 **Partners:** NGOs, public-health teams, local experts, and community reviewers who publish trusted regional packs.
+- 🔊🖼️📦 **Guidance:** simple local-language answers, visual steps, spoken output, and offline-ready summaries.
+- 📄➡️ **Referral:** a short summary of location, symptoms, duration, age, medicines, allergies, pregnancy status, and red flags for a health worker.
 
 In this future version, the app would not be just a herb lookup tool. It would be a local-first coordination layer that can:
 
