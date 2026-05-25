@@ -1,13 +1,15 @@
 import { writable } from 'svelte/store';
 
-export type Locale = 'en' | 'sw' | 'hi' | 'zh' | 'ko';
+export type Locale = 'en' | 'sw' | 'hi' | 'zh' | 'ko' | 'es-PE' | 'fa-AF';
 
 export const languageOptions: Array<{ code: Locale; label: string }> = [
   { code: 'en', label: 'English' },
   { code: 'sw', label: 'Swahili' },
   { code: 'hi', label: 'हिन्दी' },
   { code: 'zh', label: '中文' },
-  { code: 'ko', label: '한국어' }
+  { code: 'ko', label: '한국어' },
+  { code: 'es-PE', label: 'Español (Perú)' },
+  { code: 'fa-AF', label: 'دری (Afghanistan)' }
 ];
 
 export const navCopy: Record<
@@ -60,6 +62,22 @@ export const navCopy: Record<
     herbs: '허브 라이브러리',
     safety: '안전',
     language: '언어'
+  },
+  'es-PE': {
+    navLabel: 'Navegación principal',
+    home: 'Inicio',
+    consult: 'Consulta',
+    herbs: 'Biblioteca de plantas',
+    safety: 'Seguridad',
+    language: 'Idioma'
+  },
+  'fa-AF': {
+    navLabel: 'ناوبری اصلی',
+    home: 'خانه',
+    consult: 'مشوره',
+    herbs: 'کتابخانه گیاهان',
+    safety: 'ایمنی',
+    language: 'زبان'
   }
 };
 
@@ -240,11 +258,79 @@ export const homeCopy: Record<
     updatesBody: '휴대폰이 다시 연결되면 검토된 새 기록을 동기화합니다.',
     fieldTitle: '현장 사용:',
     fieldBody: '안전 분류, 출처 링크, 시각 가이드를 필요한 사람 가까이에 둡니다.'
+  },
+  'es-PE': {
+    eyebrow: 'Navegador de conocimiento herbal con seguridad primero',
+    subtitle:
+      'Guía herbal local para comunidades con pocos recursos, con revisión de señales de peligro antes de mostrar cualquier planta.',
+    start: 'Iniciar consulta',
+    safetyPolicy: 'Leer política de seguridad',
+    triageTitle: 'Triage antes de la tradición',
+    triageBody:
+      'Los síntomas de emergencia solo devuelven orientación para buscar atención urgente. Las plantas se ocultan cuando aparecen dolor de pecho, dificultad para respirar, deshidratación grave, pedidos de cura para cáncer u otras señales de peligro.',
+    recordsTitle: 'Registros locales curados',
+    recordsBody:
+      'La demo usa un pequeño conjunto SQLite con URLs de fuentes, niveles de evidencia, resúmenes de seguridad, contraindicaciones, interacciones y disponibilidad regional.',
+    gemmaTitle: 'Núcleo listo para Gemma',
+    gemmaBody:
+      'Primero se incluye un proveedor mock. Cambia a un endpoint HTTP compatible con Gemma usando variables de entorno cuando el destino de inferencia esté listo.',
+    mobileEyebrow: 'Dirección móvil y sin conexión',
+    mobileTitle: 'Conocimiento herbal en iOS y Android',
+    mobileBody:
+      'En la fase 2, la Biblioteca Herbal puede empaquetarse como app para iOS y Android, ayudando a familias y trabajadores comunitarios a revisar plantas locales, usos probables, notas de identificación, alertas de seguridad y disponibilidad regional aun con conexión débil.',
+    phoneTitle: 'Biblioteca herbal regional',
+    phoneMoringaPack: 'Paquete Kano',
+    phoneGingerPack: 'Paquete Bihar',
+    phoneOffline: 'Listo sin conexión',
+    offlineTitle: 'Biblioteca offline-first:',
+    offlineBody: 'guarda en el dispositivo registros confiables de hierbas regionales y plantas alimentarias.',
+    updatesTitle: 'Actualizaciones locales:',
+    updatesBody: 'sincroniza nuevos registros revisados cuando el teléfono vuelva a conectarse.',
+    fieldTitle: 'Uso en campo:',
+    fieldBody: 'mantiene triage de seguridad, enlaces de fuente y guías visuales cerca de quienes los necesitan.'
+  },
+  'fa-AF': {
+    eyebrow: 'راهنمای دانش گیاهی با ایمنی در اولویت',
+    subtitle:
+      'راهنمای گیاهان محلی برای جامعه‌های کم‌امکانات؛ پیش از نشان دادن هر گیاه، نشانه‌های خطر بررسی می‌شود.',
+    start: 'شروع مشوره',
+    safetyPolicy: 'خواندن پالیسی ایمنی',
+    triageTitle: 'اول ایمنی، بعد دانش سنتی',
+    triageBody:
+      'در نشانه‌های عاجل فقط راهنمای مراجعه فوری داده می‌شود. اگر درد سینه، مشکل تنفس، کم‌آبی شدید، ادعای درمان سرطان یا نشانه‌های خطر دیگر باشد، پیشنهاد گیاهان پنهان می‌شود.',
+    recordsTitle: 'ثبت‌های محلی بررسی‌شده',
+    recordsBody:
+      'این دمو از یک دیتاست کوچک SQLite استفاده می‌کند که لینک منبع، سطح شواهد، خلاصه ایمنی، منع استفاده، تداخلات و دسترسی منطقه‌ای را دارد.',
+    gemmaTitle: 'هسته آماده برای Gemma',
+    gemmaBody:
+      'در آغاز یک mock provider همراه است. وقتی هدف inference آماده شد، با متغیرهای محیطی می‌توان به endpoint سازگار با Gemma تغییر داد.',
+    mobileEyebrow: 'مسیر موبایل و آفلاین',
+    mobileTitle: 'دانش گیاهی در iOS و Android',
+    mobileBody:
+      'در فاز ۲، Herb Library می‌تواند به شکل اپ موبایل برای iOS و Android بسته‌بندی شود تا خانواده‌ها و کارمندان صحی جامعه در اتصال ضعیف نیز گیاهان محلی، کاربردهای احتمالی، نشانه‌های شناسایی، هشدارهای ایمنی و دسترسی منطقه‌ای را ببینند.',
+    phoneTitle: 'کتابخانه گیاهی منطقه‌ای',
+    phoneMoringaPack: 'بسته Kano',
+    phoneGingerPack: 'بسته Bihar',
+    phoneOffline: 'آماده آفلاین',
+    offlineTitle: 'کتابخانه آفلاین‌محور:',
+    offlineBody: 'ثبت‌های قابل اعتماد گیاهان منطقه‌ای و نباتات خوراکی را روی دستگاه ذخیره می‌کند.',
+    updatesTitle: 'به‌روزرسانی محلی:',
+    updatesBody: 'وقتی تلفون دوباره وصل شود، ثبت‌های تازه بررسی‌شده همگام می‌شود.',
+    fieldTitle: 'استفاده در ساحه:',
+    fieldBody: 'triage ایمنی، لینک‌های منبع و راهنماهای تصویری را نزدیک کسانی نگه می‌دارد که به آن نیاز دارند.'
   }
 };
 
 export const locale = writable<Locale>('en');
 
 export function isLocale(value: string | null): value is Locale {
-  return value === 'en' || value === 'sw' || value === 'hi' || value === 'zh' || value === 'ko';
+  return (
+    value === 'en' ||
+    value === 'sw' ||
+    value === 'hi' ||
+    value === 'zh' ||
+    value === 'ko' ||
+    value === 'es-PE' ||
+    value === 'fa-AF'
+  );
 }
