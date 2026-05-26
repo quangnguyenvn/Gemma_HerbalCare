@@ -101,12 +101,24 @@ The current prototype therefore adds an accessibility layer:
 - **Read-aloud response:** the consultation result includes a speaker control that uses browser text-to-speech so a low-literacy user, older adult, or visually impaired user can hear the guidance.
 - **Camera intake placeholder:** the consultation form accepts an image upload and preview. In this prototype, the image is not sent to the backend; it documents the intended flow for local OCR and visual triage support.
 - **Voice-input placeholder:** the form includes a microphone control explaining the phase-2 plan for local speech-to-text, so users who cannot type can speak symptoms or questions.
+- **CAM GUIDE and MIC GUIDE:** the consultation form includes spoken usage guides for the phase-2 camera and microphone flows. These guides are intentionally slow and simple so a low-literacy or visually impaired user can hear what the buttons are for before using them.
 
 The product boundary is important: image input is planned as **visual triage support**, not visual diagnosis. The app should help read labels, inspect water clarity, compare a plant against a curated record, or notice danger signs that need urgent care. It should not claim to diagnose malaria, pneumonia, cancer, skin disease, or any other condition from a photo.
 
+Phase-2 usage rules are explicit in the prototype:
+
+- **CAM is not diagnosis.** It is planned for OCR and visual support. A user who cannot type could write location, symptoms, age group, duration, pregnancy status, medicines, allergies, and care access on paper, then take a clear photo.
+- **MIC is not voice chat.** It is planned for short recording and local speech-to-text. A user who cannot type could speak the same consultation details clearly.
+- **Public prototype limits:** CAM and MIC are planned to be limited to 5 uses per day per device in the public prototype to reduce spam, accidental repeated submissions, and overloaded local/server compute.
+- **Verified field limits:** verified clinics, NGOs, or community health workers could receive higher limits because one trusted device may support many people.
+- **Emergency access:** urgent-care guidance, safety pages, typed consultation, cached herb records, ORS guidance, safe-water guidance, and referral guidance should remain available even if a CAM/MIC limit is reached.
+- **Recording limit:** microphone recordings should be capped at 2 minutes so the app receives concise field information rather than long open-ended conversations.
+- **Privacy boundary:** camera and microphone data should be processed locally where possible. If upload is required, the user should be told clearly, the data should not be used for model training without consent, and retention should be minimized.
+- **Return to the same safety flow:** camera OCR and microphone speech-to-text should produce structured text fields, then return to the normal consultation path: rule-based safety triage first, retrieval second, Gemma explanation last.
+
 Planned local multimodal stack:
 
-- **Gemma 4 multimodal:** local image/OCR and visual-context understanding where runtime support is available.
+- **Gemma 4 multimodal:** local image/OCR, speech-derived context, and visual-context understanding where runtime support is available. Gemma 4 should process CAM/MIC outputs only after they are converted into structured consultation context.
 - **Local speech-to-text:** offline speech intake for low-literacy users and community health workers.
 - **Local text-to-speech:** spoken answers in local languages where suitable voices are available.
 - **Safety filter before vision output:** photos can add context, but triage and refusal rules still decide whether herbal advice is safe.
@@ -230,14 +242,22 @@ Planned multimodal extension:
 
 ```mermaid
 flowchart TD
-  A["Camera / microphone / typed input"] --> B["Local OCR or speech-to-text"]
-  B --> C["Structured user context"]
-  C --> D["Safety triage"]
-  D -->|Emergency| E["Urgent guidance. No herbal substitution."]
-  D -->|Safe enough| F["Retrieve local plant and survival guidance records"]
-  F --> G["Gemma explains in plain language"]
-  G --> H["Text response + read-aloud voice"]
+  A["Typed form input"] --> F["Structured consultation fields"]
+  B["CAM GUIDE spoken instructions"] --> C["Camera input<br/>max 5 uses per day"]
+  D["MIC GUIDE spoken instructions"] --> E["Microphone recording<br/>max 2 minutes, max 5 uses per day"]
+  C --> C1["Gemma 4 multimodal / local OCR<br/>extract written location, symptoms, medicines, allergies, care access"]
+  E --> E1["Local speech-to-text<br/>extract spoken location, symptoms, medicines, allergies, care access"]
+  C1 --> F
+  E1 --> F
+  F --> G["Rule-based safety triage"]
+  G -->|Emergency or urgent| H["Urgent guidance. No herbal substitution."]
+  G -->|Safe enough| I["Retrieve local plant and survival guidance records"]
+  I --> J["Gemma explains in plain language"]
+  H --> K["Text response + read-aloud voice"]
+  J --> K
 ```
+
+This phase-2 flow keeps camera and microphone input as accessibility doors into the same safety-first path. CAM should not diagnose from photos, and MIC should not behave like open-ended voice chat. Both flows should help users submit the same consultation facts they would otherwise type, then return to the rule-based triage, retrieval, and Gemma explanation pipeline.
 
 Planned clinical referral extension:
 

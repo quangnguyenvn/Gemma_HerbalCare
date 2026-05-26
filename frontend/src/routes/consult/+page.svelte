@@ -39,6 +39,7 @@
   let selectedImageName = '';
   let selectedImageUrl = '';
   let speaking = false;
+  let assistiveGuideSpeaking: 'cam' | 'mic' | null = null;
   let speechSupported = false;
   let offlineDraftNote = '';
 
@@ -158,6 +159,31 @@
     ].join('\n\n');
   }
 
+  const assistiveGuideText = {
+    cam:
+      'Camera guide. Please listen slowly. This camera flow is not for diagnosis. It is planned for phase two OCR and visual support. If a user cannot type, they can write clearly on paper. Country. Region. City. Symptoms. Age group. How many days sick. Pregnancy status. Current medicines. Allergies. And whether a clinic, pharmacy, or health worker can be reached within twenty four hours. Then take a clear photo. The planned safety rule is five camera uses per day to avoid spam. In this prototype, the camera only previews the image.',
+    mic:
+      'Microphone guide. Please listen slowly. This microphone flow is not voice chat. It is planned for phase two recording and local speech to text. If a user cannot type, they should speak clearly for no more than two minutes. Say the country. Region. City. Symptoms. Age group. How many days sick. Pregnancy status. Current medicines. Allergies. And whether a clinic, pharmacy, or health worker can be reached within twenty four hours. The planned safety rule is five microphone recordings per day to avoid spam. In this prototype, microphone input is a roadmap feature.'
+  } satisfies Record<'cam' | 'mic', string>;
+
+  function speakAssistiveGuide(kind: 'cam' | 'mic') {
+    if (!speechSupported) return;
+    if (assistiveGuideSpeaking === kind) {
+      window.speechSynthesis.cancel();
+      assistiveGuideSpeaking = null;
+      return;
+    }
+    window.speechSynthesis.cancel();
+    speaking = false;
+    assistiveGuideSpeaking = kind;
+    const utterance = new SpeechSynthesisUtterance(assistiveGuideText[kind]);
+    utterance.rate = 0.72;
+    utterance.pitch = 0.92;
+    utterance.onend = () => (assistiveGuideSpeaking = null);
+    utterance.onerror = () => (assistiveGuideSpeaking = null);
+    window.speechSynthesis.speak(utterance);
+  }
+
   function toggleReadAloud() {
     if (!speechSupported || !result) return;
     if (speaking) {
@@ -165,6 +191,7 @@
       speaking = false;
       return;
     }
+    assistiveGuideSpeaking = null;
     const utterance = new SpeechSynthesisUtterance(resultSpeechText());
     utterance.rate = 0.86;
     utterance.pitch = 0.95;
@@ -322,6 +349,28 @@
           </p>
         </div>
         <div class="assistive-tools">
+          <div class="assistive-guide-actions" aria-label="Audio guides for camera and microphone flows">
+            <button
+              class="small-button assistive-guide-button"
+              type="button"
+              on:click={() => speakAssistiveGuide('cam')}
+              disabled={!speechSupported}
+              title="Listen to the camera flow and safety rules."
+              aria-label="Listen to camera flow guide"
+            >
+              {assistiveGuideSpeaking === 'cam' ? 'STOP CAM' : 'CAM GUIDE'}
+            </button>
+            <button
+              class="small-button assistive-guide-button"
+              type="button"
+              on:click={() => speakAssistiveGuide('mic')}
+              disabled={!speechSupported}
+              title="Listen to the microphone flow and safety rules."
+              aria-label="Listen to microphone flow guide"
+            >
+              {assistiveGuideSpeaking === 'mic' ? 'STOP MIC' : 'MIC GUIDE'}
+            </button>
+          </div>
           <button
             class="icon-button"
             type="button"
