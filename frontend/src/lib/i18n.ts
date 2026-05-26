@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
-export type Locale = 'en' | 'sw' | 'hi' | 'zh' | 'ko' | 'es-PE' | 'fa-AF';
+export type Locale = 'en' | 'sw' | 'hi' | 'zh' | 'ko' | 'es-PE' | 'es-BO' | 'fa-AF' | 'rn-BI';
 
 export const languageOptions: Array<{ code: Locale; label: string }> = [
   { code: 'en', label: 'English' },
@@ -9,7 +9,9 @@ export const languageOptions: Array<{ code: Locale; label: string }> = [
   { code: 'zh', label: '中文' },
   { code: 'ko', label: '한국어' },
   { code: 'es-PE', label: 'Español (Perú)' },
-  { code: 'fa-AF', label: 'دری (Afghanistan)' }
+  { code: 'es-BO', label: 'Español (Bolivia)' },
+  { code: 'fa-AF', label: 'دری (Afghanistan)' },
+  { code: 'rn-BI', label: 'Kirundi (Burundi)' }
 ];
 
 export const navCopy: Record<
@@ -71,6 +73,14 @@ export const navCopy: Record<
     safety: 'Seguridad',
     language: 'Idioma'
   },
+  'es-BO': {
+    navLabel: 'Navegación principal',
+    home: 'Inicio',
+    consult: 'Consulta',
+    herbs: 'Biblioteca de plantas',
+    safety: 'Seguridad',
+    language: 'Idioma'
+  },
   'fa-AF': {
     navLabel: 'ناوبری اصلی',
     home: 'خانه',
@@ -78,6 +88,14 @@ export const navCopy: Record<
     herbs: 'کتابخانه گیاهان',
     safety: 'ایمنی',
     language: 'زبان'
+  },
+  'rn-BI': {
+    navLabel: 'Inzira nyamukuru',
+    home: 'Ahabanza',
+    consult: 'Inama',
+    herbs: "Isomero ry'ibimera",
+    safety: 'Umutekano',
+    language: 'Ururimi'
   }
 };
 
@@ -289,6 +307,36 @@ export const homeCopy: Record<
     fieldTitle: 'Uso en campo:',
     fieldBody: 'mantiene triage de seguridad, enlaces de fuente y guías visuales cerca de quienes los necesitan.'
   },
+  'es-BO': {
+    eyebrow: 'Navegador de conocimiento herbal con seguridad primero',
+    subtitle:
+      'Guía herbal local para comunidades con pocos recursos, con revisión de señales de peligro antes de mostrar cualquier planta.',
+    start: 'Iniciar consulta',
+    safetyPolicy: 'Leer política de seguridad',
+    triageTitle: 'Triage antes de la tradición',
+    triageBody:
+      'Los síntomas de emergencia solo devuelven orientación para buscar atención urgente. Las plantas se ocultan cuando aparecen dolor de pecho, dificultad para respirar, deshidratación grave, pedidos de cura para cáncer u otras señales de peligro.',
+    recordsTitle: 'Registros locales curados',
+    recordsBody:
+      'La demo usa un pequeño conjunto SQLite con URLs de fuentes, niveles de evidencia, resúmenes de seguridad, contraindicaciones, interacciones y disponibilidad regional.',
+    gemmaTitle: 'Núcleo listo para Gemma',
+    gemmaBody:
+      'Primero se incluye un proveedor mock. Cambia a un endpoint HTTP compatible con Gemma usando variables de entorno cuando el destino de inferencia esté listo.',
+    mobileEyebrow: 'Dirección móvil y sin conexión',
+    mobileTitle: 'Conocimiento herbal en iOS y Android',
+    mobileBody:
+      'En la fase 2, la Biblioteca Herbal puede empaquetarse como app para iOS y Android, ayudando a familias y trabajadores comunitarios a revisar plantas locales, usos probables, notas de identificación, alertas de seguridad y disponibilidad regional aun con conexión débil.',
+    phoneTitle: 'Biblioteca herbal regional',
+    phoneMoringaPack: 'Paquete Kano',
+    phoneGingerPack: 'Paquete Bihar',
+    phoneOffline: 'Listo sin conexión',
+    offlineTitle: 'Biblioteca offline-first:',
+    offlineBody: 'guarda en el dispositivo registros confiables de hierbas regionales y plantas alimentarias.',
+    updatesTitle: 'Actualizaciones locales:',
+    updatesBody: 'sincroniza nuevos registros revisados cuando el teléfono vuelva a conectarse.',
+    fieldTitle: 'Uso en campo:',
+    fieldBody: 'mantiene triage de seguridad, enlaces de fuente y guías visuales cerca de quienes los necesitan.'
+  },
   'fa-AF': {
     eyebrow: 'راهنمای دانش گیاهی با ایمنی در اولویت',
     subtitle:
@@ -318,6 +366,36 @@ export const homeCopy: Record<
     updatesBody: 'وقتی تلفون دوباره وصل شود، ثبت‌های تازه بررسی‌شده همگام می‌شود.',
     fieldTitle: 'استفاده در ساحه:',
     fieldBody: 'triage ایمنی، لینک‌های منبع و راهنماهای تصویری را نزدیک کسانی نگه می‌دارد که به آن نیاز دارند.'
+  },
+  'rn-BI': {
+    eyebrow: "Indongozi y'ubumenyi bw'ibimera ishira umutekano imbere",
+    subtitle:
+      "Ubuyobozi ku bimera vy'aho abantu baba, ku miryango ifise amikoro make, bubanza kuraba ibimenyetso vy'akaga imbere yo kwerekana igiterwa ico ari co cose.",
+    start: 'Tangira inama',
+    safetyPolicy: "Soma amategeko y'umutekano",
+    triageTitle: 'Umutekano imbere y’imigenzo',
+    triageBody:
+      "Ibimenyetso vyihutirwa bitanga gusa ubuyobozi bwo kurondera ubuvuzi bwihuse. Ibimera birahishwa iyo hari ububabare bwo mu gikiriza, guhema nabi, kubura amazi cane, gusaba umuti wa kanseri, canke ibindi bimenyetso vy'akaga.",
+    recordsTitle: "Inyandiko z'aho hantu zasuzumwe",
+    recordsBody:
+      "Demo ikoresha dataset ntoya ya SQLite irimwo amahuza y'amasoko, urugero rw'ibimenyetso, incamake y'umutekano, aho bitabereye gukoreshwa, imikoranire n'imiti, n'aho biboneka mu karere.",
+    gemmaTitle: 'Umutima witeguye Gemma',
+    gemmaBody:
+      'Harimwo mock provider mbere. Iyo inference target yiteguye, ushobora guhindura ukaja kuri HTTP Gemma endpoint ukoresheje environment variables.',
+    mobileEyebrow: 'Inzira ya telefone na offline',
+    mobileTitle: 'Ubumenyi bw’ibimera kuri iOS na Android',
+    mobileBody:
+      "Muri Phase 2, Herb Library ishobora kuba app ya telefone kuri iOS na Android, igafasha imiryango n'abakozi b'ikibano kuraba ibimera vy'aho baba, ico bishobora gufasha, uko bobimenya, imburi z'umutekano, n'aho biboneka naho internet yaba nke.",
+    phoneTitle: "Isomero ry'ibimera ry'akarere",
+    phoneMoringaPack: 'Kano pack',
+    phoneGingerPack: 'Bihar pack',
+    phoneOffline: 'Yiteguye offline',
+    offlineTitle: 'Isomero ribanza offline:',
+    offlineBody: "bika kuri telefone inyandiko zizewe z'ibimera n'ibiterwa biribwa vyo mu karere.",
+    updatesTitle: "Amakuru mashasha y'aho hantu:",
+    updatesBody: 'telefone yongeye gufata internet, inyandiko nshasha zasuzumwe zirahuza.',
+    fieldTitle: 'Gukoresha mu kibanza:',
+    fieldBody: "gumana hafi y'ababikeneye triage y'umutekano, amahuza y'amasoko, n'ubuyobozi bugaragara."
   }
 };
 
@@ -331,6 +409,8 @@ export function isLocale(value: string | null): value is Locale {
     value === 'zh' ||
     value === 'ko' ||
     value === 'es-PE' ||
-    value === 'fa-AF'
+    value === 'es-BO' ||
+    value === 'fa-AF' ||
+    value === 'rn-BI'
   );
 }
