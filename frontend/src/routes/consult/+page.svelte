@@ -372,21 +372,23 @@
             </button>
           </div>
           <button
-            class="icon-button"
+            class="icon-button assistive-icon-button"
             type="button"
             on:click={triggerImageUpload}
             title="Phase 2 visual support: attach a plant, water, medicine label, rash, or wound photo for local OCR and visual triage support. This prototype previews the photo only."
             aria-label="Upload image for future visual support"
           >
-            CAM
+            <span class="assistive-main-icon" aria-hidden="true">📷</span>
+            <span class="assistive-main-label">CAM</span>
           </button>
           <button
-            class="icon-button"
+            class="icon-button assistive-icon-button"
             type="button"
             title="Phase 2 voice input: local speech-to-text for users who cannot type. Planned for offline use with Gemma multimodal or a local speech model."
             aria-label="Voice input planned"
           >
-            MIC
+            <span class="assistive-main-icon" aria-hidden="true">🎙️</span>
+            <span class="assistive-main-label">MIC</span>
           </button>
           <div class="phase-note">
             <strong>Phase 2 roadmap</strong>

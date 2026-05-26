@@ -76,6 +76,8 @@ This matters because an offline app can still help a community worker, elder, pa
 
 The mobile direction is also designed to support downloadable regional packs. A Bihar pack, a Kano pack, or a Southeast Asia pack could include only locally relevant plants and warnings, making the app smaller, faster, and easier to maintain with local partners.
 
+The mobile offline package is intentionally **not** designed to bundle a local AI model on the phone. Many target users may have older, low-memory Android devices, limited storage, weak batteries, and expensive data. The realistic offline value is therefore the regional knowledge pack itself: herb records, real plant photos, safety rules, ORS instructions, safe-water steps, food-resilience guidance, red-flag guidance, and saved consultation drafts. When connectivity returns, the app can send structured context to a clinic/NGO edge server or cloud Gemma endpoint for explanation.
+
 ## Multilingual Direction
 
 The current prototype adds a lightweight language switcher for the header and full home page copy in:
@@ -165,7 +167,7 @@ It also recognizes that improving community health is not only about herbs. Safe
 
 A community health volunteer in northern Vietnam has intermittent connectivity and a basic smartphone. They need to explain common local plants in simple language, but also need help recognizing when the correct response is referral, not home care.
 
-Gemma HerbalCare can run with a local dataset and a small/local Gemma-compatible model so the volunteer can access structured guidance even when the network is weak.
+Gemma HerbalCare can keep a local regional pack on the phone so the volunteer can access structured safety and plant guidance even when the network is weak. When connectivity is available, the phone can send structured context to a cloud Gemma endpoint or a nearby clinic/NGO edge server for plain-language explanation.
 
 ### Flood-Isolated Village Before Outside Support Arrives
 
@@ -193,7 +195,7 @@ The backend gives Gemma:
 
 Curated records control the knowledge. Safety rules constrain the workflow. Gemma turns structured information into guidance a low-literacy user can understand.
 
-This is especially important for multilingual and local-first AI. A large model can organize and contextualize knowledge. Smaller local models can make that knowledge accessible offline to communities that need it.
+This is especially important for multilingual and local-first AI. A large cloud or edge-hosted model can organize and contextualize knowledge, while the user's phone can stay lightweight by caching regional packs instead of carrying the model itself.
 
 Gemma HerbalCare is therefore designed for:
 
@@ -367,7 +369,7 @@ docs/
 - [ ] Add high-resolution architecture diagram.
 - [ ] Add screenshots of consultation, herb library, safety page, and refusal states.
 - [ ] Add embedded demo video link.
-- [ ] Add offline deployment demo with a local Gemma-compatible endpoint.
+- [ ] Add clinic/NGO edge deployment demo with a local Gemma-compatible endpoint.
 - [ ] Expand the language switcher from header/navigation into full app translations and local-language read-aloud flows.
 - [ ] Package offline regional herb libraries for mobile devices and low-connectivity field use.
 
@@ -552,6 +554,30 @@ Deployment notes are in [docs/deploy_google_cloud.md](docs/deploy_google_cloud.m
 
 The app runs with a mock provider by default so judges can test the full flow without model setup.
 
+Recommended model strategy:
+
+```mermaid
+flowchart TD
+  A["🌍☁️<br/><b>Cloud / public web / NGO server</b><br/>global-scale service for many regions"] --> B["🧠💎<br/><b>Gemma 4 31B-class</b><br/>highest quality when compute allows"]
+  C["🏥💻<br/><b>Edge server / clinic / NGO laptop</b><br/>small local deployment for one region"] --> D["🧠⚡<br/><b>Gemma 4 MoE / A4B-class</b><br/>lighter latency and cost for local teams"]
+  E["📱📦<br/><b>Offline phone app</b><br/>older low-end phones in poor connectivity"] --> F["🚫🧠<br/><b>No AI model on phone</b><br/>regional packs only"]
+
+  B --> G["🛡️🌿<br/><b>Safety triage + retrieval + Gemma explanation</b>"]
+  D --> G
+  F --> H["🌿💧📄<br/><b>Offline regional packs</b><br/>herbs, plant photos, ORS, water, food, red flags, saved drafts"]
+  H --> I["📶➡️<br/><b>When internet or local server returns</b><br/>send structured text to Cloud or Edge Gemma"]
+  I --> G
+
+  G --> J["🔊🖼️<br/><b>Simple guidance</b><br/>text, visual steps, read-aloud response"]
+  H --> J
+```
+
+- **Cloud / public web / NGO server:** this is the global option. Use the most capable Gemma 4 model the deployment can reliably afford. For the strongest answer quality, the recommended target is the largest available Gemma 4 instruction-tuned or multimodal model, such as a Gemma 4 31B-class endpoint when the runtime supports it.
+- **Edge server / clinic / NGO laptop:** this is the local NGO option. A small team in one region, such as Peru, Sudan, Pakistan, India, northern Vietnam, or another rural area, could download the project, host it on a clinic laptop or small server, and use an efficient Gemma 4 MoE/A4B-class endpoint for local people without needing global-scale infrastructure.
+- **Offline phone app:** this is the reach-everyone option. Do not bundle a Gemma model for low-end phones. Offline mobile mode should download regional herb and life-skills packs, real plant photos, safety rules, ORS/safe-water guidance, red-flag guidance, and saved drafts. Users should still be encouraged to reconnect to the internet or a trusted local server for higher-quality consultation, CAM OCR, MIC speech-to-text, and Gemma explanation.
+
+The repository keeps `GEMMA_MODEL=gemma4` as a runtime placeholder because exact model IDs differ across Ollama, hosted APIs, Vertex/AI Studio-style endpoints, and future Gemma deployments. Deployers should replace it with the exact model name supported by their inference provider.
+
 To use an HTTP Gemma-compatible endpoint:
 
 ```bash
@@ -592,7 +618,7 @@ Gemma HerbalCare has a clear AI-for-good thesis and a working safety architectur
 - **Local-first design:** plant knowledge is regional, source-linked, and structured for offline-friendly use.
 - **Offline access path:** the mobile direction treats herb records, safety rules, ORS, water, and food-resilience guidance as knowledge that should remain available even without internet.
 - **Poor-connectivity tech stack:** Rust, SQLite, and SvelteKit keep the system lightweight enough for edge devices, local servers, one-service deployment, and future PWA/mobile offline caching.
-- **AI-ready edge architecture:** the backend can use mock, local Gemma/Ollama, or hosted Gemma-compatible endpoints while keeping safety triage and retrieval local and deterministic.
+- **AI-ready edge architecture:** the backend can use mock, clinic/NGO edge Gemma/Ollama, or hosted Gemma-compatible endpoints while keeping safety triage and retrieval local and deterministic.
 - **Inclusive language path:** the current language switcher demonstrates the product direction toward Swahili, Hindi, Chinese, Korean, Spanish for Peru/South America, Dari for Afghanistan, and other local-language packs.
 - **Cultural preservation:** the system can document local names, preparation context, safety notes, and regional availability before knowledge is lost.
 - **Clear model role:** Gemma translates controlled knowledge into accessible guidance instead of acting as an unconstrained medical authority.
@@ -603,11 +629,11 @@ Gemma HerbalCare has a clear AI-for-good thesis and a working safety architectur
 - **Multilingual support:** expand the current English, Swahili, Hindi, Chinese, Korean, Spanish (Peru), and Dari (Afghanistan) home-page switcher into full app translation and read-aloud flows, then add other local and low-resource languages.
 - **Voice-first interaction:** local speech input and spoken responses for low-literacy users.
 - **Plant/photo intake:** image-based OCR and visual triage support for plant records, water clarity, labels, and visible danger signs, with strong uncertainty warnings and expert confirmation requirements.
-- **Offline bundle:** deployable package for rural clinics, NGOs, schools, community health workers, and mobile users without reliable internet.
+- **Offline bundle:** deployable regional knowledge packs for rural clinics, NGOs, schools, community health workers, and mobile users without reliable internet; the phone does not need to run the AI model.
 - **Local healthcare integration:** connect urgent or emergency cases to nearby clinics, pharmacies, community health workers, NGO field teams, emergency contacts, or referral directories where partnerships exist.
 - **Safety evaluation suite:** refusal tests, grounding tests, hallucination tests, and emergency escalation tests.
 - **Regional herbal datasets:** Southeast Asia, Korea, Africa, Latin America, and other community-reviewed sources.
-- **Lightweight edge deployment:** small-model local inference for low-connectivity environments.
+- **Lightweight edge deployment:** local inference on clinic/NGO laptops, school computers, or small edge servers for low-connectivity environments, while low-end phones keep only offline knowledge packs.
 - **Research review tools:** consultation trace review, source provenance, dataset quality checks, and clinical/public-health partner workflows.
 
 ## Long-Term Vision
