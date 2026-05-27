@@ -42,13 +42,31 @@
   let assistiveGuideSpeaking: 'cam' | 'mic' | null = null;
   let speechSupported = false;
   let offlineDraftNote = '';
+  let micSupported = false;
+  let mediaRecorder: MediaRecorder | null = null;
+  let micStream: MediaStream | null = null;
+  let voiceChunks: Blob[] = [];
+  let recording = false;
+  let recordingSeconds = 0;
+  let recordingTimer: ReturnType<typeof setInterval> | null = null;
+  let voiceNoteBlob: Blob | null = null;
+  let voiceNoteUrl = '';
+  let voiceNoteStatus = '';
+  const maxRecordingSeconds = 120;
 
   onMount(() => {
     demoCases().then((items) => (cases = items)).catch(() => (cases = []));
     speechSupported = typeof window !== 'undefined' && 'speechSynthesis' in window;
+    micSupported =
+      typeof navigator !== 'undefined' &&
+      Boolean(navigator.mediaDevices?.getUserMedia) &&
+      typeof MediaRecorder !== 'undefined';
 
     return () => {
       if (selectedImageUrl) URL.revokeObjectURL(selectedImageUrl);
+      if (voiceNoteUrl) URL.revokeObjectURL(voiceNoteUrl);
+      clearRecordingTimer();
+      stopMicTracks();
       if (speechSupported) window.speechSynthesis.cancel();
     };
   });
@@ -145,6 +163,100 @@
     selectedImageName = '';
     selectedImageUrl = '';
     if (imageInput) imageInput.value = '';
+  }
+
+  function clearRecordingTimer() {
+    if (recordingTimer) {
+      clearInterval(recordingTimer);
+      recordingTimer = null;
+    }
+  }
+
+  function stopMicTracks() {
+    micStream?.getTracks().forEach((track) => track.stop());
+    micStream = null;
+  }
+
+  function formatRecordingTime(totalSeconds: number) {
+    const minutes = Math.floor(totalSeconds / 60)
+      .toString()
+      .padStart(2, '0');
+    const seconds = (totalSeconds % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+  }
+
+  async function toggleVoiceRecording() {
+    if (recording) {
+      stopVoiceRecording();
+      return;
+    }
+    await startVoiceRecording();
+  }
+
+  async function startVoiceRecording() {
+    if (!micSupported || recording) return;
+    try {
+      if (voiceNoteUrl) URL.revokeObjectURL(voiceNoteUrl);
+      voiceNoteUrl = '';
+      voiceNoteBlob = null;
+      voiceNoteStatus = '';
+      voiceChunks = [];
+      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mimeType =
+        typeof MediaRecorder !== 'undefined' && MediaRecorder.isTypeSupported('audio/webm')
+          ? 'audio/webm'
+          : '';
+      const recorder = new MediaRecorder(micStream, mimeType ? { mimeType } : undefined);
+      mediaRecorder = recorder;
+      recorder.ondataavailable = (event) => {
+        if (event.data.size > 0) voiceChunks.push(event.data);
+      };
+      recorder.onstop = () => {
+        const blob = new Blob(voiceChunks, { type: recorder.mimeType || 'audio/webm' });
+        voiceNoteBlob = blob;
+        voiceNoteUrl = URL.createObjectURL(blob);
+        recording = false;
+        clearRecordingTimer();
+        stopMicTracks();
+        mediaRecorder = null;
+        voiceNoteStatus =
+          'Voice note ready. Send it for Phase 2 transcription, or refresh and record again.';
+      };
+      recorder.start();
+      recording = true;
+      recordingSeconds = 0;
+      recordingTimer = setInterval(() => {
+        recordingSeconds += 1;
+        if (recordingSeconds >= maxRecordingSeconds) stopVoiceRecording();
+      }, 1000);
+    } catch {
+      recording = false;
+      clearRecordingTimer();
+      stopMicTracks();
+      voiceNoteStatus =
+        'Microphone permission was not available. You can still type the consultation details.';
+    }
+  }
+
+  function stopVoiceRecording() {
+    if (!mediaRecorder || mediaRecorder.state === 'inactive') return;
+    mediaRecorder.stop();
+  }
+
+  function refreshVoiceNote() {
+    if (recording) stopVoiceRecording();
+    if (voiceNoteUrl) URL.revokeObjectURL(voiceNoteUrl);
+    voiceNoteUrl = '';
+    voiceNoteBlob = null;
+    voiceChunks = [];
+    recordingSeconds = 0;
+    voiceNoteStatus = '';
+  }
+
+  function sendVoiceNote() {
+    if (!voiceNoteBlob) return;
+    voiceNoteStatus =
+      'Voice note queued for Phase 2. A Gemma endpoint would transcribe it into text, then return to the same safety-first consult flow.';
   }
 
   function resultSpeechText() {
@@ -384,15 +496,17 @@
           <button
             class="icon-button assistive-icon-button"
             type="button"
-            title="Phase 2 voice input: local speech-to-text for users who cannot type. Planned for offline use with Gemma multimodal or a local speech model."
+            on:click={toggleVoiceRecording}
+            disabled={!micSupported}
+            title="Prototype recorder: record up to 2 minutes. Phase 2 sends audio to speech-to-text and Gemma for users who cannot type."
             aria-label="Voice input planned"
           >
             <span class="assistive-main-icon" aria-hidden="true">🎙️</span>
-            <span class="assistive-main-label">MIC</span>
+            <span class="assistive-main-label">{recording ? 'STOP' : 'MIC'}</span>
           </button>
           <div class="phase-note">
             <strong>Phase 2 roadmap</strong>
-            <span>Camera and microphone support will use local OCR, local speech-to-text, and visual triage support. It will not diagnose from photos.</span>
+            <span>Camera and microphone input will route to a Gemma endpoint for OCR or speech-to-text support, helping users who cannot type or cannot read. The extracted text returns to the same safety-first consult flow. It will not diagnose from photos.</span>
           </div>
         </div>
         <input
@@ -402,6 +516,24 @@
           bind:this={imageInput}
           on:change={handleImageUpload}
         />
+        {#if recording || voiceNoteUrl || voiceNoteStatus}
+          <section class="voice-note-panel" aria-label="Voice recording preview">
+            {#if recording}
+              <div class="voice-note-status">
+                <strong>Recording voice note</strong>
+                <span>{formatRecordingTime(recordingSeconds)} / 02:00</span>
+              </div>
+              <button class="small-button" type="button" on:click={stopVoiceRecording}>Stop recording</button>
+            {:else if voiceNoteUrl}
+              <audio src={voiceNoteUrl} controls></audio>
+              <div class="voice-note-actions">
+                <button class="small-button primary" type="button" on:click={sendVoiceNote}>Send voice note</button>
+                <button class="small-button" type="button" on:click={refreshVoiceNote}>Refresh</button>
+              </div>
+            {/if}
+            {#if voiceNoteStatus}<p>{voiceNoteStatus}</p>{/if}
+          </section>
+        {/if}
       </section>
       {#if selectedImageUrl}
         <figure class="image-preview">

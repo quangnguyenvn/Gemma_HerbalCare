@@ -664,6 +664,45 @@ textarea {
   white-space: nowrap;
 }
 
+.voice-note-panel {
+  display: grid;
+  gap: .65rem;
+  border: 1px solid rgba(49, 95, 60, .34);
+  background: rgba(49, 95, 60, .08);
+  padding: .75rem;
+}
+
+.voice-note-panel audio {
+  width: 100%;
+}
+
+.voice-note-panel p {
+  margin: 0;
+  color: var(--moss);
+  font-family: Arial, sans-serif;
+  font-size: .86rem;
+  font-weight: 700;
+}
+
+.voice-note-status,
+.voice-note-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.voice-note-status strong {
+  color: var(--moss);
+}
+
+.voice-note-status span {
+  font-family: Arial, sans-serif;
+  font-weight: 800;
+  color: var(--warning);
+}
+
 .image-preview {
   display: grid;
   gap: .65rem;

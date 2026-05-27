@@ -1,6 +1,16 @@
 import { writable } from 'svelte/store';
 
-export type Locale = 'en' | 'sw' | 'hi' | 'zh' | 'ko' | 'es-PE' | 'es-BO' | 'fa-AF' | 'rn-BI';
+export type Locale =
+  | 'en'
+  | 'sw'
+  | 'hi'
+  | 'zh'
+  | 'ko'
+  | 'vi-VN'
+  | 'es-PE'
+  | 'es-BO'
+  | 'fa-AF'
+  | 'rn-BI';
 
 export const languageOptions: Array<{ code: Locale; label: string }> = [
   { code: 'en', label: 'English' },
@@ -8,6 +18,7 @@ export const languageOptions: Array<{ code: Locale; label: string }> = [
   { code: 'hi', label: 'हिन्दी' },
   { code: 'zh', label: '中文' },
   { code: 'ko', label: '한국어' },
+  { code: 'vi-VN', label: 'Tiếng Việt' },
   { code: 'es-PE', label: 'Español (Perú)' },
   { code: 'es-BO', label: 'Español (Bolivia)' },
   { code: 'fa-AF', label: 'دری (Afghanistan)' },
@@ -64,6 +75,14 @@ export const navCopy: Record<
     herbs: '허브 라이브러리',
     safety: '안전',
     language: '언어'
+  },
+  'vi-VN': {
+    navLabel: 'Điều hướng chính',
+    home: 'Trang chủ',
+    consult: 'Tư vấn',
+    herbs: 'Thư viện thảo mộc',
+    safety: 'An toàn',
+    language: 'Ngôn ngữ'
   },
   'es-PE': {
     navLabel: 'Navegación principal',
@@ -277,6 +296,36 @@ export const homeCopy: Record<
     fieldTitle: '현장 사용:',
     fieldBody: '안전 분류, 출처 링크, 시각 가이드를 필요한 사람 가까이에 둡니다.'
   },
+  'vi-VN': {
+    eyebrow: 'Trình dẫn kiến thức thảo mộc ưu tiên an toàn',
+    subtitle:
+      'Hướng dẫn thảo mộc địa phương cho cộng đồng ít nguồn lực, luôn kiểm tra dấu hiệu nguy hiểm trước khi hiển thị bất kỳ cây thuốc nào.',
+    start: 'Bắt đầu tư vấn',
+    safetyPolicy: 'Đọc chính sách an toàn',
+    triageTitle: 'Sàng lọc an toàn trước tri thức truyền thống',
+    triageBody:
+      'Triệu chứng khẩn cấp chỉ trả về hướng dẫn tìm chăm sóc y tế. Thảo mộc sẽ bị ẩn khi có đau ngực, khó thở, mất nước nặng, yêu cầu chữa ung thư hoặc các dấu hiệu nguy hiểm khác.',
+    recordsTitle: 'Bản ghi địa phương đã chọn lọc',
+    recordsBody:
+      'Bản demo dùng một tập dữ liệu SQLite nhỏ có URL nguồn, mức bằng chứng, tóm tắt an toàn, chống chỉ định, tương tác và mức sẵn có theo vùng.',
+    gemmaTitle: 'Lõi sẵn sàng cho Gemma',
+    gemmaBody:
+      'Mặc định có mock provider để demo. Khi mục tiêu suy luận sẵn sàng, có thể chuyển sang HTTP Gemma endpoint bằng biến môi trường.',
+    mobileEyebrow: 'Hướng mobile và offline',
+    mobileTitle: 'Kiến thức thảo mộc trên iOS và Android',
+    mobileBody:
+      'Ở Phase 2, Herb Library có thể đóng gói thành app iOS và Android, giúp gia đình và nhân viên cộng đồng xem cây địa phương, công dụng có thể có, ghi chú nhận dạng, cảnh báo an toàn và mức sẵn có theo vùng ngay cả khi kết nối yếu.',
+    phoneTitle: 'Thư viện thảo mộc theo vùng',
+    phoneMoringaPack: 'Gói Kano',
+    phoneGingerPack: 'Gói Bihar',
+    phoneOffline: 'Sẵn sàng offline',
+    offlineTitle: 'Thư viện ưu tiên offline:',
+    offlineBody: 'lưu trên thiết bị các bản ghi thảo mộc và cây thực phẩm theo vùng đã được tin cậy.',
+    updatesTitle: 'Cập nhật địa phương:',
+    updatesBody: 'đồng bộ bản ghi đã duyệt khi điện thoại có kết nối trở lại.',
+    fieldTitle: 'Dùng tại thực địa:',
+    fieldBody: 'giữ sàng lọc an toàn, liên kết nguồn và hướng dẫn trực quan ở gần người cần chúng.'
+  },
   'es-PE': {
     eyebrow: 'Navegador de conocimiento herbal con seguridad primero',
     subtitle:
@@ -408,6 +457,7 @@ export function isLocale(value: string | null): value is Locale {
     value === 'hi' ||
     value === 'zh' ||
     value === 'ko' ||
+    value === 'vi-VN' ||
     value === 'es-PE' ||
     value === 'es-BO' ||
     value === 'fa-AF' ||

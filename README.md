@@ -31,7 +31,7 @@ This project treats traditional knowledge with respect while adding the guardrai
 - **Mobile and offline direction:** the home page introduces an iOS/Android app concept for carrying regional herb records, food plants, water-safety steps, and red-flag guidance into areas with weak or no internet.
 - **Connection modes:** the header detects Normal, Low Connection, and Offline modes, then explains when cached pages, saved drafts, or local records may be used.
 - **PWA/offline cache:** the frontend includes a service worker that caches the app shell, static assets, demo cases, and herb-library GET responses for better behavior on poor connections.
-- **Multilingual header and home page:** the app includes a lightweight language switcher for English, Swahili, Hindi, Chinese, Korean, Spanish (Peru and Bolivia), Dari (Afghanistan), and Kirundi (Burundi) as a first step toward broader community access.
+- **Multilingual header and home page:** the app includes a lightweight language switcher for English, Vietnamese, Swahili, Hindi, Chinese, Korean, Spanish (Peru and Bolivia), Dari (Afghanistan), and Kirundi (Burundi) as a first step toward broader community access.
 - **Location-aware referral guidance:** Phase 1 urgent and emergency responses suggest the nearest clinic, hospital, pharmacy, community health worker, NGO field worker, or trusted transport helper near the user's city/region/country, without inventing unverified facility names.
 
 ## Visual Guidance for Real Communities
@@ -83,6 +83,7 @@ The mobile offline package is intentionally **not** designed to bundle a local A
 The current prototype adds a lightweight language switcher for the header and full home page copy in:
 
 - English
+- Vietnamese
 - Swahili
 - Hindi
 - Chinese
@@ -104,7 +105,7 @@ The current prototype therefore adds an accessibility layer:
 
 - **Read-aloud response:** the consultation result includes a speaker control that uses browser text-to-speech so a low-literacy user, older adult, or visually impaired user can hear the guidance.
 - **Camera intake placeholder:** the consultation form accepts an image upload and preview. In this prototype, the image is not sent to the backend; it documents the intended flow for local OCR and visual triage support.
-- **Voice-input placeholder:** the form includes a microphone control explaining the phase-2 plan for local speech-to-text, so users who cannot type can speak symptoms or questions.
+- **Voice-input prototype:** the microphone control can record a short voice note in the browser, stop manually or at 2 minutes, preview the audio file, and show `Send` or `Refresh` options. In Phase 2, `Send` would route the audio to speech-to-text and a Gemma endpoint, then return to the same text-based safety-first consult flow.
 - **CAM GUIDE and MIC GUIDE:** the consultation form includes spoken usage guides for the phase-2 camera and microphone flows. These guides are intentionally slow and simple so a low-literacy or visually impaired user can hear what the buttons are for before using them.
 
 The product boundary is important: image input is planned as **visual triage support**, not visual diagnosis. The app should help read labels, inspect water clarity, compare a plant against a curated record, or notice danger signs that need urgent care. It should not claim to diagnose malaria, pneumonia, cancer, skin disease, or any other condition from a photo.
@@ -335,7 +336,7 @@ Rust and SvelteKit split the problem cleanly. SvelteKit handles browser-side res
 - **LLM integration:** mock provider by default, HTTP Gemma-compatible provider for local or hosted inference
 - **Deployment shape:** local-first architecture that can be packaged for clinics, NGOs, community health workers, and offline demos
 - **Connectivity support:** frontend connection monitor, Herb Library cache fallback, and SvelteKit service worker for app-shell/API GET caching
-- **Language UI:** lightweight header and home-page language switcher for English, Swahili, Hindi, Chinese, Korean, Spanish (Peru and Bolivia), Dari (Afghanistan), and Kirundi (Burundi)
+- **Language UI:** lightweight header and home-page language switcher for English, Vietnamese, Swahili, Hindi, Chinese, Korean, Spanish (Peru and Bolivia), Dari (Afghanistan), and Kirundi (Burundi)
 - **Visual records:** real public plant photos for herb identification, plus lightweight local illustrations for practical safety guidance
 
 ### Why Rust and SvelteKit for Poor Connectivity
@@ -628,7 +629,7 @@ Gemma HerbalCare has a clear AI-for-good thesis and a working safety architectur
 
 ## Phase 2: Competitive Extensions
 
-- **Multilingual support:** expand the current English, Swahili, Hindi, Chinese, Korean, Spanish (Peru and Bolivia), Dari (Afghanistan), and Kirundi (Burundi) home-page switcher into full app translation and read-aloud flows, then add other local and low-resource languages.
+- **Multilingual support:** expand the current English, Vietnamese, Swahili, Hindi, Chinese, Korean, Spanish (Peru and Bolivia), Dari (Afghanistan), and Kirundi (Burundi) home-page switcher into full app translation and read-aloud flows, then add other local and low-resource languages.
 - **Voice-first interaction:** local speech input and spoken responses for low-literacy users.
 - **Plant/photo intake:** image-based OCR and visual triage support for plant records, water clarity, labels, and visible danger signs, with strong uncertainty warnings and expert confirmation requirements.
 - **Offline bundle:** deployable regional knowledge packs for rural clinics, NGOs, schools, community health workers, and mobile users without reliable internet; the phone does not need to run the AI model.
