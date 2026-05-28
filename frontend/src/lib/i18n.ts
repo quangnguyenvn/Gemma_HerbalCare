@@ -7,6 +7,8 @@ export type Locale =
   | 'zh'
   | 'ko'
   | 'vi-VN'
+  | 'lo-LA'
+  | 'my-MM'
   | 'es-PE'
   | 'es-BO'
   | 'fa-AF'
@@ -19,6 +21,8 @@ export const languageOptions: Array<{ code: Locale; label: string }> = [
   { code: 'zh', label: '中文' },
   { code: 'ko', label: '한국어' },
   { code: 'vi-VN', label: 'Tiếng Việt' },
+  { code: 'lo-LA', label: 'ລາວ' },
+  { code: 'my-MM', label: 'မြန်မာ' },
   { code: 'es-PE', label: 'Español (Perú)' },
   { code: 'es-BO', label: 'Español (Bolivia)' },
   { code: 'fa-AF', label: 'دری (Afghanistan)' },
@@ -83,6 +87,22 @@ export const navCopy: Record<
     herbs: 'Thư viện thảo mộc',
     safety: 'An toàn',
     language: 'Ngôn ngữ'
+  },
+  'lo-LA': {
+    navLabel: 'ການນຳທາງຫຼັກ',
+    home: 'ໜ້າຫຼັກ',
+    consult: 'ປຶກສາ',
+    herbs: 'ຫ້ອງສະໝຸດສະໝຸນໄພ',
+    safety: 'ຄວາມປອດໄພ',
+    language: 'ພາສາ'
+  },
+  'my-MM': {
+    navLabel: 'အဓိက လမ်းညွှန်',
+    home: 'ပင်မ',
+    consult: 'တိုင်ပင်ရန်',
+    herbs: 'ဆေးဖက်ဝင်အပင် စာကြည့်တိုက်',
+    safety: 'ဘေးကင်းရေး',
+    language: 'ဘာသာစကား'
   },
   'es-PE': {
     navLabel: 'Navegación principal',
@@ -326,6 +346,66 @@ export const homeCopy: Record<
     fieldTitle: 'Dùng tại thực địa:',
     fieldBody: 'giữ sàng lọc an toàn, liên kết nguồn và hướng dẫn trực quan ở gần người cần chúng.'
   },
+  'lo-LA': {
+    eyebrow: 'ຕົວນຳທາງຄວາມຮູ້ສະໝຸນໄພທີ່ໃຫ້ຄວາມປອດໄພກ່ອນ',
+    subtitle:
+      'ຄຳແນະນຳສະໝຸນໄພທ້ອງຖິ່ນສຳລັບຊຸມຊົນທີ່ມີຊັບພະຍາກອນໜ້ອຍ, ກວດສັນຍານອັນຕະລາຍກ່ອນສະແດງພືດສະໝຸນໄພ.',
+    start: 'ເລີ່ມປຶກສາ',
+    safetyPolicy: 'ອ່ານນະໂຍບາຍຄວາມປອດໄພ',
+    triageTitle: 'ກວດຄວາມປອດໄພກ່ອນຄວາມຮູ້ດັ້ງເດີມ',
+    triageBody:
+      'ອາການສຸກເສີນຈະໄດ້ຮັບຄຳແນະນຳໃຫ້ໄປຮັບການດູແລດ່ວນເທົ່ານັ້ນ. ຄຳແນະນຳສະໝຸນໄພຈະຖືກເຊື່ອງເມື່ອມີເຈັບໜ້າເອິກ, ຫາຍໃຈຍາກ, ຂາດນ້ຳຮຸນແຮງ, ຄຳຂໍຮັກສາມະເຮັງ ຫຼື ສັນຍານອັນຕະລາຍອື່ນ.',
+    recordsTitle: 'ບັນທຶກທ້ອງຖິ່ນທີ່ຄັດເລືອກແລ້ວ',
+    recordsBody:
+      'ຕົວຢ່າງນີ້ໃຊ້ຊຸດຂໍ້ມູນ SQLite ຂະໜາດນ້ອຍ ທີ່ມີ URL ແຫຼ່ງຂໍ້ມູນ, ລະດັບຫຼັກຖານ, ສະຫຼຸບຄວາມປອດໄພ, ຂໍ້ຫ້າມ, ປະຕິສຳພັນ ແລະ ຄວາມພ້ອມໃຊ້ຕາມພື້ນທີ່.',
+    gemmaTitle: 'ແກນກາງທີ່ພ້ອມສຳລັບ Gemma',
+    gemmaBody:
+      'ຕົວຢ່າງເລີ່ມດ້ວຍ mock provider. ເມື່ອ inference target ພ້ອມ ສາມາດປ່ຽນໄປຫາ HTTP Gemma endpoint ດ້ວຍ environment variables.',
+    mobileEyebrow: 'ທິດທາງມືຖື ແລະ offline',
+    mobileTitle: 'ຄວາມຮູ້ສະໝຸນໄພໃນ iOS ແລະ Android',
+    mobileBody:
+      'ໃນ Phase 2, Herb Library ສາມາດຖືກຈັດເປັນແອັບ iOS ແລະ Android ເພື່ອຊ່ວຍຄອບຄົວ ແລະ ອາສາສະໝັກຊຸມຊົນຄົ້ນຫາພືດທ້ອງຖິ່ນ, ການນຳໃຊ້ທີ່ເປັນໄປໄດ້, ວິທີຈຳແນກ, ຄຳເຕືອນຄວາມປອດໄພ ແລະ ຄວາມພ້ອມໃຊ້ໃນພື້ນທີ່ແມ່ນແມ້ເຄືອຂ່າຍອ່ອນ.',
+    phoneTitle: 'ຫ້ອງສະໝຸດສະໝຸນໄພຕາມພື້ນທີ່',
+    phoneMoringaPack: 'ຊຸດ Kano',
+    phoneGingerPack: 'ຊຸດ Bihar',
+    phoneOffline: 'ພ້ອມໃຊ້ offline',
+    offlineTitle: 'ຫ້ອງສະໝຸດ offline-first:',
+    offlineBody: 'ເກັບບັນທຶກສະໝຸນໄພ ແລະ ພືດອາຫານທ້ອງຖິ່ນທີ່ເຊື່ອຖືໄດ້ໄວ້ໃນອຸປະກອນ.',
+    updatesTitle: 'ອັບເດດທ້ອງຖິ່ນ:',
+    updatesBody: 'sync ບັນທຶກໃໝ່ທີ່ກວດແລ້ວເມື່ອໂທລະສັບກັບມາເຊື່ອມຕໍ່.',
+    fieldTitle: 'ໃຊ້ໃນພາກສະໜາມ:',
+    fieldBody: 'ເກັບການກວດຄວາມປອດໄພ, ລິ້ງແຫຼ່ງຂໍ້ມູນ ແລະ ຄູ່ມືຮູບພາບໃຫ້ໃກ້ກັບຄົນທີ່ຕ້ອງການ.'
+  },
+  'my-MM': {
+    eyebrow: 'ဘေးကင်းရေးကို ဦးစားပေးသော ဆေးဖက်ဝင်အပင် အသိပညာလမ်းညွှန်',
+    subtitle:
+      'အရင်းအမြစ်နည်းသော လူမှုအသိုင်းအဝိုင်းများအတွက် ဒေသတွင်းဆေးဖက်ဝင်အပင် လမ်းညွှန်ဖြစ်ပြီး အပင်မပြမီ အန္တရာယ်လက္ခဏာများကို အရင်စစ်ဆေးသည်။',
+    start: 'တိုင်ပင်မှု စတင်ရန်',
+    safetyPolicy: 'ဘေးကင်းရေးမူဝါဒ ဖတ်ရန်',
+    triageTitle: 'ရိုးရာအသိပညာမတိုင်မီ ဘေးကင်းရေးစစ်ဆေးခြင်း',
+    triageBody:
+      'အရေးပေါ်လက္ခဏာများရှိပါက အရေးပေါ်ဆေးကုသမှုရှာရန် လမ်းညွှန်ချက်သာ ပြသသည်။ ရင်ဘတ်နာခြင်း, အသက်ရှူခက်ခြင်း, ရေဓာတ်ခန်းခြောက်မှုပြင်းထန်ခြင်း, ကင်ဆာကုသနိုင်သည်ဟု တောင်းဆိုခြင်း သို့မဟုတ် အခြားအန္တရာယ်လက္ခဏာများရှိပါက ဆေးဖက်ဝင်အပင် အကြံပြုချက်များကို ဖုံးထားသည်။',
+    recordsTitle: 'စိစစ်ထားသော ဒေသတွင်းမှတ်တမ်းများ',
+    recordsBody:
+      'ဒီမိုတွင် source URL များ, evidence level များ, safety summary များ, contraindication များ, interaction များနှင့် ဒေသအလိုက်ရရှိနိုင်မှုပါသော SQLite dataset အသေးကို အသုံးပြုထားသည်။',
+    gemmaTitle: 'Gemma အတွက် အသင့်ဖြစ်သော core',
+    gemmaBody:
+      'ပထမဦးဆုံး mock provider ပါဝင်သည်။ inference target အသင့်ဖြစ်လျှင် environment variables ဖြင့် HTTP Gemma endpoint သို့ ပြောင်းနိုင်သည်။',
+    mobileEyebrow: 'မိုဘိုင်းနှင့် offline ဦးတည်ချက်',
+    mobileTitle: 'iOS နှင့် Android ပေါ်ရှိ ဆေးဖက်ဝင်အပင် အသိပညာ',
+    mobileBody:
+      'Phase 2 တွင် Herb Library ကို iOS နှင့် Android ဖုန်းအက်ပ်အဖြစ် ထည့်သွင်းနိုင်ပြီး ကွန်ယက်အားနည်းသည့်အချိန်တွင်ပင် မိသားစုများနှင့် community health worker များက ဒေသအပင်များ, ဖြစ်နိုင်သော အသုံးများ, ခွဲခြားသိနိုင်သောမှတ်ချက်များ, ဘေးကင်းရေးသတိပေးချက်များနှင့် ဒေသအလိုက်ရရှိနိုင်မှုကို ကြည့်နိုင်စေသည်။',
+    phoneTitle: 'ဒေသဆိုင်ရာ ဆေးဖက်ဝင်အပင် စာကြည့်တိုက်',
+    phoneMoringaPack: 'Kano pack',
+    phoneGingerPack: 'Bihar pack',
+    phoneOffline: 'Offline အသင့်',
+    offlineTitle: 'Offline-first စာကြည့်တိုက်:',
+    offlineBody: 'ယုံကြည်ရသော ဒေသဆိုင်ရာ ဆေးဖက်ဝင်အပင်နှင့် အစားအစာအပင် မှတ်တမ်းများကို စက်ထဲတွင် သိမ်းထားသည်။',
+    updatesTitle: 'ဒေသတွင်း အပ်ဒိတ်များ:',
+    updatesBody: 'ဖုန်းပြန်ချိတ်ဆက်နိုင်သောအခါ စိစစ်ပြီးသား မှတ်တမ်းအသစ်များကို sync လုပ်သည်။',
+    fieldTitle: 'ကွင်းဆင်းအသုံးပြုမှု:',
+    fieldBody: 'ဘေးကင်းရေး triage, source link များနှင့် visual guide များကို လိုအပ်သူများအနီးတွင် ထားရှိသည်။'
+  },
   'es-PE': {
     eyebrow: 'Navegador de conocimiento herbal con seguridad primero',
     subtitle:
@@ -458,6 +538,8 @@ export function isLocale(value: string | null): value is Locale {
     value === 'zh' ||
     value === 'ko' ||
     value === 'vi-VN' ||
+    value === 'lo-LA' ||
+    value === 'my-MM' ||
     value === 'es-PE' ||
     value === 'es-BO' ||
     value === 'fa-AF' ||

@@ -31,7 +31,7 @@ This project treats traditional knowledge with respect while adding the guardrai
 - **Mobile and offline direction:** the home page introduces an iOS/Android app concept for carrying regional herb records, food plants, water-safety steps, and red-flag guidance into areas with weak or no internet.
 - **Connection modes:** the header detects Normal, Low Connection, and Offline modes, then explains when cached pages, saved drafts, or local records may be used.
 - **PWA/offline cache:** the frontend includes a service worker that caches the app shell, static assets, demo cases, and herb-library GET responses for better behavior on poor connections.
-- **Multilingual header and home page:** the app includes a lightweight language switcher for English, Vietnamese, Swahili, Hindi, Chinese, Korean, Spanish (Peru and Bolivia), Dari (Afghanistan), and Kirundi (Burundi) as a first step toward broader community access.
+- **Multilingual header and home page:** the app includes a lightweight language switcher for English, Vietnamese, Lao, Burmese, Swahili, Hindi, Chinese, Korean, Spanish (Peru and Bolivia), Dari (Afghanistan), and Kirundi (Burundi) as a first step toward broader community access.
 - **Location-aware referral guidance:** Phase 1 urgent and emergency responses suggest the nearest clinic, hospital, pharmacy, community health worker, NGO field worker, or trusted transport helper near the user's city/region/country, without inventing unverified facility names.
 
 ## Visual Guidance for Real Communities
@@ -84,6 +84,8 @@ The current prototype adds a lightweight language switcher for the header and fu
 
 - English
 - Vietnamese
+- Lao
+- Burmese
 - Swahili
 - Hindi
 - Chinese
@@ -336,7 +338,7 @@ Rust and SvelteKit split the problem cleanly. SvelteKit handles browser-side res
 - **LLM integration:** mock provider by default, HTTP Gemma-compatible provider for local or hosted inference
 - **Deployment shape:** local-first architecture that can be packaged for clinics, NGOs, community health workers, and offline demos
 - **Connectivity support:** frontend connection monitor, Herb Library cache fallback, and SvelteKit service worker for app-shell/API GET caching
-- **Language UI:** lightweight header and home-page language switcher for English, Vietnamese, Swahili, Hindi, Chinese, Korean, Spanish (Peru and Bolivia), Dari (Afghanistan), and Kirundi (Burundi)
+- **Language UI:** lightweight header and home-page language switcher for English, Vietnamese, Lao, Burmese, Swahili, Hindi, Chinese, Korean, Spanish (Peru and Bolivia), Dari (Afghanistan), and Kirundi (Burundi)
 - **Visual records:** real public plant photos for herb identification, plus lightweight local illustrations for practical safety guidance
 
 ### Why Rust and SvelteKit for Poor Connectivity
@@ -622,14 +624,14 @@ Gemma HerbalCare has a clear AI-for-good thesis and a working safety architectur
 - **Offline access path:** the mobile direction treats herb records, safety rules, ORS, water, and food-resilience guidance as knowledge that should remain available even without internet.
 - **Poor-connectivity tech stack:** Rust, SQLite, and SvelteKit keep the system lightweight enough for edge devices, local servers, one-service deployment, and future PWA/mobile offline caching.
 - **AI-ready edge architecture:** the backend can use mock, clinic/NGO edge Gemma/Ollama, or hosted Gemma-compatible endpoints while keeping safety triage and retrieval local and deterministic.
-- **Inclusive language path:** the current language switcher demonstrates the product direction toward Swahili, Hindi, Chinese, Korean, Spanish for Peru/Bolivia/South America, Dari for Afghanistan, Kirundi for Burundi, and other local-language packs.
+- **Inclusive language path:** the current language switcher demonstrates the product direction toward Vietnamese, Lao, Burmese, Swahili, Hindi, Chinese, Korean, Spanish for Peru/Bolivia/South America, Dari for Afghanistan, Kirundi for Burundi, and other local-language packs.
 - **Cultural preservation:** the system can document local names, preparation context, safety notes, and regional availability before knowledge is lost.
 - **Clear model role:** Gemma translates controlled knowledge into accessible guidance instead of acting as an unconstrained medical authority.
 - **Scalable path:** the architecture can support multilingual voice flows, clinician-reviewed datasets, safety evaluations, and community health worker deployments.
 
 ## Phase 2: Competitive Extensions
 
-- **Multilingual support:** expand the current English, Vietnamese, Swahili, Hindi, Chinese, Korean, Spanish (Peru and Bolivia), Dari (Afghanistan), and Kirundi (Burundi) home-page switcher into full app translation and read-aloud flows, then add other local and low-resource languages.
+- **Multilingual support:** expand the current English, Vietnamese, Lao, Burmese, Swahili, Hindi, Chinese, Korean, Spanish (Peru and Bolivia), Dari (Afghanistan), and Kirundi (Burundi) home-page switcher into full app translation and read-aloud flows, then add other local and low-resource languages.
 - **Voice-first interaction:** local speech input and spoken responses for low-literacy users.
 - **Plant/photo intake:** image-based OCR and visual triage support for plant records, water clarity, labels, and visible danger signs, with strong uncertainty warnings and expert confirmation requirements.
 - **Offline bundle:** deployable regional knowledge packs for rural clinics, NGOs, schools, community health workers, and mobile users without reliable internet; the phone does not need to run the AI model.
